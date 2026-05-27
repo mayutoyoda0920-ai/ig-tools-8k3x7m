@@ -1,0 +1,2837 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis フェス出店マニュアル</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      background-color: #f5f0eb;
+      color: #2c2c2c;
+      line-height: 1.8;
+    }
+
+    header {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: #aaa;
+    }
+
+    nav {
+      background-color: #2c2c2c;
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #1a1a1a;
+    }
+
+    .section-number {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 28px 0 12px;
+      padding-left: 12px;
+      border-left: 3px solid #1a1a1a;
+    }
+
+    h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 20px 0 8px;
+    }
+
+    p, li {
+      font-size: 0.92rem;
+      line-height: 1.9;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .alert {
+      background-color: #fff3e0;
+      border-left: 4px solid #e65100;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+
+    .alert strong {
+      color: #e65100;
+    }
+
+    .info {
+      background-color: #e8f0fe;
+      border-left: 4px solid #1a56db;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+
+    .info strong {
+      color: #1a56db;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.88rem;
+    }
+
+    thead {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+    }
+
+    th {
+      padding: 10px 16px;
+      text-align: left;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    td {
+      padding: 10px 16px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #ede8e2;
+    }
+
+    .contract-info {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px 24px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+
+    .contract-info dt {
+      font-weight: 600;
+      display: inline;
+    }
+
+    .contract-info dd {
+      display: inline;
+      margin-left: 4px;
+    }
+
+    .contract-info .row {
+      margin-bottom: 6px;
+    }
+
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      padding: 12px 16px 12px 52px;
+      position: relative;
+      background-color: #fff;
+      margin-bottom: 8px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .payment-flow {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: #888;
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Event Scoring Tool */
+    .tool-wrapper {
+      background-color: #fff;
+      border: 2px solid #1a1a1a;
+      margin: 24px 0;
+      overflow: hidden;
+    }
+
+    .tool-header {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      padding: 14px 20px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .tool-body {
+      padding: 24px;
+    }
+
+    .event-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .event-form .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #555;
+      letter-spacing: 0.02em;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #1a1a1a;
+      background-color: #fff;
+    }
+
+    .form-group input::placeholder {
+      color: #bbb;
+    }
+
+    .tool-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      font-family: inherit;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+    }
+
+    .btn-primary:hover {
+      background-color: #333;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #1a1a1a;
+      border: 1px solid #1a1a1a;
+    }
+
+    .btn-secondary:hover {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+    }
+
+    .btn-danger {
+      background-color: transparent;
+      color: #c62828;
+      border: 1px solid #c62828;
+      font-size: 0.78rem;
+      padding: 6px 14px;
+    }
+
+    .btn-danger:hover {
+      background-color: #c62828;
+      color: #fff;
+    }
+
+    /* Results */
+    .results-area {
+      margin-top: 24px;
+    }
+
+    .results-area h4 {
+      border-left: none;
+      padding-left: 0;
+      margin-bottom: 16px;
+    }
+
+    .event-card {
+      background-color: #fafafa;
+      border: 1px solid #e0e0e0;
+      padding: 20px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .event-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .event-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .event-card-type {
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      letter-spacing: 0.03em;
+    }
+
+    .event-card-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      font-size: 0.82rem;
+    }
+
+    .metric-label {
+      color: #888;
+      font-size: 0.75rem;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .score-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .score-bar {
+      flex: 1;
+      height: 8px;
+      background-color: #e0e0e0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    .score-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .score-label {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .event-card-actions {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+
+    .ranking-summary {
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .ranking-summary h4 {
+      color: #f5f0eb;
+      margin: 0 0 12px;
+      font-size: 0.9rem;
+    }
+
+    .ranking-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .ranking-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #333;
+      font-size: 0.85rem;
+    }
+
+    .ranking-list li:last-child {
+      border-bottom: none;
+    }
+
+    .rank-number {
+      color: #aaa;
+      margin-right: 8px;
+    }
+
+    .rank-recommend {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      margin-left: 8px;
+    }
+
+    .rank-recommend.go {
+      background-color: #2e7d32;
+      color: #fff;
+    }
+
+    .rank-recommend.maybe {
+      background-color: #f9a825;
+      color: #1a1a1a;
+    }
+
+    .rank-recommend.skip {
+      background-color: #c62828;
+      color: #fff;
+    }
+
+    .no-events {
+      text-align: center;
+      padding: 40px 20px;
+      color: #999;
+      font-size: 0.88rem;
+    }
+
+    /* Tablet */
+    @media (max-width: 768px) {
+      header {
+        padding: 40px 16px;
+      }
+
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .container {
+        padding: 24px 16px 60px;
+      }
+
+      nav ul {
+        gap: 16px;
+      }
+
+      .event-card-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      table {
+        font-size: 0.82rem;
+      }
+    }
+
+    /* Smartphone */
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.3rem;
+      }
+
+      header p {
+        font-size: 0.78rem;
+      }
+
+      nav {
+        padding: 12px 10px;
+      }
+
+      nav ul {
+        gap: 10px;
+        justify-content: space-around;
+      }
+
+      nav ul li a {
+        font-size: 0.72rem;
+      }
+
+      .container {
+        padding: 16px 12px 48px;
+      }
+
+      .section-header {
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .section-header h2 {
+        font-size: 1.05rem;
+      }
+
+      .section-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+      }
+
+      h3 {
+        font-size: 0.95rem;
+        margin: 20px 0 10px;
+      }
+
+      p, li {
+        font-size: 0.85rem;
+      }
+
+      table {
+        font-size: 0.75rem;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      th, td {
+        padding: 8px 8px;
+        white-space: nowrap;
+      }
+
+      .alert, .info {
+        padding: 12px 14px;
+        font-size: 0.82rem;
+      }
+
+      .contract-info {
+        padding: 14px 16px;
+        font-size: 0.82rem;
+      }
+
+      /* Scoring Tool mobile */
+      .tool-header {
+        font-size: 0.85rem;
+        padding: 12px 16px;
+      }
+
+      .tool-body {
+        padding: 16px;
+      }
+
+      .event-form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 12px;
+        font-size: 0.9rem;
+      }
+
+      .tool-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 14px;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      .event-card {
+        padding: 16px;
+      }
+
+      .event-card-header {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .event-card-type {
+        align-self: flex-start;
+      }
+
+      .event-card-metrics {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .event-card-actions {
+        top: 8px;
+        right: 8px;
+      }
+
+      .metric-value {
+        font-size: 0.85rem;
+      }
+
+      .score-value {
+        font-size: 1rem;
+        min-width: 36px;
+      }
+
+      .ranking-summary {
+        padding: 16px;
+      }
+
+      .ranking-list li {
+        font-size: 0.8rem;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .steps li {
+        padding: 10px 12px 10px 44px;
+        font-size: 0.85rem;
+      }
+
+      .steps li::before {
+        left: 12px;
+        width: 22px;
+        height: 22px;
+        font-size: 0.75rem;
+      }
+
+      .payment-flow {
+        padding: 14px 16px;
+      }
+    }
+
+    /* Very small screens */
+    @media (max-width: 360px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .event-card-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.1rem;
+      }
+    }
+
+    /* Festival Analyzer Tool */
+    .analyzer-drop-zone {
+      border: 2px dashed #aaa;
+      padding: 40px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 16px;
+      background-color: #fafafa;
+    }
+
+    .analyzer-drop-zone:hover,
+    .analyzer-drop-zone.dragover {
+      border-color: #1a1a1a;
+      background-color: #f0ede8;
+    }
+
+    .analyzer-drop-zone p {
+      color: #888;
+      font-size: 0.88rem;
+    }
+
+    .analyzer-drop-zone .drop-icon {
+      font-size: 2rem;
+      color: #aaa;
+      margin-bottom: 8px;
+    }
+
+    .analyzer-input-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .analyzer-input-row input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      background-color: #fafafa;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .analyzer-input-row input:focus {
+      outline: none;
+      border-color: #1a1a1a;
+      background-color: #fff;
+    }
+
+    .analyzer-or {
+      text-align: center;
+      color: #aaa;
+      font-size: 0.8rem;
+      margin: 12px 0;
+      letter-spacing: 0.1em;
+    }
+
+    .analyzer-result {
+      background-color: #fafafa;
+      border: 1px solid #e0e0e0;
+      padding: 24px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .analyzer-result.visible {
+      display: block;
+    }
+
+    .analyzer-result h4 {
+      border-left: none;
+      padding-left: 0;
+      margin: 0 0 16px;
+    }
+
+    .analyzer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .analyzer-item {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      padding: 14px 16px;
+    }
+
+    .analyzer-item-label {
+      font-size: 0.75rem;
+      color: #888;
+      margin-bottom: 4px;
+    }
+
+    .analyzer-item-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .analyzer-scale {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background-color: #1a1a1a;
+      color: #f5f0eb;
+      padding: 16px 20px;
+      margin-top: 16px;
+    }
+
+    .analyzer-scale-label {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .analyzer-scale-value {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .analyzer-scale-desc {
+      font-size: 0.82rem;
+    }
+
+    .analyzer-raw {
+      margin-top: 16px;
+    }
+
+    .analyzer-raw summary {
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: #888;
+      padding: 8px 0;
+    }
+
+    .analyzer-raw-content {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      padding: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: #555;
+    }
+
+    .analyzer-loading {
+      text-align: center;
+      padding: 30px;
+      color: #888;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    .analyzer-loading.visible {
+      display: block;
+    }
+
+    /* Travel Search Tool */
+    .travel-tool .travel-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .travel-results {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .travel-results.visible {
+      display: block;
+    }
+
+    .airport-card {
+      background-color: #fafafa;
+      border: 1px solid #e0e0e0;
+      padding: 16px 20px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .airport-info {
+      flex: 1;
+    }
+
+    .airport-code {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .airport-name {
+      font-size: 0.82rem;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .airport-distance {
+      font-size: 0.78rem;
+      color: #999;
+      margin-top: 4px;
+    }
+
+    .search-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .search-link {
+      display: inline-block;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: opacity 0.2s;
+    }
+
+    .search-link:hover {
+      opacity: 0.8;
+    }
+
+    .search-link.flights {
+      background-color: #1a73e8;
+      color: #fff;
+    }
+
+    .search-link.hotel {
+      background-color: #003580;
+      color: #fff;
+    }
+
+    .search-link.skyscanner {
+      background-color: #0770e3;
+      color: #fff;
+    }
+
+    .travel-note {
+      font-size: 0.78rem;
+      color: #999;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .travel-tool .travel-form {
+        grid-template-columns: 1fr;
+      }
+
+      .airport-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .search-links {
+        width: 100%;
+      }
+
+      .search-link {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    /* TODO Checklist */
+    .todo-phase {
+      margin-bottom: 28px;
+    }
+
+    .todo-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-bottom: none;
+      cursor: pointer;
+      transition: background-color 0.15s;
+      font-size: 0.88rem;
+    }
+
+    .todo-item:last-child {
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .todo-item:hover {
+      background-color: #f9f7f5;
+    }
+
+    .todo-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #2e7d32;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .todo-item input[type="checkbox"]:checked + span {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    @media (max-width: 480px) {
+      .todo-item {
+        padding: 14px 12px;
+        font-size: 0.85rem;
+        gap: 10px;
+      }
+
+      .todo-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* Touch-friendly inputs */
+    @media (pointer: coarse) {
+      .form-group input,
+      .form-group select {
+        min-height: 48px;
+      }
+
+      .btn {
+        min-height: 48px;
+      }
+
+      .btn-danger {
+        min-height: 36px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ignis</h1>
+  <p>Festival Manual &mdash; フェス出店マニュアル</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#part1">1. リサーチ</a></li>
+    <li><a href="#part2">2. 応募・申請</a></li>
+    <li><a href="#part3">3. フェス準備</a></li>
+    <li><a href="#part4">4. 現地準備</a></li>
+    <li><a href="#part5">5. 派遣TODO</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- PART 1 -->
+  <section id="part1">
+    <div class="section-header">
+      <div class="section-number">1</div>
+      <h2>リサーチ編</h2>
+    </div>
+
+    <h3>新規イベントのリサーチ</h3>
+    <p>Claude Agentを活用し、来年のイベントをリサーチする。対象エリアはアジア・ヨーロッパ・アメリカ。</p>
+
+    <h3>過去参加イベントの精査</h3>
+    <p>過去に参加したイベントについて、売上と経費を鑑みて採算性を評価する。成果の良いものは継続参加とする。</p>
+
+    <!-- Festival Analyzer Tool -->
+    <div class="tool-wrapper" id="analyzer-tool">
+      <div class="tool-header">Festival Analyzer &mdash; フェス規模分析ツール</div>
+      <div class="tool-body">
+        <p style="font-size:0.85rem; color:#666; margin-bottom:16px;">フェスのPDFをアップロード、またはHPのURLを入力すると、テキストから規模情報を自動抽出します。</p>
+
+        <div class="analyzer-drop-zone" id="dropZone" onclick="document.getElementById('pdfInput').click()">
+          <div class="drop-icon">PDF</div>
+          <p>PDFをドラッグ&ドロップ、またはクリックして選択</p>
+          <input type="file" id="pdfInput" accept=".pdf" style="display:none" onchange="handlePdfUpload(event)">
+        </div>
+
+        <div class="analyzer-or">- or -</div>
+
+        <div class="analyzer-input-row">
+          <input type="url" id="analyzerUrl" placeholder="フェスのHPのURLを入力（例: https://...）">
+          <button class="btn btn-primary" onclick="analyzeUrl()">分析</button>
+        </div>
+
+        <div class="analyzer-or">- or -</div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label>テキストを直接貼り付け</label>
+          <textarea id="analyzerText" rows="4" style="padding:10px 12px; border:1px solid #ccc; background:#fafafa; font-size:0.85rem; font-family:inherit; resize:vertical;" placeholder="フェスのHPやPDFからテキストをコピペ"></textarea>
+          <button class="btn btn-secondary" style="margin-top:8px; align-self:flex-start;" onclick="analyzeText(document.getElementById('analyzerText').value)">テキストを分析</button>
+        </div>
+
+        <div class="analyzer-loading" id="analyzerLoading">分析中...</div>
+
+        <div class="analyzer-result" id="analyzerResult">
+          <h4 id="analyzerTitle">分析結果</h4>
+          <div class="analyzer-grid" id="analyzerGrid"></div>
+          <div class="analyzer-scale" id="analyzerScale"></div>
+          <details class="analyzer-raw">
+            <summary>抽出元テキストを表示</summary>
+            <div class="analyzer-raw-content" id="analyzerRaw"></div>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <!-- Travel Search Tool -->
+    <div class="tool-wrapper travel-tool" id="travel-tool">
+      <div class="tool-header">Travel Search &mdash; 最寄り空港・フライト・ホテル検索</div>
+      <div class="tool-body">
+        <p style="font-size:0.85rem; color:#666; margin-bottom:16px;">フェス会場の都市と日程を入力すると、最寄り空港とフライト・ホテルの検索リンクを生成します。</p>
+
+        <div class="travel-form">
+          <div class="form-group full-width">
+            <label>フェス会場の都市名（英語）</label>
+            <input type="text" id="travelCity" placeholder="例: Shanghai, Bangkok, Berlin, Portland">
+          </div>
+          <div class="form-group">
+            <label>出発地の空港コード</label>
+            <input type="text" id="travelOrigin" value="NRT" placeholder="NRT / HND">
+          </div>
+          <div class="form-group">
+            <label>通貨</label>
+            <select id="travelCurrency">
+              <option value="JPY">JPY（円）</option>
+              <option value="USD">USD（ドル）</option>
+              <option value="EUR">EUR（ユーロ）</option>
+              <option value="CNY">CNY（人民元）</option>
+              <option value="THB">THB（バーツ）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>チェックイン日</label>
+            <input type="date" id="travelCheckin">
+          </div>
+          <div class="form-group">
+            <label>チェックアウト日</label>
+            <input type="date" id="travelCheckout">
+          </div>
+          <div class="form-group">
+            <label>人数</label>
+            <input type="number" id="travelGuests" value="2" min="1">
+          </div>
+          <div class="tool-actions full-width">
+            <button class="btn btn-primary" onclick="searchTravel()">検索リンクを生成</button>
+          </div>
+        </div>
+
+        <div class="travel-results" id="travelResults">
+          <h4 style="border-left:none; padding-left:0;">最寄り空港</h4>
+          <div id="airportResults"></div>
+
+          <div id="perPersonEstimate" style="display:none; margin-top:20px;">
+            <h4 style="border-left:none; padding-left:0;">1人あたり費用見積もり</h4>
+            <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; margin-bottom:12px;">
+              <div class="event-form" style="gap:12px;">
+                <div class="form-group">
+                  <label>航空券（往復 / 1人）</label>
+                  <input type="number" id="estFlightCost" placeholder="50000" oninput="updatePerPersonEstimate()">
+                </div>
+                <div class="form-group">
+                  <label>ホテル（1泊 / 1部屋）</label>
+                  <input type="number" id="estHotelCost" placeholder="15000" oninput="updatePerPersonEstimate()">
+                </div>
+                <div class="form-group">
+                  <label>1部屋あたり人数</label>
+                  <input type="number" id="estRoomShare" value="2" min="1" oninput="updatePerPersonEstimate()">
+                </div>
+                <div class="form-group">
+                  <label>その他（食費・交通 / 1人）</label>
+                  <input type="number" id="estOtherCost" placeholder="10000" value="0" oninput="updatePerPersonEstimate()">
+                </div>
+              </div>
+              <div id="perPersonResult" style="margin-top:16px; padding:16px; background:#1a1a1a; color:#f5f0eb;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                  <div>
+                    <div style="font-size:0.75rem; color:#aaa;">1人あたり合計（税抜目安）</div>
+                    <div id="perPersonTotal" style="font-size:1.4rem; font-weight:700;">---</div>
+                  </div>
+                  <div style="font-size:0.8rem; color:#aaa;">
+                    <div>航空券: <span id="ppFlight">---</span></div>
+                    <div>宿泊: <span id="ppHotel">---</span>（<span id="ppNights">0</span>泊）</div>
+                    <div>その他: <span id="ppOther">---</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="travel-note">※ 各リンクをクリックすると、Google Flights / Skyscanner / Booking.com の検索画面が開きます。料金はリアルタイムの最新価格です。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Scoring Tool -->
+    <div class="tool-wrapper" id="scoring-tool">
+      <div class="tool-header">Event Scoring Tool &mdash; イベント採算性スコアリング</div>
+      <div class="tool-body">
+        <form id="eventForm" class="event-form" onsubmit="return false;">
+          <div class="form-group full-width">
+            <label>イベント名</label>
+            <input type="text" id="eventName" placeholder="例: Shanghai Coffee Festival 2025">
+          </div>
+          <div class="form-group">
+            <label>形式</label>
+            <select id="eventType">
+              <option value="toC">to C（一般来場者向け）</option>
+              <option value="toB">to B（業界向け）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>来場者数（人）</label>
+            <input type="number" id="visitors" placeholder="10000">
+          </div>
+          <div class="form-group">
+            <label>売上（円）</label>
+            <input type="number" id="revenue" placeholder="500000">
+          </div>
+          <div class="form-group">
+            <label>出店料（円）</label>
+            <input type="number" id="boothFee" placeholder="100000">
+          </div>
+          <div class="form-group">
+            <label>スタッフ給料（円）</label>
+            <input type="number" id="staffSalary" placeholder="80000">
+          </div>
+          <div class="form-group">
+            <label>派遣スタッフ数（人）</label>
+            <input type="number" id="staffCount" placeholder="2">
+          </div>
+          <div class="form-group">
+            <label>飛行機代 / 1人（円）</label>
+            <input type="number" id="flightCost" placeholder="50000">
+          </div>
+          <div class="form-group">
+            <label>ホテル代 / 1人（円）</label>
+            <input type="number" id="hotelCost" placeholder="30000">
+          </div>
+          <div class="form-group">
+            <label>その他経費（円）</label>
+            <input type="number" id="otherCost" placeholder="0">
+          </div>
+          <div class="tool-actions full-width">
+            <button class="btn btn-primary" onclick="addEvent()">スコア算出・追加</button>
+            <button class="btn btn-secondary" onclick="clearForm()">クリア</button>
+          </div>
+        </form>
+
+        <div class="results-area" id="resultsArea">
+          <div class="no-events" id="noEvents">イベントを追加するとスコアが表示されます</div>
+          <div id="eventCards"></div>
+          <div id="rankingSummary"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3>外部からの情報収集</h3>
+    <ul>
+      <li>他メンバーからのイベント情報</li>
+      <li>フェス現地でもらったスカウト情報・フライヤー</li>
+    </ul>
+
+    <h3>参加可否の判断</h3>
+    <p>上記で集まった候補について、過去の情報（売上・経費）から採算性を判断し、土橋さんに提出する。</p>
+  </section>
+
+  <!-- PART 2 -->
+  <section id="part2">
+    <div class="section-header">
+      <div class="section-number">2</div>
+      <h2>応募・申請書作成編</h2>
+    </div>
+
+    <h3>アプライ開始時期</h3>
+    <div class="alert">
+      <strong>重要：</strong>イベントの4ヶ月前にはアプライ行動を開始すること。
+    </div>
+
+    <h3>申し込み・契約書の提出</h3>
+    <p>申し込みフォームまたは契約書を提出する。</p>
+
+    <h4>契約書に記載する情報</h4>
+    <div class="contract-info">
+      <div class="row"><dt>ブランド名：</dt><dd>ignis</dd></div>
+      <div class="row"><dt>代表：</dt><dd>土橋永司（Eiji Dobashi）</dd></div>
+      <div class="row"><dt>住所：</dt><dd>3-44-11 Sendagi, Bunkyo-ku, Tokyo</dd></div>
+      <div class="row"><dt>Email：</dt><dd>igniskamakura.info@gmail.com（状況によりignisドメインを利用）</dd></div>
+    </div>
+
+    <h3>支払い対応</h3>
+    <div class="payment-flow">
+      <p>契約書提出後に支払いが発生するため、土橋さんに連絡する。</p>
+      <div class="alert" style="margin-top: 12px;">
+        <strong>注意：</strong>基本的に返信が来ないため、<strong>支払い期限の1週間前に必ずまゆに連絡</strong>し、緊急ラインで土橋さんに支払いをお願いすること。
+      </div>
+    </div>
+
+    <h3>メニューの提出</h3>
+    <p>申し込み時に最初にメニュー提出を求められる場合がある。事前にメニュー内容を確定しておくこと。</p>
+
+    <h3>食品表示が必要な場合（コーヒー豆販売時）</h3>
+    <div class="info">
+      <strong>注記：</strong>表示内容・記載要項は主催の指示による。
+    </div>
+    <p>コーヒー豆をパッケージ販売する場合、以下の項目をラベルに記載する必要がある。</p>
+
+    <h4>日本語版</h4>
+    <table>
+      <thead>
+        <tr><th>項目</th><th>記載内容</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>名称</td><td>レギュラーコーヒー（豆）or（粉）</td></tr>
+        <tr><td>原材料名</td><td>コーヒー豆（原産国名を重量順に記載）</td></tr>
+        <tr><td>内容量</td><td>○○g</td></tr>
+        <tr><td>賞味期限</td><td>年月日表示</td></tr>
+        <tr><td>保存方法</td><td>直射日光・高温多湿を避けて保存</td></tr>
+        <tr><td>製造者 / 販売者</td><td>氏名・住所</td></tr>
+      </tbody>
+    </table>
+
+    <h4>English Version</h4>
+    <table>
+      <thead>
+        <tr><th>Item</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Product Name</td><td>Roasted Coffee Beans / Ground Coffee</td></tr>
+        <tr><td>Ingredients</td><td>Coffee beans (list country of origin by weight)</td></tr>
+        <tr><td>Net Weight</td><td>○○g</td></tr>
+        <tr><td>Best Before</td><td>DD/MM/YYYY</td></tr>
+        <tr><td>Storage</td><td>Store in a cool, dry place away from direct sunlight</td></tr>
+        <tr><td>Producer / Distributor</td><td>ignis / Eiji Dobashi, 3-44-11 Sendagi, Bunkyo-ku, Tokyo, Japan</td></tr>
+      </tbody>
+    </table>
+
+    <p>※営業届出（保健所への届出）が必要。</p>
+
+    <h3>【国内フェス】屋外出店の営業許可</h3>
+    <p>屋外フェスに出店する場合、保健所の臨時営業許可が必要。各店舗（テント）ごとに個別の許可を取得する。</p>
+
+    <div class="contract-info">
+      <div class="row"><dt>管轄：</dt><dd>鎌倉保健福祉事務所（TEL: 0467-24-3900）</dd></div>
+      <div class="row"><dt>許可有効期間：</dt><dd>最長5年（神奈川県内全域で使用可能）</dd></div>
+      <div class="row"><dt>手数料：</dt><dd>新規 4,000円 / 継続 3,000円</dd></div>
+      <div class="row"><dt>食品衛生責任者：</dt><dd>各店舗に1名配置が必須</dd></div>
+    </div>
+
+    <h4>必要な設備要件</h4>
+    <table>
+      <thead>
+        <tr><th>設備</th><th>要件</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>テント</td><td>屋根・側壁あり、全設備を収容できる構造</td></tr>
+        <tr><td>給水タンク</td><td>蓋付き・18L以上、水栓付き</td></tr>
+        <tr><td>排水容器</td><td>給水タンクと同等以上の容量</td></tr>
+        <tr><td>手洗い設備</td><td>器具洗浄用 + 従事者用 + 消毒剤（アルコール等）</td></tr>
+        <tr><td>冷蔵設備</td><td>クーラーボックス等（牛乳は10℃以下）</td></tr>
+        <tr><td>廃棄物容器</td><td>蓋付きゴミ箱</td></tr>
+        <tr><td>格納設備</td><td>食器・器具を衛生的に保管できるもの</td></tr>
+      </tbody>
+    </table>
+
+    <h4>申請手続きの流れ</h4>
+    <ol class="steps">
+      <li>事前相談 &mdash; 保健福祉事務所に出店内容・設備を相談</li>
+      <li>イベント2週間〜10日前までに申請書類を提出</li>
+      <li>書類審査・施設検査</li>
+      <li>手数料納付 → 許可</li>
+    </ol>
+
+    <h3>ミルク系ドリンクの提供条件</h3>
+    <ul>
+      <li>牛乳は10℃以下で搬入から提供まで温度管理を維持</li>
+      <li>開封した牛乳はその日のうちに使い切る</li>
+      <li>生クリーム・ソフトクリームの提供は禁止</li>
+    </ul>
+    <div class="alert">
+      <strong>必須：</strong>ラテ提供の可否・品目カウントは、必ず事前に保健所に確認すること。
+    </div>
+
+    <h3>必要電力の確認・申請</h3>
+    <p>出店申請時に必要電力を申告する。以下の機材情報を記載すること。</p>
+    <table>
+      <thead>
+        <tr><th>機材</th><th>消費電力</th><th>電流</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>LAGOM mini（ピーク時）</td><td>140W</td><td>1.4A</td></tr>
+        <tr><td>Brewista Artisan（沸騰中）</td><td>950W</td><td>9.5A</td></tr>
+        <tr><td>湯沸かしケトル 1.0〜1.2L</td><td>1,200〜1,250W</td><td>12〜12.5A</td></tr>
+      </tbody>
+      <tfoot>
+        <tr style="background-color:#333; color:#f5f0eb; font-weight:600;">
+          <td>最低必要（ケトル + LAGOM mini）</td>
+          <td>1,340W（1.34kW）</td>
+          <td>13.4A</td>
+        </tr>
+        <tr style="background-color:#1a1a1a; color:#f5f0eb; font-weight:600;">
+          <td>合計（全機材フル稼働時）</td>
+          <td>2,340W（2.34kW）</td>
+          <td>23.4A</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="alert">
+      <strong>注意：</strong>全機材を同時使用した場合の最大消費電力は <strong>2,340W / 23.4A</strong>。通常の15A単独コンセントでは不足するため、<strong>20A以上の電源</strong>または<strong>複数系統の確保</strong>が必要。申請時は余裕を持って <strong>2.5kW / 25A</strong> で申告すること。
+    </div>
+  </section>
+
+  <!-- PART 3 -->
+  <section id="part3">
+    <div class="section-header">
+      <div class="section-number">3</div>
+      <h2>フェス準備編</h2>
+    </div>
+
+    <h3>持っていくものの確認</h3>
+    <p>国内・海外それぞれで持っていく物品を事前に確認する。詳細は別途物品リスト表を参照。</p>
+    <p>海外出店の場合は、渡航先の電圧・プラグ形状を確認し、どの機材を持っていくか把握しておく。</p>
+
+    <h4>各国のコンセント形状・電圧</h4>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:16px 0;">
+      <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; text-align:center;">
+        <div style="font-size:1.4rem; margin-bottom:4px;">🇨🇳</div>
+        <div style="font-weight:600; font-size:0.9rem;">中国</div>
+        <div style="margin:12px auto; display:flex; gap:8px; justify-content:center;">
+          <!-- Type A -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="14" y="10" width="3" height="14" rx="1" fill="#1a1a1a"/><rect x="23" y="10" width="3" height="14" rx="1" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">A</text></svg>
+          <!-- Type C -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><circle cx="14" cy="16" r="2.5" fill="#1a1a1a"/><circle cx="26" cy="16" r="2.5" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">C</text></svg>
+          <!-- Type I -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="12" y="10" width="3" height="12" rx="1" fill="#1a1a1a" transform="rotate(10 13.5 16)"/><rect x="25" y="10" width="3" height="12" rx="1" fill="#1a1a1a" transform="rotate(-10 26.5 16)"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">I</text></svg>
+        </div>
+        <div style="font-size:0.8rem; color:#666;">220V / 50Hz</div>
+        <div style="font-size:0.75rem; color:#999; margin-top:4px;">※日本のAタイプも一部使用可</div>
+      </div>
+      <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; text-align:center;">
+        <div style="font-size:1.4rem; margin-bottom:4px;">🇰🇷</div>
+        <div style="font-weight:600; font-size:0.9rem;">韓国</div>
+        <div style="margin:12px auto; display:flex; gap:8px; justify-content:center;">
+          <!-- Type C -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><circle cx="14" cy="16" r="2.5" fill="#1a1a1a"/><circle cx="26" cy="16" r="2.5" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">C</text></svg>
+          <!-- Type SE (Schuko) -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><circle cx="14" cy="16" r="2.5" fill="#1a1a1a"/><circle cx="26" cy="16" r="2.5" fill="#1a1a1a"/><rect x="6" y="14" width="3" height="8" rx="1" fill="#888"/><rect x="31" y="14" width="3" height="8" rx="1" fill="#888"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">SE</text></svg>
+        </div>
+        <div style="font-size:0.8rem; color:#666;">220V / 60Hz</div>
+        <div style="font-size:0.75rem; color:#999; margin-top:4px;">※丸ピン2本（SEタイプ主流）</div>
+      </div>
+      <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; text-align:center;">
+        <div style="font-size:1.4rem; margin-bottom:4px;">🇹🇭</div>
+        <div style="font-weight:600; font-size:0.9rem;">タイ</div>
+        <div style="margin:12px auto; display:flex; gap:8px; justify-content:center;">
+          <!-- Type A -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="14" y="10" width="3" height="14" rx="1" fill="#1a1a1a"/><rect x="23" y="10" width="3" height="14" rx="1" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">A</text></svg>
+          <!-- Type B -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="13" y="8" width="3" height="12" rx="1" fill="#1a1a1a"/><rect x="24" y="8" width="3" height="12" rx="1" fill="#1a1a1a"/><circle cx="20" cy="24" r="2" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">B</text></svg>
+          <!-- Type C -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><circle cx="14" cy="16" r="2.5" fill="#1a1a1a"/><circle cx="26" cy="16" r="2.5" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">C</text></svg>
+        </div>
+        <div style="font-size:0.8rem; color:#666;">220V / 50Hz</div>
+        <div style="font-size:0.75rem; color:#999; margin-top:4px;">※日本のAタイプそのまま使える場合多い</div>
+      </div>
+      <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; text-align:center;">
+        <div style="font-size:1.4rem; margin-bottom:4px;">🇺🇸</div>
+        <div style="font-weight:600; font-size:0.9rem;">アメリカ</div>
+        <div style="margin:12px auto; display:flex; gap:8px; justify-content:center;">
+          <!-- Type A -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="14" y="10" width="3" height="14" rx="1" fill="#1a1a1a"/><rect x="23" y="10" width="3" height="14" rx="1" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">A</text></svg>
+          <!-- Type B -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="13" y="8" width="3" height="12" rx="1" fill="#1a1a1a"/><rect x="24" y="8" width="3" height="12" rx="1" fill="#1a1a1a"/><circle cx="20" cy="24" r="2" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">B</text></svg>
+        </div>
+        <div style="font-size:0.8rem; color:#666;">120V / 60Hz</div>
+        <div style="font-size:0.75rem; color:#999; margin-top:4px;">※日本と同じ形状（そのまま使用可）</div>
+      </div>
+      <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; text-align:center;">
+        <div style="font-size:1.4rem; margin-bottom:4px;">🇪🇺</div>
+        <div style="font-weight:600; font-size:0.9rem;">ヨーロッパ</div>
+        <div style="margin:12px auto; display:flex; gap:8px; justify-content:center;">
+          <!-- Type C -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><circle cx="14" cy="16" r="2.5" fill="#1a1a1a"/><circle cx="26" cy="16" r="2.5" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">C</text></svg>
+          <!-- Type SE -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><circle cx="14" cy="16" r="2.5" fill="#1a1a1a"/><circle cx="26" cy="16" r="2.5" fill="#1a1a1a"/><rect x="6" y="14" width="3" height="8" rx="1" fill="#888"/><rect x="31" y="14" width="3" height="8" rx="1" fill="#888"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">SE</text></svg>
+          <!-- Type BF (UK) -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect x="4" y="4" rx="4" ry="4" width="32" height="32" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="12" y="18" width="3" height="10" rx="1" fill="#1a1a1a"/><rect x="25" y="18" width="3" height="10" rx="1" fill="#1a1a1a"/><rect x="18" y="8" width="4" height="10" rx="1" fill="#1a1a1a"/><text x="20" y="38" font-size="6" text-anchor="middle" fill="#666">BF</text></svg>
+        </div>
+        <div style="font-size:0.8rem; color:#666;">220-240V / 50Hz</div>
+        <div style="font-size:0.75rem; color:#999; margin-top:4px;">※UK のみ BF タイプ（3本ピン四角）</div>
+      </div>
+      <div style="background:#fff; border:1px solid #e0e0e0; padding:16px; text-align:center;">
+        <div style="font-size:1.4rem; margin-bottom:4px;">🇦🇺</div>
+        <div style="font-weight:600; font-size:0.9rem;">オーストラリア</div>
+        <div style="margin:12px auto; display:flex; gap:8px; justify-content:center;">
+          <!-- Type O (angled flat pins) -->
+          <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#f5f0eb" stroke="#1a1a1a" stroke-width="2"/><rect x="11" y="9" width="3" height="13" rx="1" fill="#1a1a1a" transform="rotate(30 12.5 15.5)"/><rect x="26" y="9" width="3" height="13" rx="1" fill="#1a1a1a" transform="rotate(-30 27.5 15.5)"/><rect x="19" y="22" width="3" height="6" rx="1" fill="#1a1a1a"/><text x="20" y="36" font-size="7" text-anchor="middle" fill="#666">O</text></svg>
+        </div>
+        <div style="font-size:0.8rem; color:#666;">230V / 50Hz</div>
+        <div style="font-size:0.75rem; color:#999; margin-top:4px;">※ハの字型ピン（変換プラグ必須）</div>
+      </div>
+    </div>
+    <div class="alert">
+      <strong>重要：</strong>日本の機材（100V対応）を海外で使う場合、<strong>変圧器が必要</strong>。特にケトル・Brewista等の熱機器は電圧差で故障するため、現地調達を検討すること。アメリカ（120V）は多くの機材がそのまま使用可能。
+    </div>
+
+    <h3>決済方法の確認・準備</h3>
+    <p>渡航先のメインの支払い方法を事前に把握し、適切な決済手段を準備する。</p>
+    <table>
+      <thead>
+        <tr><th>地域</th><th>決済方法</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>中国</td><td>QRコード決済</td><td>Biling SystemでQRを生成して準備</td></tr>
+        <tr><td>タイ</td><td>クレジットカード + キャッシュ</td><td>タイ用QRは作成不可のため、カード・現金で対応</td></tr>
+        <tr><td>その他の国</td><td>クレジットカード / 運営提供の決済端末</td><td>主催側に決済端末の有無を事前確認</td></tr>
+      </tbody>
+    </table>
+
+    <h3>メニューの準備</h3>
+    <ul>
+      <li>メニューデザインはオンラインチームに依頼する</li>
+      <li>フェスに派遣されるスタッフと連携して、早めにメニューを確定する</li>
+    </ul>
+  </section>
+
+  <!-- PART 4 -->
+  <section id="part4">
+    <div class="section-header">
+      <div class="section-number">4</div>
+      <h2>現地準備編</h2>
+    </div>
+
+    <h3>カップの準備</h3>
+    <p>基本はロゴカップ（4oz）を使用する。</p>
+    <p>在庫がない場合・足りない場合は現地調達を行う。</p>
+    <ul>
+      <li>主催者に依頼する</li>
+      <li>現地の友人に依頼する</li>
+      <li>現地の通販サービスで購入する</li>
+    </ul>
+
+    <h3>水の確認</h3>
+    <ul>
+      <li>水は持ち込みか現地購入かを事前に確認する</li>
+      <li>水質計は必須（必ず持参すること）</li>
+    </ul>
+
+    <div class="info">
+      <strong>※</strong> このセクションは随時追記予定です。
+    </div>
+  </section>
+
+  <!-- PART 5 -->
+  <section id="part5">
+    <div class="section-header">
+      <div class="section-number">5</div>
+      <h2>派遣スタッフ TODO</h2>
+    </div>
+    <p>フェスに派遣されるスタッフが現地で行うことのチェックリスト。各フェーズごとに完了したらチェックを入れること。</p>
+
+    <div class="tool-wrapper" id="todo-tool">
+      <div class="tool-header">Festival Staff TODO Checklist</div>
+      <div class="tool-body">
+
+        <div class="todo-phase">
+          <h3 style="border-left-color:#2e7d32;">PHASE 1：現地到着 〜 会場準備完了</h3>
+          <div class="todo-list" id="todoPhase1">
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>現地到着の連絡（グループLINEに報告）</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>ホテルチェックイン完了</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>会場到着・ブース位置の確認</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>電源の確認（コンセント位置・電圧チェック）</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>水の確保（水質チェック・TDS測定）</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>機材の設置・動作確認</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>メニュー・看板の設置</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>決済端末の動作確認</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>カップ・消耗品の在庫確認</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>会場準備完了の報告（写真付きでLINE送信��</span></label>
+          </div>
+        </div>
+
+        <div class="todo-phase">
+          <h3 style="border-left-color:#1a56db;">PHASE 2：営業日ごとの売上報告</h3>
+          <p style="font-size:0.85rem; color:#666; margin-bottom:12px;">毎日の営業終了後、以下を報告すること。</p>
+          <div class="todo-list" id="todoPhase2">
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>本日の売上金額を集計</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>杯数（ドリンク提供数）を記録</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>豆の販売数を記録（該当する場合）</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>売上報告をグループLINEに送信</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>翌日の豆・消耗品の残量確認</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>不足がある場合は早めに連絡・手配</span></label>
+          </div>
+          <div class="info" style="margin-top:12px;">
+            <strong>報告テンプレート：</strong><br>
+            📍 [フェス名] Day○ 売上報告<br>
+            💰 売上：¥○○○ / $○○○<br>
+            ☕ 杯数：○○杯<br>
+            🫘 豆販売：○袋<br>
+            📝 備考：（気づき・トラブル等）
+          </div>
+        </div>
+
+        <div class="todo-phase">
+          <h3 style="border-left-color:#e65100;">PHASE 3：フェス最終日 終了報告</h3>
+          <div class="todo-list" id="todoPhase3">
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>最終日の売上報告（通常の日次報告）</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>フェス全日程の合計売上を集計</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>残った豆・消耗品の在庫数を報告</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>ブースの撤収・片付け完了</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>主催者への挨拶・今後の連絡先交換</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>フェス終了報告をグループLINEに送信</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>気づき・改善点・次回への提案をメモ</span></label>
+          </div>
+          <div class="info" style="margin-top:12px;">
+            <strong>終了報告テンプレート：</strong><br>
+            📍 [フェス名] 全日程終了報告<br>
+            💰 合計売上：¥○○○ / $○○○<br>
+            ☕ 合計杯数：○○杯<br>
+            🫘 豆販売合計：○袋<br>
+            📦 残在庫：豆○g / カップ○個<br>
+            📝 総括・改善提案：
+          </div>
+        </div>
+
+        <div class="todo-phase">
+          <h3 style="border-left-color:#1a1a1a;">PHASE 4：帰国・帰宅連絡</h3>
+          <div class="todo-list" id="todoPhase4">
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>ホテルチェックアウト完了</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>空港到着の連絡</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>帰国（帰宅）完了の連絡</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>機材・備品の返却 or 保管場所に格納</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>経費の領収書を写真で送��</span></label>
+            <label class="todo-item"><input type="checkbox" onchange="updateTodoProgress()"><span>フェスの写真・動画素材を共有フォルダにアップ</span></label>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div style="margin-top:24px; padding:16px; background:#1a1a1a; color:#f5f0eb;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:0.85rem; font-weight:500;">全体進捗</span>
+            <span id="todoProgressText" style="font-size:0.85rem;">0 / 29 完了</span>
+          </div>
+          <div style="height:8px; background:#333; position:relative; overflow:hidden;">
+            <div id="todoProgressBar" style="height:100%; width:0%; background:#2e7d32; transition:width 0.3s;"></div>
+          </div>
+        </div>
+
+        <div class="tool-actions" style="margin-top:16px;">
+          <button class="btn btn-secondary" onclick="resetTodo()">リセット</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>ignis &mdash; Festival Manual</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  // PDF.js worker
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+
+  // ===== Festival Analyzer =====
+
+  // Drag & drop
+  const dropZone = document.getElementById('dropZone');
+  dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('dragover'); });
+  dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file && (file.type === 'application/pdf' || (file.name && file.name.toLowerCase().endsWith('.pdf')))) processPdf(file);
+    else alert('PDFファイルを選択してください');
+  });
+
+  function handlePdfUpload(e) {
+    const file = e.target.files[0];
+    if (file) processPdf(file);
+  }
+
+  async function processPdf(file) {
+    if (typeof pdfjsLib === 'undefined') {
+      alert('PDF読み込みライブラリのロードに失敗しました。ページを再読み込みするか、テキスト貼り付けをお試しください。');
+      return;
+    }
+    showLoading(true);
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let text = '';
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        text += content.items.map(item => item.str).join(' ') + '\n';
+      }
+      if (!text.trim()) {
+        alert('PDFからテキストを抽出できませんでした。画像PDFの可能性があります。テキスト貼り付けをお試しください。');
+        showLoading(false);
+        return;
+      }
+      analyzeText(text);
+    } catch (err) {
+      alert('PDFの読み込みに失敗しました: ' + err.message);
+    }
+    showLoading(false);
+  }
+
+  async function analyzeUrl() {
+    const url = document.getElementById('analyzerUrl').value.trim();
+    if (!url) { alert('URLを入力してください'); return; }
+    showLoading(true);
+    try {
+      // Try via CORS proxy for local use
+      const proxies = [
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(url),
+        'https://corsproxy.io/?' + encodeURIComponent(url)
+      ];
+      let text = '';
+      let success = false;
+      for (const proxyUrl of proxies) {
+        try {
+          const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(10000) });
+          if (res.ok) {
+            const html = await res.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            // Remove scripts and styles
+            doc.querySelectorAll('script, style, noscript').forEach(el => el.remove());
+            text = doc.body ? doc.body.innerText : '';
+            success = true;
+            break;
+          }
+        } catch (e) { continue; }
+      }
+      if (!success || !text.trim()) {
+        alert('URLの取得に失敗しました。HPのテキストをコピーして「テキストを直接貼り付け」欄に貼り付けてください。');
+        showLoading(false);
+        return;
+      }
+      analyzeText(text);
+    } catch (err) {
+      alert('エラーが発生しました。テキスト貼り付けをお試しください。');
+    }
+    showLoading(false);
+  }
+
+  function analyzeText(text) {
+    if (!text || !text.trim()) { alert('テキストが空です'); return; }
+    showLoading(false);
+
+    const results = extractInfo(text);
+    renderAnalyzerResult(results, text);
+    autoFillTravelSearch(results);
+  }
+
+  // Auto-fill Travel Search from analyzer results
+  function autoFillTravelSearch(info) {
+    // Fill city from location or country
+    let city = '';
+    if (info.location) {
+      // Try to extract city name from location
+      const locWords = info.location.split(/[,、，\s]/);
+      city = locWords[0].trim();
+    }
+    if (!city && info.country) {
+      // Map country to major city
+      const countryToCityMap = {
+        'japan': 'Tokyo', 'china': 'Shanghai', 'korea': 'Seoul', 'taiwan': 'Taipei',
+        'thailand': 'Bangkok', 'vietnam': 'Ho Chi Minh City', 'indonesia': 'Jakarta',
+        'singapore': 'Singapore', 'malaysia': 'Kuala Lumpur', 'philippines': 'Manila',
+        'india': 'Delhi', 'usa': 'New York', 'uk': 'London', 'germany': 'Berlin',
+        'france': 'Paris', 'italy': 'Milan', 'spain': 'Barcelona', 'netherlands': 'Amsterdam',
+        'sweden': 'Stockholm', 'norway': 'Oslo', 'denmark': 'Copenhagen', 'finland': 'Helsinki',
+        'switzerland': 'Zurich', 'austria': 'Vienna', 'portugal': 'Lisbon', 'czech': 'Prague',
+        'poland': 'Warsaw', 'turkey': 'Istanbul', 'australia': 'Melbourne', 'new zealand': 'Auckland',
+        'uae': 'Dubai', 'brazil': 'Sao Paulo', 'mexico': 'Mexico City', 'colombia': 'Bogota',
+        'russia': 'Moscow', 'saudi arabia': 'Riyadh',
+      };
+      city = countryToCityMap[info.country] || '';
+    }
+    if (city) {
+      document.getElementById('travelCity').value = city;
+    }
+
+    // Parse dates and set checkin (day before) / checkout (day after)
+    if (info.dates) {
+      const parsed = parseFestivalDates(info.dates);
+      if (parsed) {
+        const checkinDate = new Date(parsed.start);
+        checkinDate.setDate(checkinDate.getDate() - 1);
+        const checkoutDate = new Date(parsed.end);
+        checkoutDate.setDate(checkoutDate.getDate() + 1);
+
+        document.getElementById('travelCheckin').value = formatDateISO(checkinDate);
+        document.getElementById('travelCheckout').value = formatDateISO(checkoutDate);
+      }
+    }
+
+    // Scroll to travel tool with highlight
+    if (city) {
+      const travelTool = document.getElementById('travel-tool');
+      travelTool.style.borderColor = '#2e7d32';
+      travelTool.style.transition = 'border-color 0.5s';
+      setTimeout(() => { travelTool.style.borderColor = '#1a1a1a'; }, 3000);
+    }
+  }
+
+  function formatDateISO(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
+  function parseFestivalDates(dateStr) {
+    const currentYear = new Date().getFullYear();
+
+    // Try: 2025年3月15日〜17日 or 2025/3/15-17
+    let m = dateStr.match(/(\d{4})[年/.-]\s*(\d{1,2})[月/.-]\s*(\d{1,2})[日]?\s*[-~〜～–—]+\s*(\d{1,2})/);
+    if (m) {
+      return {
+        start: new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3])),
+        end: new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[4]))
+      };
+    }
+
+    // Try: 2025-03-15 ~ 2025-03-17
+    m = dateStr.match(/(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})\s*[-~–—]+\s*(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})/);
+    if (m) {
+      return {
+        start: new Date(parseInt(m[1]), parseInt(m[2]) - 1, parseInt(m[3])),
+        end: new Date(parseInt(m[4]), parseInt(m[5]) - 1, parseInt(m[6]))
+      };
+    }
+
+    // Try: January 15-17 or 15-17 March
+    const monthNames = {
+      'january': 0, 'february': 1, 'march': 2, 'april': 3, 'may': 4, 'june': 5,
+      'july': 6, 'august': 7, 'september': 8, 'october': 9, 'november': 10, 'december': 11,
+      'janvier': 0, 'février': 1, 'mars': 2, 'avril': 3, 'mai': 4, 'juin': 5,
+      'juillet': 6, 'août': 7, 'septembre': 8, 'octobre': 9, 'novembre': 10, 'décembre': 11,
+      'januar': 0, 'februar': 1, 'märz': 2, 'mai': 4, 'juni': 5,
+      'juli': 6, 'august': 7, 'oktober': 9, 'dezember': 11,
+      'enero': 0, 'febrero': 1, 'marzo': 2, 'abril': 3, 'mayo': 4, 'junio': 5,
+      'julio': 6, 'agosto': 7, 'septiembre': 8, 'octubre': 9, 'noviembre': 10, 'diciembre': 11,
+      'gennaio': 0, 'febbraio': 1, 'aprile': 3, 'maggio': 4, 'giugno': 5,
+      'luglio': 6, 'settembre': 8, 'ottobre': 9, 'dicembre': 11,
+      'janeiro': 0, 'fevereiro': 1, 'março': 2, 'junho': 5,
+      'julho': 6, 'setembro': 8, 'outubro': 9, 'novembro': 10, 'dezembro': 11,
+    };
+
+    // "Month DD-DD" pattern
+    m = dateStr.match(/([a-zéûîôà]+)\s+(\d{1,2})\s*[-~–—]\s*(\d{1,2})/i);
+    if (m && monthNames[m[1].toLowerCase()] !== undefined) {
+      const month = monthNames[m[1].toLowerCase()];
+      return {
+        start: new Date(currentYear, month, parseInt(m[2])),
+        end: new Date(currentYear, month, parseInt(m[3]))
+      };
+    }
+
+    // "DD-DD Month" pattern
+    m = dateStr.match(/(\d{1,2})\s*[-~–—]\s*(\d{1,2})\s+([a-zéûîôà]+)/i);
+    if (m && monthNames[m[3].toLowerCase()] !== undefined) {
+      const month = monthNames[m[3].toLowerCase()];
+      return {
+        start: new Date(currentYear, month, parseInt(m[1])),
+        end: new Date(currentYear, month, parseInt(m[2]))
+      };
+    }
+
+    // Chinese/Korean: 3月15日-17日 or 3월15일~17일
+    m = dateStr.match(/(\d{1,2})[月월]\s*(\d{1,2})[日일]?\s*[-~～至到]\s*(\d{1,2})/);
+    if (m) {
+      return {
+        start: new Date(currentYear, parseInt(m[1]) - 1, parseInt(m[2])),
+        end: new Date(currentYear, parseInt(m[1]) - 1, parseInt(m[3]))
+      };
+    }
+
+    return null;
+  }
+
+  function extractInfo(text) {
+    const info = {};
+    const t = text.replace(/,/g, '').replace(/、/g, ',');
+
+    // Event name - multilingual festival/event keywords
+    const nameMatch = text.match(/(?:festival|fest|フェス|フェスティバル|イベント|coffee|コーヒー|博览会|展览会|展会|咖啡|축제|페스티벌|커피|เทศกาล|กาแฟ|lễ hội|cà phê|feria|feira|foire|messe|fiera|beurs|фестиваль|festival)[^\n]{0,60}/i);
+    if (nameMatch) info.name = nameMatch[0].trim().substring(0, 60);
+
+    // Visitors / attendance - multilingual
+    const visitorPatterns = [
+      // Japanese
+      /(\d[\d,.]+)\s*(?:人|名|来場|入場|動員)/i,
+      /(?:来場者?|入場者?|動員)[\s:：]*(?:約)?\s*(\d[\d,.]+)/i,
+      /(\d[\d,.]+)\s*(?:人以上|名以上|人超|人次)/i,
+      // English
+      /(\d[\d,.]+)\s*(?:visitors?|attendees?|participants?|guests?|people|footfall)/i,
+      /(?:visitors?|attendance|attendees?|participants?|footfall|turnout)[\s:：]*(?:over|more than|approx\.?|approximately)?\s*(\d[\d,.]+)/i,
+      // Chinese (Simplified & Traditional)
+      /(\d[\d,.]+)\s*(?:人次|位访客|名观众|位參觀者|名觀眾|位来宾|万人|萬人)/i,
+      /(?:参观人数|观众人数|到场人数|參觀人數|觀眾人數|访客量|入场人数|來場人數)[\s:：]*(?:约|超过|逾)?\s*(\d[\d,.]+)/i,
+      /(?:预计|预期|預計).*?(\d[\d,.]+)\s*(?:人|名|位)/i,
+      // Korean
+      /(\d[\d,.]+)\s*(?:명|관람객|방문자|참가자|참관객)/i,
+      /(?:관람객|방문자|참가자|참관객|입장객)[\s:：]*(?:약)?\s*(\d[\d,.]+)/i,
+      // Thai
+      /(?:ผู้เข้าชม|ผู้เข้าร่วม|ผู้เยี่ยมชม|จำนวนคน)[\s:：]*(\d[\d,.]+)/i,
+      /(\d[\d,.]+)\s*(?:คน|ผู้เข้าชม|ผู้เข้าร่วม)/i,
+      // Vietnamese
+      /(\d[\d,.]+)\s*(?:khách|người tham gia|lượt khách|người đến|du khách)/i,
+      /(?:số lượng khách|lượt khách|người tham dự|số người)[\s:：]*(\d[\d,.]+)/i,
+      // French
+      /(\d[\d,.]+)\s*(?:visiteurs?|participants?|personnes|entrées)/i,
+      /(?:visiteurs?|fréquentation|participants?)[\s:：]*(\d[\d,.]+)/i,
+      // German
+      /(\d[\d,.]+)\s*(?:Besucher|Teilnehmer|Gäste|Personen)/i,
+      /(?:Besucher(?:zahl)?|Teilnehmer|Besucherzahlen)[\s:：]*(?:ca\.?|etwa|über|rund)?\s*(\d[\d,.]+)/i,
+      // Spanish
+      /(\d[\d,.]+)\s*(?:visitantes|asistentes|participantes|personas)/i,
+      /(?:visitantes|asistentes|asistencia|participantes)[\s:：]*(?:más de|aproximadamente)?\s*(\d[\d,.]+)/i,
+      // Italian
+      /(\d[\d,.]+)\s*(?:visitatori|partecipanti|presenze|persone)/i,
+      /(?:visitatori|partecipanti|presenze)[\s:：]*(?:circa|oltre)?\s*(\d[\d,.]+)/i,
+      // Portuguese
+      /(\d[\d,.]+)\s*(?:visitantes|participantes|pessoas|público)/i,
+      /(?:visitantes|participantes|público)[\s:：]*(?:mais de|cerca de)?\s*(\d[\d,.]+)/i,
+      // Dutch
+      /(\d[\d,.]+)\s*(?:bezoekers|deelnemers|personen)/i,
+      /(?:bezoekers|deelnemers|bezoekersaantal)[\s:：]*(?:circa|meer dan)?\s*(\d[\d,.]+)/i,
+      // Indonesian / Malay
+      /(\d[\d,.]+)\s*(?:pengunjung|peserta|orang)/i,
+      /(?:pengunjung|peserta|jumlah pengunjung)[\s:：]*(\d[\d,.]+)/i,
+      // Russian
+      /(\d[\d,.]+)\s*(?:посетителей|участников|человек|гостей)/i,
+      /(?:посетителей|посещаемость|участников)[\s:：]*(?:более|около)?\s*(\d[\d,.]+)/i,
+      // Turkish
+      /(\d[\d,.]+)\s*(?:ziyaretçi|katılımcı|kişi)/i,
+      /(?:ziyaretçi|katılımcı|ziyaretçi sayısı)[\s:：]*(\d[\d,.]+)/i,
+      // Arabic
+      /(\d[\d,.]+)\s*(?:زائر|مشارك|شخص|حضور)/i,
+      /(?:عدد الزوار|الحضور|المشاركين)[\s:：]*(\d[\d,.]+)/i,
+    ];
+    for (const p of visitorPatterns) {
+      const m = t.match(p);
+      if (m) {
+        const val = (m[1] || m[2]).replace(/[.,\s]/g, '');
+        let num = parseInt(val);
+        // Handle Chinese 万/萬 (10,000)
+        if (/万人|萬人/.test(m[0])) num = num * 10000;
+        if (num > 0 && num < 100000000) { info.visitors = num; break; }
+      }
+    }
+
+    // Number of booths / vendors - multilingual
+    const boothPatterns = [
+      // Japanese
+      /(\d[\d,.]+)\s*(?:ブース|店舗|出店|出展)/i,
+      /(?:ブース|店舗|出店|出展)[\s:：]*(?:約)?\s*(\d[\d,.]+)/i,
+      // English
+      /(\d[\d,.]+)\s*(?:shops?|booths?|vendors?|stalls?|exhibitors?|brands?|roasters?)/i,
+      /(?:booths?|vendors?|exhibitors?|stalls?|brands?)[\s:：]*(?:over|more than)?\s*(\d[\d,.]+)/i,
+      // Chinese
+      /(\d[\d,.]+)\s*(?:个展位|家品牌|个摊位|家参展商|家厂商|個展位|間店舖|個攤位|家參展商)/i,
+      /(?:展位|品牌|参展商|摊位|參展商|攤位)[\s:：]*(?:约|超过|逾)?\s*(\d[\d,.]+)/i,
+      // Korean
+      /(\d[\d,.]+)\s*(?:부스|업체|브랜드|매장|참가업체)/i,
+      /(?:부스|참가업체|참여브랜드)[\s:：]*(?:약)?\s*(\d[\d,.]+)/i,
+      // Thai
+      /(\d[\d,.]+)\s*(?:บูธ|ร้านค้า|แบรนด์|ผู้ออกบูธ)/i,
+      /(?:บูธ|ร้านค้า|ผู้ออกบูธ)[\s:：]*(\d[\d,.]+)/i,
+      // Vietnamese
+      /(\d[\d,.]+)\s*(?:gian hàng|thương hiệu|đơn vị|nhà triển lãm)/i,
+      /(?:gian hàng|thương hiệu|nhà triển lãm)[\s:：]*(\d[\d,.]+)/i,
+      // French
+      /(\d[\d,.]+)\s*(?:exposants?|stands?|marques?)/i,
+      /(?:exposants?|stands?)[\s:：]*(\d[\d,.]+)/i,
+      // German
+      /(\d[\d,.]+)\s*(?:Aussteller|Stände|Marken)/i,
+      /(?:Aussteller|Stände|Messestand)[\s:：]*(?:ca\.?)?\s*(\d[\d,.]+)/i,
+      // Spanish
+      /(\d[\d,.]+)\s*(?:expositores|stands?|marcas|puestos)/i,
+      /(?:expositores|stands?|marcas)[\s:：]*(\d[\d,.]+)/i,
+      // Italian
+      /(\d[\d,.]+)\s*(?:espositori|stand|marchi|bancarelle)/i,
+      /(?:espositori|stand|marchi)[\s:：]*(\d[\d,.]+)/i,
+      // Portuguese
+      /(\d[\d,.]+)\s*(?:expositores|estandes|marcas)/i,
+      /(?:expositores|estandes|marcas)[\s:：]*(\d[\d,.]+)/i,
+      // Indonesian
+      /(\d[\d,.]+)\s*(?:booth|stan|merek|peserta pameran)/i,
+      // Russian
+      /(\d[\d,.]+)\s*(?:стендов|участников|экспонентов|брендов)/i,
+      // Turkish
+      /(\d[\d,.]+)\s*(?:stand|katılımcı|marka|sergileyici)/i,
+      // Arabic
+      /(\d[\d,.]+)\s*(?:عارض|جناح|علامة تجارية)/i,
+    ];
+    for (const p of boothPatterns) {
+      const m = t.match(p);
+      if (m) {
+        const val = parseInt((m[1] || m[2]).replace(/[.,\s]/g, ''));
+        if (val > 0 && val < 100000) { info.booths = val; break; }
+      }
+    }
+
+    // Duration / dates - multilingual
+    const datePatterns = [
+      // Japanese: 2025年3月15日〜17日
+      /(\d{4})[年/.]\s*(\d{1,2})[月/.]\s*(\d{1,2})[日]?\s*[-~〜～–—]+\s*(\d{1,2})[日]?/,
+      // English: January 15-17, March 5 - 7
+      /(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2})\s*[-~–—]\s*(\d{1,2})/i,
+      /(\d{1,2})\s*[-~–—]\s*(\d{1,2})\s+(january|february|march|april|may|june|july|august|september|october|november|december)/i,
+      // ISO / numeric: 2025-03-15 ~ 2025-03-17, 15/03 - 17/03
+      /(\d{4}[-/.]\d{1,2}[-/.]\d{1,2})\s*[-~–—]+\s*(\d{4}[-/.]\d{1,2}[-/.]\d{1,2})/,
+      /(\d{1,2})[/.]\s*(\d{1,2})\s*[-~–—]+\s*(\d{1,2})[/.]\s*(\d{1,2})/,
+      // Chinese: 3月15日-17日, 2025年3月15-17日
+      /(\d{1,2})月(\d{1,2})[日号]?\s*[-~～至到]\s*(\d{1,2})[日号]?/,
+      // Korean: 3월 15일~17일
+      /(\d{1,2})월\s*(\d{1,2})일?\s*[-~～]\s*(\d{1,2})일?/,
+      // Thai
+      /(\d{1,2})\s*[-~–]\s*(\d{1,2})\s+(?:มกราคม|กุมภาพันธ์|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤศจิกายน|ธันวาคม)/i,
+      // French: 15-17 mars, du 15 au 17 mars
+      /(?:du\s+)?(\d{1,2})\s*(?:au|-)\s*(\d{1,2})\s+(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i,
+      // German: 15.-17. März, 15. bis 17. März
+      /(\d{1,2})\.?\s*(?:bis|-|–)\s*(\d{1,2})\.?\s*(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)/i,
+      // Spanish: 15-17 de marzo, del 15 al 17 de marzo
+      /(?:del?\s+)?(\d{1,2})\s*(?:al|-)\s*(\d{1,2})\s+(?:de\s+)?(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i,
+      // Italian: 15-17 marzo
+      /(\d{1,2})\s*[-–]\s*(\d{1,2})\s+(gennaio|febbraio|marzo|aprile|maggio|giugno|luglio|agosto|settembre|ottobre|novembre|dicembre)/i,
+      // Portuguese: 15-17 de março
+      /(\d{1,2})\s*(?:a|-)\s*(\d{1,2})\s+(?:de\s+)?(janeiro|fevereiro|março|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)/i,
+      // Russian: 15-17 марта
+      /(\d{1,2})\s*[-–]\s*(\d{1,2})\s+(января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря)/i,
+    ];
+    for (const p of datePatterns) {
+      const m = text.match(p);
+      if (m) { info.dates = m[0].trim(); break; }
+    }
+
+    // Days - multilingual
+    const dayPatterns = [
+      /(\d+)\s*(?:日間|days?|day event|天|일간|일|วัน|ngày|jours?|Tage?|días?|giorni?|dias?|dagen|дней|дня|gün|أيام)/i,
+    ];
+    for (const p of dayPatterns) {
+      const m = t.match(p);
+      if (m) { info.days = parseInt(m[1]); break; }
+    }
+    if (!info.days && info.dates) {
+      const nums = info.dates.match(/\d+/g);
+      if (nums && nums.length >= 2) {
+        const diff = Math.abs(parseInt(nums[nums.length - 1]) - parseInt(nums[nums.length - 2])) + 1;
+        if (diff > 0 && diff < 15) info.days = diff;
+      }
+    }
+
+    // Location / venue - multilingual
+    const locPatterns = [
+      // Japanese
+      /(?:会場|場所|開催場所)[\s:：]*([^\n]{3,50})/i,
+      // English
+      /(?:venue|location|held at|place)[\s:：]*([^\n]{3,50})/i,
+      /(?:at|in)\s+(?:the\s+)?([A-Z][^\n,]{3,40}(?:center|centre|hall|park|ground|convention|stadium|arena|complex))/i,
+      // Chinese
+      /(?:地点|地址|举办地|场馆|展馆|舉辦地|場館)[\s:：]*([^\n]{3,50})/i,
+      // Korean
+      /(?:장소|위치|개최지|전시장)[\s:：]*([^\n]{3,50})/i,
+      // Thai
+      /(?:สถานที่|ที่จัดงาน)[\s:：]*([^\n]{3,50})/i,
+      // Vietnamese
+      /(?:địa điểm|nơi tổ chức)[\s:：]*([^\n]{3,50})/i,
+      // French
+      /(?:lieu|adresse|emplacement)[\s:：]*([^\n]{3,50})/i,
+      // German
+      /(?:Veranstaltungsort|Ort|Standort|Messe)[\s:：]*([^\n]{3,50})/i,
+      // Spanish
+      /(?:lugar|ubicación|sede|dirección)[\s:：]*([^\n]{3,50})/i,
+      // Italian
+      /(?:luogo|sede|indirizzo|dove)[\s:：]*([^\n]{3,50})/i,
+      // Portuguese
+      /(?:local|endereço|localização)[\s:：]*([^\n]{3,50})/i,
+      // Russian
+      /(?:место|адрес|площадка)[\s:：]*([^\n]{3,50})/i,
+    ];
+    for (const p of locPatterns) {
+      const m = text.match(p);
+      if (m) { info.location = m[1].trim(); break; }
+    }
+
+    // Country detection - expanded
+    const countries = {
+      // Japan
+      '日本': 'japan', 'Japan': 'japan', 'Tokyo': 'japan', 'Osaka': 'japan', '東京': 'japan', '大阪': 'japan',
+      'Kyoto': 'japan', '京都': 'japan', 'Yokohama': 'japan', '横浜': 'japan', 'Nagoya': 'japan', 'Fukuoka': 'japan',
+      // China
+      '中国': 'china', 'China': 'china', 'Shanghai': 'china', 'Beijing': 'china', '上海': 'china', '北京': 'china',
+      '深圳': 'china', 'Shenzhen': 'china', '广州': 'china', 'Guangzhou': 'china', '成都': 'china', 'Chengdu': 'china',
+      '杭州': 'china', 'Hangzhou': 'china', '厦门': 'china', 'Xiamen': 'china', '昆明': 'china', 'Kunming': 'china',
+      // Korea
+      'Korea': 'korea', '韓国': 'korea', 'Seoul': 'korea', '서울': 'korea', 'Busan': 'korea', '부산': 'korea',
+      '한국': 'korea',
+      // Taiwan
+      'Taiwan': 'taiwan', '台湾': 'taiwan', '臺灣': 'taiwan', 'Taipei': 'taiwan', '台北': 'taiwan', '臺北': 'taiwan',
+      // Thailand
+      'Thailand': 'thailand', 'タイ': 'thailand', 'Bangkok': 'thailand', 'ประเทศไทย': 'thailand', 'กรุงเทพ': 'thailand',
+      'Chiang Mai': 'thailand', 'เชียงใหม่': 'thailand',
+      // Vietnam
+      'Vietnam': 'vietnam', 'ベトナム': 'vietnam', 'Việt Nam': 'vietnam', 'Ho Chi Minh': 'vietnam',
+      'Hanoi': 'vietnam', 'Hà Nội': 'vietnam', 'Saigon': 'vietnam',
+      // Indonesia
+      'Indonesia': 'indonesia', 'インドネシア': 'indonesia', 'Jakarta': 'indonesia', 'Bali': 'indonesia',
+      // Singapore
+      'Singapore': 'singapore', 'シンガポール': 'singapore', '新加坡': 'singapore',
+      // Malaysia
+      'Malaysia': 'malaysia', 'マレーシア': 'malaysia', 'Kuala Lumpur': 'malaysia',
+      // Philippines
+      'Philippines': 'philippines', 'フィリピン': 'philippines', 'Manila': 'philippines',
+      // India
+      'India': 'india', 'インド': 'india', 'Delhi': 'india', 'Mumbai': 'india', 'Bangalore': 'india',
+      // USA
+      'USA': 'usa', 'United States': 'usa', 'アメリカ': 'usa', '美国': 'usa', '미국': 'usa',
+      'New York': 'usa', 'Los Angeles': 'usa', 'Portland': 'usa', 'San Francisco': 'usa',
+      'Seattle': 'usa', 'Chicago': 'usa', 'Austin': 'usa', 'Boston': 'usa', 'Denver': 'usa',
+      // UK
+      'UK': 'uk', 'United Kingdom': 'uk', 'London': 'uk', 'England': 'uk', 'イギリス': 'uk', '英国': 'uk',
+      'Manchester': 'uk', 'Edinburgh': 'uk',
+      // Germany
+      'Germany': 'germany', 'Berlin': 'germany', 'ドイツ': 'germany', 'Deutschland': 'germany', '德国': 'germany',
+      'Munich': 'germany', 'München': 'germany', 'Frankfurt': 'germany', 'Hamburg': 'germany', 'Köln': 'germany',
+      // France
+      'France': 'france', 'Paris': 'france', 'フランス': 'france', '法国': 'france', 'Lyon': 'france', 'Marseille': 'france',
+      // Italy
+      'Italy': 'italy', 'Milan': 'italy', 'Milano': 'italy', 'イタリア': 'italy', 'Italia': 'italy', '意大利': 'italy',
+      'Rome': 'italy', 'Roma': 'italy', 'Firenze': 'italy', 'Torino': 'italy',
+      // Spain
+      'Spain': 'spain', 'España': 'spain', 'スペイン': 'spain', 'Barcelona': 'spain', 'Madrid': 'spain',
+      // Netherlands
+      'Netherlands': 'netherlands', 'Amsterdam': 'netherlands', 'オランダ': 'netherlands', 'Nederland': 'netherlands',
+      // Sweden
+      'Sweden': 'sweden', 'Stockholm': 'sweden', 'スウェーデン': 'sweden', 'Göteborg': 'sweden',
+      // Norway
+      'Norway': 'norway', 'Oslo': 'norway', 'ノルウェー': 'norway',
+      // Denmark
+      'Denmark': 'denmark', 'Copenhagen': 'denmark', 'デンマーク': 'denmark', 'København': 'denmark',
+      // Finland
+      'Finland': 'finland', 'Helsinki': 'finland', 'フィンランド': 'finland',
+      // Switzerland
+      'Switzerland': 'switzerland', 'Zurich': 'switzerland', 'Zürich': 'switzerland', 'スイス': 'switzerland',
+      // Austria
+      'Austria': 'austria', 'Vienna': 'austria', 'Wien': 'austria', 'オーストリア': 'austria',
+      // Portugal
+      'Portugal': 'portugal', 'Lisbon': 'portugal', 'Lisboa': 'portugal', 'ポルトガル': 'portugal',
+      // Czech Republic
+      'Czech': 'czech', 'Prague': 'czech', 'Praha': 'czech', 'チェコ': 'czech',
+      // Poland
+      'Poland': 'poland', 'Warsaw': 'poland', 'Warszawa': 'poland', 'ポーランド': 'poland',
+      // Turkey
+      'Turkey': 'turkey', 'Türkiye': 'turkey', 'Istanbul': 'turkey', 'トルコ': 'turkey',
+      // Australia
+      'Australia': 'australia', 'Melbourne': 'australia', 'Sydney': 'australia', 'オーストラリア': 'australia',
+      // New Zealand
+      'New Zealand': 'new zealand', 'Auckland': 'new zealand', 'ニュージーランド': 'new zealand',
+      // UAE
+      'Dubai': 'uae', 'UAE': 'uae', 'Abu Dhabi': 'uae', 'ドバイ': 'uae',
+      // Brazil
+      'Brazil': 'brazil', 'Brasil': 'brazil', 'São Paulo': 'brazil', 'ブラジル': 'brazil',
+      // Mexico
+      'Mexico': 'mexico', 'México': 'mexico', 'メキシコ': 'mexico',
+      // Colombia
+      'Colombia': 'colombia', 'Bogotá': 'colombia', 'Bogota': 'colombia', 'コロンビア': 'colombia',
+      // Russia
+      'Russia': 'russia', 'Россия': 'russia', 'Moscow': 'russia', 'Москва': 'russia', 'ロシア': 'russia',
+      // South Africa
+      'South Africa': 'south africa', 'Cape Town': 'south africa',
+      // Saudi Arabia
+      'Saudi Arabia': 'saudi arabia', 'Riyadh': 'saudi arabia', 'サウジアラビア': 'saudi arabia',
+    };
+    for (const [keyword, country] of Object.entries(countries)) {
+      if (text.includes(keyword)) { info.country = country; break; }
+    }
+
+    // Booth fee / cost - multilingual
+    const feePatterns = [
+      // Japanese
+      /(?:出店料|出展料|ブース料|参加費|出展費)[\s:：]*[¥￥]?\s*(\d[\d,.]+)/i,
+      /[¥￥]\s*(\d[\d,.]+)\s*(?:\/ブース|\/booth|per booth)/i,
+      // English
+      /(?:booth fee|vendor fee|participation fee|stand fee|exhibition fee|booth cost|entry fee)[\s:：]*[¥￥$€£₩₫฿]?\s*(\d[\d,.]+)/i,
+      /[¥￥$€£]\s*(\d[\d,.]+)\s*(?:\/booth|per booth|per stand|\/stand)/i,
+      // Chinese
+      /(?:展位费|参展费|摊位费|展位价格|展位費|參展費)[\s:：]*[¥￥]?\s*(\d[\d,.]+)/i,
+      // Korean
+      /(?:부스비|참가비|출전비|부스 비용)[\s:：]*[₩]?\s*(\d[\d,.]+)/i,
+      // Thai
+      /(?:ค่าบูธ|ค่าเช่าพื้นที่|ค่าสมัคร)[\s:：]*[฿]?\s*(\d[\d,.]+)/i,
+      // Vietnamese
+      /(?:phí gian hàng|phí tham gia|chi phí booth|lệ phí)[\s:：]*(\d[\d,.]+)/i,
+      // French
+      /(?:frais de stand|frais d'exposition|tarif exposant|prix du stand)[\s:：]*[€]?\s*(\d[\d,.]+)/i,
+      // German
+      /(?:Standgebühr|Standmiete|Teilnahmegebühr|Messegebühr)[\s:：]*[€]?\s*(\d[\d,.]+)/i,
+      // Spanish
+      /(?:precio del stand|costo del stand|tarifa de expositor|cuota)[\s:：]*[€$]?\s*(\d[\d,.]+)/i,
+      // Italian
+      /(?:costo stand|quota espositore|tariffa|prezzo stand)[\s:：]*[€]?\s*(\d[\d,.]+)/i,
+      // General currency patterns
+      /(\d[\d,.]+)\s*(?:円|yen|RMB|CNY|USD|EUR|THB|元|원|₩|바트|VND|đồng|baht)/i,
+    ];
+    for (const p of feePatterns) {
+      const m = t.match(p);
+      if (m) { info.boothFee = (m[1] || m[2]).replace(/[.,\s]/g, ''); break; }
+    }
+
+    // Type detection (toB / toC) - multilingual
+    const toBKeywords = /trade|業界|B2B|business|バイヤー|buyer|professional|商談|行业|专业|贸易|업계|바이어|전문|ธุรกิจ|มืออาชีพ|thương mại|chuyên nghiệp|professionnel|Fach|profesional|professionale|profissional|торговля/i;
+    const toCKeywords = /一般|public|consumer|B2C|入場|チケット|ticket|family|ファミリー|公众|门票|观众|대중|일반|입장권|สาธารณะ|บัตร|công chúng|vé|billet|entrée|Publikum|Eintritt|público|entrada|biglietto|pubblico|ingresso|билет|публич/i;
+    if (toBKeywords.test(text) && !toCKeywords.test(text)) info.type = 'to B';
+    else if (toCKeywords.test(text)) info.type = 'to C';
+    else info.type = '不明';
+
+    return info;
+  }
+
+  function estimateScale(info) {
+    const v = info.visitors || 0;
+    const b = info.booths || 0;
+
+    if (v >= 100000 || b >= 500) return { level: 'XL', label: '超大規模', color: '#1a1a1a' };
+    if (v >= 30000 || b >= 150) return { level: 'L', label: '大規模', color: '#2e7d32' };
+    if (v >= 10000 || b >= 50) return { level: 'M', label: '中規模', color: '#1a56db' };
+    if (v >= 3000 || b >= 20) return { level: 'S', label: '小規模', color: '#e65100' };
+    if (v > 0 || b > 0) return { level: 'XS', label: '小規模', color: '#888' };
+    return { level: '?', label: 'データ不足', color: '#888' };
+  }
+
+  function renderAnalyzerResult(info, rawText) {
+    const resultEl = document.getElementById('analyzerResult');
+    const gridEl = document.getElementById('analyzerGrid');
+    const scaleEl = document.getElementById('analyzerScale');
+    const rawEl = document.getElementById('analyzerRaw');
+    const titleEl = document.getElementById('analyzerTitle');
+
+    titleEl.textContent = info.name ? '分析結果: ' + info.name : '分析結果';
+
+    const items = [];
+    if (info.visitors) items.push({ label: '来場者数', value: info.visitors.toLocaleString() + '人' });
+    if (info.booths) items.push({ label: 'ブース数', value: info.booths.toLocaleString() + '店舗' });
+    if (info.days) items.push({ label: '開催日数', value: info.days + '日間' });
+    if (info.dates) items.push({ label: '開催日程', value: info.dates });
+    if (info.location) items.push({ label: '会場', value: info.location });
+    if (info.country) items.push({ label: 'エリア', value: info.country.toUpperCase() });
+    if (info.type) items.push({ label: '形式', value: info.type });
+    if (info.boothFee) items.push({ label: '出店料', value: info.boothFee });
+
+    if (items.length === 0) {
+      items.push({ label: '結果', value: '規模情報を検出できませんでした。テキストを確認してください。' });
+    }
+
+    gridEl.innerHTML = items.map(item => `
+      <div class="analyzer-item">
+        <div class="analyzer-item-label">${item.label}</div>
+        <div class="analyzer-item-value">${item.value}</div>
+      </div>
+    `).join('');
+
+    const scale = estimateScale(info);
+    scaleEl.innerHTML = `
+      <div>
+        <div class="analyzer-scale-label">推定規模</div>
+        <div class="analyzer-scale-value" style="color:${scale.color === '#1a1a1a' ? '#f5f0eb' : scale.color}">${scale.level}</div>
+      </div>
+      <div class="analyzer-scale-desc">${scale.label}</div>
+    `;
+
+    rawEl.textContent = rawText.substring(0, 3000);
+    resultEl.classList.add('visible');
+  }
+
+  function showLoading(show) {
+    document.getElementById('analyzerLoading').classList.toggle('visible', show);
+    if (show) document.getElementById('analyzerResult').classList.remove('visible');
+  }
+
+  // ===== Travel Search Tool =====
+
+  const AIRPORTS = [
+    // Japan
+    { code: 'NRT', name: '成田国際空港', city: 'Tokyo', lat: 35.7647, lon: 140.3864 },
+    { code: 'HND', name: '羽田空港', city: 'Tokyo', lat: 35.5494, lon: 139.7798 },
+    { code: 'KIX', name: '関西国際空港', city: 'Osaka', lat: 34.4347, lon: 135.2440 },
+    { code: 'NGO', name: '中部国際空港', city: 'Nagoya', lat: 34.8584, lon: 136.8125 },
+    { code: 'FUK', name: '福岡空港', city: 'Fukuoka', lat: 33.5859, lon: 130.4507 },
+    { code: 'CTS', name: '新千歳空港', city: 'Sapporo', lat: 42.7752, lon: 141.6925 },
+    // China
+    { code: 'PVG', name: 'Shanghai Pudong', city: 'Shanghai', lat: 31.1443, lon: 121.8083 },
+    { code: 'SHA', name: 'Shanghai Hongqiao', city: 'Shanghai', lat: 31.1979, lon: 121.3363 },
+    { code: 'PEK', name: 'Beijing Capital', city: 'Beijing', lat: 40.0799, lon: 116.6031 },
+    { code: 'PKX', name: 'Beijing Daxing', city: 'Beijing', lat: 39.5098, lon: 116.4105 },
+    { code: 'CAN', name: 'Guangzhou Baiyun', city: 'Guangzhou', lat: 23.3924, lon: 113.2988 },
+    { code: 'SZX', name: 'Shenzhen Baoan', city: 'Shenzhen', lat: 22.6393, lon: 113.8107 },
+    { code: 'CTU', name: 'Chengdu Tianfu', city: 'Chengdu', lat: 30.5728, lon: 104.0668 },
+    { code: 'HGH', name: 'Hangzhou Xiaoshan', city: 'Hangzhou', lat: 30.2295, lon: 120.4344 },
+    // Korea
+    { code: 'ICN', name: 'Incheon International', city: 'Seoul', lat: 37.4602, lon: 126.4407 },
+    { code: 'GMP', name: 'Gimpo International', city: 'Seoul', lat: 37.5583, lon: 126.7906 },
+    { code: 'PUS', name: 'Gimhae International', city: 'Busan', lat: 35.1796, lon: 128.9382 },
+    // Taiwan
+    { code: 'TPE', name: 'Taiwan Taoyuan', city: 'Taipei', lat: 25.0797, lon: 121.2342 },
+    { code: 'TSA', name: 'Taipei Songshan', city: 'Taipei', lat: 25.0694, lon: 121.5523 },
+    // Southeast Asia
+    { code: 'BKK', name: 'Suvarnabhumi', city: 'Bangkok', lat: 13.6900, lon: 100.7501 },
+    { code: 'DMK', name: 'Don Mueang', city: 'Bangkok', lat: 13.9126, lon: 100.6070 },
+    { code: 'CNX', name: 'Chiang Mai International', city: 'Chiang Mai', lat: 18.7668, lon: 98.9625 },
+    { code: 'SGN', name: 'Tan Son Nhat', city: 'Ho Chi Minh City', lat: 10.8188, lon: 106.6519 },
+    { code: 'HAN', name: 'Noi Bai', city: 'Hanoi', lat: 21.2212, lon: 105.8070 },
+    { code: 'SIN', name: 'Singapore Changi', city: 'Singapore', lat: 1.3644, lon: 103.9915 },
+    { code: 'CGK', name: 'Soekarno-Hatta', city: 'Jakarta', lat: -6.1256, lon: 106.6558 },
+    { code: 'DPS', name: 'Ngurah Rai (Bali)', city: 'Bali', lat: -8.7482, lon: 115.1672 },
+    { code: 'KUL', name: 'Kuala Lumpur International', city: 'Kuala Lumpur', lat: 2.7456, lon: 101.7099 },
+    { code: 'MNL', name: 'Ninoy Aquino', city: 'Manila', lat: 14.5086, lon: 121.0198 },
+    // USA
+    { code: 'LAX', name: 'Los Angeles International', city: 'Los Angeles', lat: 33.9425, lon: -118.4081 },
+    { code: 'SFO', name: 'San Francisco International', city: 'San Francisco', lat: 37.6213, lon: -122.3790 },
+    { code: 'JFK', name: 'John F. Kennedy', city: 'New York', lat: 40.6413, lon: -73.7781 },
+    { code: 'EWR', name: 'Newark Liberty', city: 'New York', lat: 40.6895, lon: -74.1745 },
+    { code: 'ORD', name: "O'Hare International", city: 'Chicago', lat: 41.9742, lon: -87.9073 },
+    { code: 'SEA', name: 'Seattle-Tacoma', city: 'Seattle', lat: 47.4502, lon: -122.3088 },
+    { code: 'PDX', name: 'Portland International', city: 'Portland', lat: 45.5898, lon: -122.5951 },
+    { code: 'MIA', name: 'Miami International', city: 'Miami', lat: 25.7959, lon: -80.2870 },
+    { code: 'ATL', name: 'Hartsfield-Jackson Atlanta', city: 'Atlanta', lat: 33.6407, lon: -84.4277 },
+    { code: 'BOS', name: 'Boston Logan', city: 'Boston', lat: 42.3656, lon: -71.0096 },
+    { code: 'DEN', name: 'Denver International', city: 'Denver', lat: 39.8561, lon: -104.6737 },
+    { code: 'AUS', name: 'Austin-Bergstrom', city: 'Austin', lat: 30.1975, lon: -97.6664 },
+    // Europe
+    { code: 'LHR', name: 'London Heathrow', city: 'London', lat: 51.4700, lon: -0.4543 },
+    { code: 'LGW', name: 'London Gatwick', city: 'London', lat: 51.1537, lon: -0.1821 },
+    { code: 'CDG', name: 'Paris Charles de Gaulle', city: 'Paris', lat: 49.0097, lon: 2.5479 },
+    { code: 'ORY', name: 'Paris Orly', city: 'Paris', lat: 48.7233, lon: 2.3795 },
+    { code: 'BER', name: 'Berlin Brandenburg', city: 'Berlin', lat: 52.3667, lon: 13.5033 },
+    { code: 'FRA', name: 'Frankfurt am Main', city: 'Frankfurt', lat: 50.0379, lon: 8.5622 },
+    { code: 'MUC', name: 'Munich International', city: 'Munich', lat: 48.3538, lon: 11.7861 },
+    { code: 'AMS', name: 'Amsterdam Schiphol', city: 'Amsterdam', lat: 52.3105, lon: 4.7683 },
+    { code: 'FCO', name: 'Rome Fiumicino', city: 'Rome', lat: 41.8003, lon: 12.2389 },
+    { code: 'MXP', name: 'Milan Malpensa', city: 'Milan', lat: 45.6306, lon: 8.7281 },
+    { code: 'BCN', name: 'Barcelona El Prat', city: 'Barcelona', lat: 41.2974, lon: 2.0833 },
+    { code: 'MAD', name: 'Madrid Barajas', city: 'Madrid', lat: 40.4983, lon: -3.5676 },
+    { code: 'CPH', name: 'Copenhagen Kastrup', city: 'Copenhagen', lat: 55.6180, lon: 12.6561 },
+    { code: 'HEL', name: 'Helsinki-Vantaa', city: 'Helsinki', lat: 60.3172, lon: 24.9633 },
+    { code: 'VIE', name: 'Vienna International', city: 'Vienna', lat: 48.1103, lon: 16.5697 },
+    { code: 'ZRH', name: 'Zurich Airport', city: 'Zurich', lat: 47.4647, lon: 8.5492 },
+    { code: 'LIS', name: 'Lisbon Portela', city: 'Lisbon', lat: 38.7756, lon: -9.1354 },
+    { code: 'PRG', name: 'Prague Vaclav Havel', city: 'Prague', lat: 50.1008, lon: 14.2600 },
+    { code: 'IST', name: 'Istanbul Airport', city: 'Istanbul', lat: 41.2753, lon: 28.7519 },
+    // Oceania
+    { code: 'SYD', name: 'Sydney Kingsford Smith', city: 'Sydney', lat: -33.9461, lon: 151.1772 },
+    { code: 'MEL', name: 'Melbourne Tullamarine', city: 'Melbourne', lat: -37.6690, lon: 144.8410 },
+    { code: 'AKL', name: 'Auckland Airport', city: 'Auckland', lat: -37.0082, lon: 174.7850 },
+    // Middle East / India
+    { code: 'DXB', name: 'Dubai International', city: 'Dubai', lat: 25.2532, lon: 55.3657 },
+    { code: 'DEL', name: 'Indira Gandhi International', city: 'Delhi', lat: 28.5562, lon: 77.1000 },
+    { code: 'BOM', name: 'Chhatrapati Shivaji', city: 'Mumbai', lat: 19.0896, lon: 72.8656 },
+    // South America
+    { code: 'GRU', name: 'Sao Paulo Guarulhos', city: 'Sao Paulo', lat: -23.4356, lon: -46.4731 },
+    { code: 'EZE', name: 'Buenos Aires Ezeiza', city: 'Buenos Aires', lat: -34.8222, lon: -58.5358 },
+    { code: 'BOG', name: 'El Dorado', city: 'Bogota', lat: 4.7016, lon: -74.1469 },
+    { code: 'SCL', name: 'Santiago International', city: 'Santiago', lat: -33.3930, lon: -70.7858 },
+    { code: 'LIM', name: 'Jorge Chavez', city: 'Lima', lat: -12.0219, lon: -77.1143 },
+    { code: 'MEX', name: 'Mexico City International', city: 'Mexico City', lat: 19.4363, lon: -99.0721 },
+  ];
+
+  // City aliases for better matching
+  const CITY_ALIASES = {
+    'tokyo': 'Tokyo', 'osaka': 'Osaka', 'nagoya': 'Nagoya', 'fukuoka': 'Fukuoka', 'sapporo': 'Sapporo',
+    'shanghai': 'Shanghai', 'beijing': 'Beijing', 'guangzhou': 'Guangzhou', 'shenzhen': 'Shenzhen',
+    'chengdu': 'Chengdu', 'hangzhou': 'Hangzhou',
+    'seoul': 'Seoul', 'busan': 'Busan',
+    'taipei': 'Taipei',
+    'bangkok': 'Bangkok', 'chiang mai': 'Chiang Mai', 'chiangmai': 'Chiang Mai',
+    'ho chi minh': 'Ho Chi Minh City', 'saigon': 'Ho Chi Minh City', 'hanoi': 'Hanoi',
+    'singapore': 'Singapore', 'jakarta': 'Jakarta', 'bali': 'Bali',
+    'kuala lumpur': 'Kuala Lumpur', 'kl': 'Kuala Lumpur', 'manila': 'Manila',
+    'los angeles': 'Los Angeles', 'la': 'Los Angeles', 'san francisco': 'San Francisco', 'sf': 'San Francisco',
+    'new york': 'New York', 'nyc': 'New York', 'chicago': 'Chicago', 'seattle': 'Seattle',
+    'portland': 'Portland', 'miami': 'Miami', 'atlanta': 'Atlanta', 'boston': 'Boston',
+    'denver': 'Denver', 'austin': 'Austin',
+    'london': 'London', 'paris': 'Paris', 'berlin': 'Berlin', 'frankfurt': 'Frankfurt',
+    'munich': 'Munich', 'amsterdam': 'Amsterdam', 'rome': 'Rome', 'milan': 'Milan',
+    'barcelona': 'Barcelona', 'madrid': 'Madrid', 'copenhagen': 'Copenhagen',
+    'helsinki': 'Helsinki', 'vienna': 'Vienna', 'zurich': 'Zurich', 'lisbon': 'Lisbon',
+    'prague': 'Prague', 'istanbul': 'Istanbul',
+    'sydney': 'Sydney', 'melbourne': 'Melbourne', 'auckland': 'Auckland',
+    'dubai': 'Dubai', 'delhi': 'Delhi', 'mumbai': 'Mumbai',
+    'sao paulo': 'Sao Paulo', 'buenos aires': 'Buenos Aires', 'bogota': 'Bogota',
+    'santiago': 'Santiago', 'lima': 'Lima', 'mexico city': 'Mexico City',
+  };
+
+  function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371;
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+              Math.sin(dLon/2) * Math.sin(dLon/2);
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  function findNearestAirports(cityName, limit = 3) {
+    const normalized = cityName.toLowerCase().trim();
+    const mappedCity = CITY_ALIASES[normalized] || cityName;
+
+    // First: exact city match
+    const cityMatches = AIRPORTS.filter(a => a.city.toLowerCase() === mappedCity.toLowerCase());
+    if (cityMatches.length > 0) return cityMatches.slice(0, limit);
+
+    // Second: partial match
+    const partialMatches = AIRPORTS.filter(a =>
+      a.city.toLowerCase().includes(normalized) || normalized.includes(a.city.toLowerCase())
+    );
+    if (partialMatches.length > 0) return partialMatches.slice(0, limit);
+
+    // Third: find by proximity to known city coordinates
+    const refAirport = AIRPORTS.find(a => a.city.toLowerCase() === mappedCity.toLowerCase());
+    if (refAirport) {
+      return AIRPORTS
+        .map(a => ({ ...a, dist: haversine(refAirport.lat, refAirport.lon, a.lat, a.lon) }))
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, limit);
+    }
+
+    return [];
+  }
+
+  function formatDate(dateStr) {
+    return dateStr.replace(/-/g, '');
+  }
+
+  function buildGoogleFlightsUrl(origin, dest, checkin, checkout) {
+    // Google Flights URL format
+    const d1 = checkin;
+    const d2 = checkout;
+    return `https://www.google.com/travel/flights?q=Flights+from+${origin}+to+${dest}+on+${d1}+returning+${d2}&curr=JPY`;
+  }
+
+  function buildSkyscannerUrl(origin, dest, checkin, checkout) {
+    const d1 = checkin.replace(/-/g, '');
+    const d2 = checkout.replace(/-/g, '');
+    return `https://www.skyscanner.jp/transport/flights/${origin.toLowerCase()}/${dest.toLowerCase()}/${d1.slice(2,6)}/${d2.slice(2,6)}/`;
+  }
+
+  function buildBookingUrl(city, checkin, checkout, guests) {
+    return `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(city)}&checkin=${checkin}&checkout=${checkout}&group_adults=${guests}&no_rooms=1`;
+  }
+
+  function searchTravel() {
+    const city = document.getElementById('travelCity').value.trim();
+    const origin = document.getElementById('travelOrigin').value.trim().toUpperCase();
+    const checkin = document.getElementById('travelCheckin').value;
+    const checkout = document.getElementById('travelCheckout').value;
+    const guests = document.getElementById('travelGuests').value || 2;
+
+    if (!city) { alert('都市名を入力してください'); return; }
+    if (!checkin || !checkout) { alert('日程を入力してください'); return; }
+
+    const airports = findNearestAirports(city);
+    const resultsEl = document.getElementById('travelResults');
+    const airportEl = document.getElementById('airportResults');
+
+    if (airports.length === 0) {
+      airportEl.innerHTML = '<div class="no-events">該当する空港が見つかりませんでした。都市名を英語で入力してください。</div>';
+      resultsEl.classList.add('visible');
+      return;
+    }
+
+    let html = '';
+    airports.forEach((ap) => {
+      const gfUrl = buildGoogleFlightsUrl(origin, ap.code, checkin, checkout);
+      const ssUrl = buildSkyscannerUrl(origin, ap.code, checkin, checkout);
+      const distText = ap.dist ? ` (${Math.round(ap.dist)}km)` : '';
+
+      html += `
+        <div class="airport-card">
+          <div class="airport-info">
+            <div class="airport-code">${ap.code}</div>
+            <div class="airport-name">${ap.name}</div>
+            ${distText ? `<div class="airport-distance">会場から約${distText}</div>` : ''}
+          </div>
+          <div class="search-links">
+            <a href="${gfUrl}" target="_blank" class="search-link flights">Google Flights</a>
+            <a href="${ssUrl}" target="_blank" class="search-link skyscanner">Skyscanner</a>
+          </div>
+        </div>
+      `;
+    });
+
+    // Booking.com link
+    const bookingUrl = buildBookingUrl(city, checkin, checkout, guests);
+    html += `
+      <div class="airport-card" style="margin-top:16px; border-color:#003580;">
+        <div class="airport-info">
+          <div class="airport-code" style="color:#003580;">HOTEL</div>
+          <div class="airport-name">${city} のホテル（${guests}名）</div>
+        </div>
+        <div class="search-links">
+          <a href="${bookingUrl}" target="_blank" class="search-link hotel">Booking.com</a>
+        </div>
+      </div>
+    `;
+
+    airportEl.innerHTML = html;
+    resultsEl.classList.add('visible');
+
+    // Show per-person estimate section
+    const estimateEl = document.getElementById('perPersonEstimate');
+    estimateEl.style.display = 'block';
+    estimateEl.dataset.nights = calculateNights(checkin, checkout);
+    updatePerPersonEstimate();
+  }
+
+  function calculateNights(checkin, checkout) {
+    if (!checkin || !checkout) return 0;
+    const d1 = new Date(checkin);
+    const d2 = new Date(checkout);
+    const diff = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+    return diff > 0 ? diff : 0;
+  }
+
+  function updatePerPersonEstimate() {
+    const flightCost = parseFloat(document.getElementById('estFlightCost').value) || 0;
+    const hotelCost = parseFloat(document.getElementById('estHotelCost').value) || 0;
+    const roomShare = parseInt(document.getElementById('estRoomShare').value) || 1;
+    const otherCost = parseFloat(document.getElementById('estOtherCost').value) || 0;
+
+    const checkin = document.getElementById('travelCheckin').value;
+    const checkout = document.getElementById('travelCheckout').value;
+    const nights = calculateNights(checkin, checkout);
+
+    const hotelPerPerson = Math.round((hotelCost * nights) / roomShare);
+    const total = flightCost + hotelPerPerson + otherCost;
+
+    document.getElementById('ppFlight').textContent = '¥' + flightCost.toLocaleString();
+    document.getElementById('ppHotel').textContent = '¥' + hotelPerPerson.toLocaleString();
+    document.getElementById('ppNights').textContent = nights;
+    document.getElementById('ppOther').textContent = '¥' + otherCost.toLocaleString();
+    document.getElementById('perPersonTotal').textContent = total > 0 ? '¥' + total.toLocaleString() : '---';
+  }
+
+  // ===== Event Scoring Tool =====
+  const events = [];
+
+  function getVal(id) {
+    return parseFloat(document.getElementById(id).value) || 0;
+  }
+
+  function formatYen(n) {
+    return '¥' + n.toLocaleString();
+  }
+
+  function addEvent() {
+    const name = document.getElementById('eventName').value.trim();
+    if (!name) { alert('イベント名を入力してください'); return; }
+
+    const type = document.getElementById('eventType').value;
+    const visitors = getVal('visitors');
+    const revenue = getVal('revenue');
+    const boothFee = getVal('boothFee');
+    const staffSalary = getVal('staffSalary');
+    const staffCount = getVal('staffCount') || 1;
+    const flightCost = getVal('flightCost');
+    const hotelCost = getVal('hotelCost');
+    const otherCost = getVal('otherCost');
+
+    // Calculate costs
+    const travelCost = (flightCost + hotelCost) * staffCount;
+    const totalStaffCost = staffSalary * staffCount;
+    const totalCost = boothFee + totalStaffCost + travelCost + otherCost;
+    const profit = revenue - totalCost;
+    const profitRate = revenue > 0 ? (profit / revenue) * 100 : 0;
+
+    // Scoring (0-100)
+    // 1. Profit score (max 40pts): based on profit margin
+    let profitScore = 0;
+    if (profitRate >= 50) profitScore = 40;
+    else if (profitRate >= 30) profitScore = 32;
+    else if (profitRate >= 15) profitScore = 24;
+    else if (profitRate >= 0) profitScore = 12;
+    else if (profitRate >= -20) profitScore = 4;
+    else profitScore = 0;
+
+    // 2. Revenue scale (max 20pts): absolute revenue
+    let revenueScore = 0;
+    if (revenue >= 1000000) revenueScore = 20;
+    else if (revenue >= 500000) revenueScore = 16;
+    else if (revenue >= 200000) revenueScore = 12;
+    else if (revenue >= 100000) revenueScore = 8;
+    else revenueScore = 4;
+
+    // 3. Cost efficiency (max 20pts): revenue per cost ratio
+    const roi = totalCost > 0 ? revenue / totalCost : 0;
+    let efficiencyScore = 0;
+    if (roi >= 3) efficiencyScore = 20;
+    else if (roi >= 2) efficiencyScore = 16;
+    else if (roi >= 1.5) efficiencyScore = 12;
+    else if (roi >= 1) efficiencyScore = 8;
+    else efficiencyScore = 2;
+
+    // 4. Visitor exposure (max 10pts)
+    let visitorScore = 0;
+    if (visitors >= 50000) visitorScore = 10;
+    else if (visitors >= 20000) visitorScore = 8;
+    else if (visitors >= 10000) visitorScore = 6;
+    else if (visitors >= 5000) visitorScore = 4;
+    else visitorScore = 2;
+
+    // 5. Type bonus (max 10pts): toB gets slight bonus for networking value
+    const typeScore = type === 'toB' ? 10 : 6;
+
+    const totalScore = profitScore + revenueScore + efficiencyScore + visitorScore + typeScore;
+
+    events.push({
+      name, type, visitors, revenue, totalCost, profit, profitRate, totalScore,
+      boothFee, totalStaffCost, travelCost, otherCost
+    });
+
+    renderResults();
+    clearForm();
+  }
+
+  function removeEvent(index) {
+    events.splice(index, 1);
+    renderResults();
+  }
+
+  function getScoreColor(score) {
+    if (score >= 75) return '#2e7d32';
+    if (score >= 50) return '#f9a825';
+    if (score >= 30) return '#e65100';
+    return '#c62828';
+  }
+
+  function getRecommendation(score) {
+    if (score >= 65) return { label: '参加推奨', cls: 'go' };
+    if (score >= 40) return { label: '要検討', cls: 'maybe' };
+    return { label: '見送り', cls: 'skip' };
+  }
+
+  function renderResults() {
+    const noEvents = document.getElementById('noEvents');
+    const cardsEl = document.getElementById('eventCards');
+    const rankingEl = document.getElementById('rankingSummary');
+
+    if (events.length === 0) {
+      noEvents.style.display = 'block';
+      cardsEl.innerHTML = '';
+      rankingEl.innerHTML = '';
+      return;
+    }
+
+    noEvents.style.display = 'none';
+
+    // Render cards
+    let cardsHtml = '';
+    events.forEach((ev, i) => {
+      const color = getScoreColor(ev.totalScore);
+      const rec = getRecommendation(ev.totalScore);
+      cardsHtml += `
+        <div class="event-card">
+          <div class="event-card-actions">
+            <button class="btn btn-danger" onclick="removeEvent(${i})">削除</button>
+          </div>
+          <div class="event-card-header">
+            <span class="event-card-title">${ev.name}</span>
+            <span class="event-card-type">${ev.type === 'toB' ? 'to B' : 'to C'}</span>
+          </div>
+          <div class="event-card-metrics">
+            <div class="metric">
+              <div class="metric-label">売上</div>
+              <div class="metric-value">${formatYen(ev.revenue)}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">総経費</div>
+              <div class="metric-value">${formatYen(ev.totalCost)}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">利益</div>
+              <div class="metric-value" style="color:${ev.profit >= 0 ? '#2e7d32' : '#c62828'}">${formatYen(ev.profit)}</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">利益率</div>
+              <div class="metric-value">${ev.profitRate.toFixed(1)}%</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">来場者数</div>
+              <div class="metric-value">${ev.visitors.toLocaleString()}人</div>
+            </div>
+          </div>
+          <div class="score-label">スコア</div>
+          <div class="score-bar-container">
+            <div class="score-bar">
+              <div class="score-bar-fill" style="width:${ev.totalScore}%; background-color:${color}"></div>
+            </div>
+            <div class="score-value" style="color:${color}">${ev.totalScore}</div>
+          </div>
+        </div>
+      `;
+    });
+    cardsEl.innerHTML = cardsHtml;
+
+    // Render ranking
+    const sorted = [...events].sort((a, b) => b.totalScore - a.totalScore);
+    let rankHtml = `<h4>Ranking</h4><ul class="ranking-list">`;
+    sorted.forEach((ev, i) => {
+      const rec = getRecommendation(ev.totalScore);
+      rankHtml += `
+        <li>
+          <span><span class="rank-number">#${i + 1}</span>${ev.name}<span class="rank-recommend ${rec.cls}">${rec.label}</span></span>
+          <span>${ev.totalScore} pt</span>
+        </li>
+      `;
+    });
+    rankHtml += '</ul>';
+    rankingEl.innerHTML = `<div class="ranking-summary">${rankHtml}</div>`;
+  }
+
+  function clearForm() {
+    document.getElementById('eventName').value = '';
+    document.getElementById('visitors').value = '';
+    document.getElementById('revenue').value = '';
+    document.getElementById('boothFee').value = '';
+    document.getElementById('staffSalary').value = '';
+    document.getElementById('staffCount').value = '';
+    document.getElementById('flightCost').value = '';
+    document.getElementById('hotelCost').value = '';
+    document.getElementById('otherCost').value = '';
+    document.getElementById('eventType').value = 'toC';
+  }
+
+  // ===== TODO Checklist =====
+  const TODO_STORAGE_KEY = 'ignis_todo_state';
+
+  // Load saved state
+  (function loadTodoState() {
+    try {
+      const saved = localStorage.getItem(TODO_STORAGE_KEY);
+      if (saved) {
+        const states = JSON.parse(saved);
+        const checkboxes = document.querySelectorAll('.todo-item input[type="checkbox"]');
+        checkboxes.forEach((cb, i) => {
+          if (states[i]) cb.checked = true;
+        });
+        updateTodoProgress();
+      }
+    } catch (e) {}
+  })();
+
+  function updateTodoProgress() {
+    const checkboxes = document.querySelectorAll('.todo-item input[type="checkbox"]');
+    const total = checkboxes.length;
+    const checked = document.querySelectorAll('.todo-item input[type="checkbox"]:checked').length;
+    const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+
+    document.getElementById('todoProgressText').textContent = `${checked} / ${total} 完了`;
+    document.getElementById('todoProgressBar').style.width = pct + '%';
+
+    // Save state
+    try {
+      const states = Array.from(checkboxes).map(cb => cb.checked);
+      localStorage.setItem(TODO_STORAGE_KEY, JSON.stringify(states));
+    } catch (e) {}
+  }
+
+  function resetTodo() {
+    if (!confirm('チェックリストをリセットしますか？')) return;
+    const checkboxes = document.querySelectorAll('.todo-item input[type="checkbox"]');
+    checkboxes.forEach(cb => cb.checked = false);
+    updateTodoProgress();
+  }
+</script>
+</body>
+</html>
