@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ignis Coffee School - Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@200;300;400;500;700&family=Noto+Serif+JP:wght@200;300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --black: #111;
+  --white: #fff;
+  --gray-100: #f7f7f7;
+  --gray-200: #e8e8e8;
+  --gray-400: #999;
+  --gray-600: #666;
+  --gray-800: #333;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.8;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ===== Scroll Animation ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ===== Typography ===== */
+.serif { font-family: 'Cormorant Garamond', 'Noto Serif JP', serif; }
+.en { font-family: 'Cormorant Garamond', serif; }
+
+h1, h2, h3 {
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+/* ===== Section Base ===== */
+section {
+  padding: 120px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 24px; }
+}
+
+.section-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.section-title .en {
+  display: block;
+  font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-top: 8px;
+}
+
+/* ===== Divider ===== */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--black);
+  margin: 0 auto 48px;
+}
+
+.divider-left {
+  margin: 0 0 48px 0;
+}
+
+/* ===== Hero ===== */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  max-width: 100%;
+  padding: 40px;
+}
+
+.hero-logo {
+  width: clamp(180px, 30vw, 320px);
+  margin-bottom: 48px;
+  filter: invert(1);
+  opacity: 0;
+  animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+}
+
+.hero-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 200;
+  line-height: 2;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+}
+
+.hero-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.35);
+  position: absolute;
+  bottom: 48px;
+  opacity: 0;
+  animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeInUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 1.5s forwards;
+}
+
+.scroll-indicator span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ===== Vision ===== */
+.vision {
+  text-align: center;
+  padding: 160px 40px;
+}
+
+.vision-quote {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 200;
+  line-height: 2.2;
+  letter-spacing: 0.08em;
+  margin-bottom: 48px;
+}
+
+.vision-body {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 2.2;
+}
+
+/* ===== Market ===== */
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 64px;
+}
+
+@media (max-width: 768px) {
+  .market-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.market-card {
+  text-align: center;
+  padding: 48px 24px;
+  border: 1px solid var(--gray-200);
+}
+
+.market-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.market-unit {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.market-desc {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+/* ===== Persona ===== */
+.persona-section {
+  background: var(--gray-100);
+  max-width: 100%;
+  padding: 120px 40px;
+}
+
+.persona-section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.persona-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .persona-container { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.persona-profile {
+  padding: 48px;
+  background: var(--white);
+}
+
+.persona-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.persona-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--gray-400);
+  flex-shrink: 0;
+}
+
+.persona-name-block {}
+
+.persona-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.persona-age {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+}
+
+.persona-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.persona-tag {
+  font-size: 0.72rem;
+  padding: 5px 14px;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-600);
+}
+
+/* Accordion */
+.accordion-item {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--black);
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.accordion-trigger:hover {
+  color: var(--gray-600);
+}
+
+.accordion-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--gray-400);
+  transition: transform 0.3s ease;
+}
+
+.accordion-icon::before {
+  width: 12px;
+  height: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.accordion-icon::after {
+  width: 1px;
+  height: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.accordion-item.open .accordion-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.accordion-content-inner {
+  padding: 0 0 20px 0;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 2.2;
+}
+
+.persona-money {
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--gray-100);
+}
+
+.persona-money-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.money-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 0.8rem;
+  color: var(--gray-600);
+}
+
+.money-row.total {
+  border-top: 1px solid var(--gray-200);
+  margin-top: 8px;
+  padding-top: 12px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.persona-right {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.persona-needs h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.need-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.need-item:first-of-type {
+  border-top: 1px solid var(--gray-200);
+}
+
+.need-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.need-text {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.persona-journey h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.journey-step {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.journey-step:first-of-type {
+  border-top: 1px solid var(--gray-200);
+}
+
+.journey-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--gray-400);
+  min-width: 32px;
+  padding-top: 2px;
+}
+
+.journey-content {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+.journey-content strong {
+  color: var(--black);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.85rem;
+}
+
+/* ===== Course ===== */
+.course-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .course-overview { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.course-info h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.course-info p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 2;
+  margin-bottom: 32px;
+}
+
+.course-specs {
+  list-style: none;
+}
+
+.course-specs li {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.9rem;
+}
+
+.course-specs li:first-child {
+  border-top: 1px solid var(--gray-200);
+}
+
+.spec-label {
+  color: var(--gray-400);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.spec-value {
+  font-weight: 400;
+  text-align: right;
+}
+
+.course-photo {
+  background: var(--gray-200);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Curriculum ===== */
+.curriculum-section {
+  background: var(--black);
+  color: var(--white);
+  max-width: 100%;
+  padding: 120px 40px;
+}
+
+.curriculum-section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.curriculum-section .section-label {
+  color: rgba(255,255,255,0.35);
+}
+
+.curriculum-section .section-title {
+  color: var(--white);
+}
+
+.curriculum-section .section-title .en {
+  color: rgba(255,255,255,0.35);
+}
+
+.curriculum-timeline {
+  position: relative;
+  padding-left: 80px;
+}
+
+.curriculum-timeline::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255,255,255,0.15);
+}
+
+.curriculum-day {
+  position: relative;
+  padding: 32px 0 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.curriculum-day:last-child {
+  border-bottom: none;
+}
+
+.day-number {
+  position: absolute;
+  left: -80px;
+  top: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  width: 80px;
+}
+
+.day-number::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.day-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin-bottom: 12px;
+}
+
+.day-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+}
+
+.day-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.day-tag {
+  font-size: 0.7rem;
+  padding: 4px 12px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.6);
+}
+
+/* ===== Pricing ===== */
+.pricing-card {
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid var(--black);
+  padding: 64px 48px;
+  text-align: center;
+}
+
+.pricing-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 24px;
+}
+
+.pricing-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.pricing-tax {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-bottom: 40px;
+}
+
+.pricing-includes {
+  list-style: none;
+  text-align: left;
+}
+
+.pricing-includes li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pricing-includes li::before {
+  content: '--';
+  color: var(--gray-400);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* ===== Location ===== */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 64px;
+}
+
+@media (max-width: 768px) {
+  .location-grid { grid-template-columns: 1fr; }
+}
+
+.location-card {
+  padding: 48px;
+  background: var(--gray-100);
+}
+
+.location-name {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.location-sub {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+}
+
+.location-detail {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 2;
+}
+
+.location-photo {
+  background: var(--gray-200);
+  min-height: 200px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+/* ===== Future Vision ===== */
+.future-section {
+  background: var(--gray-100);
+  max-width: 100%;
+  padding: 120px 40px;
+}
+
+.future-section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.future-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin: 64px 0;
+  flex-wrap: wrap;
+}
+
+.future-step {
+  text-align: center;
+  padding: 40px 32px;
+  background: var(--white);
+  min-width: 200px;
+  flex: 1;
+}
+
+.future-step-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+}
+
+.future-step-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.future-step-desc {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+.future-arrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  color: var(--gray-400);
+}
+
+@media (max-width: 768px) {
+  .future-flow { flex-direction: column; }
+  .future-arrow { transform: rotate(90deg); }
+}
+
+.future-note {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 2;
+}
+
+/* ===== Instructor ===== */
+.instructor-section {
+  background: var(--black);
+  color: var(--white);
+  max-width: 100%;
+  padding: 120px 40px;
+}
+
+.instructor-section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.instructor-section .section-label { color: rgba(255,255,255,0.35); }
+.instructor-section .section-title { color: var(--white); }
+.instructor-section .section-title .en { color: rgba(255,255,255,0.35); }
+
+.instructor-path {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  margin: 64px 0;
+}
+
+@media (max-width: 768px) {
+  .instructor-path { flex-direction: column; }
+}
+
+.instructor-step {
+  flex: 1;
+  padding: 40px 32px;
+  background: rgba(255,255,255,0.05);
+  border-top: 2px solid rgba(255,255,255,0.15);
+  position: relative;
+}
+
+.instructor-step.active {
+  border-top-color: var(--white);
+  background: rgba(255,255,255,0.08);
+}
+
+.instructor-step-phase {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+
+.instructor-step-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.instructor-step-desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+}
+
+.instructor-step-person {
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 400;
+}
+
+.instructor-note {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 2;
+  max-width: 720px;
+}
+
+/* ===== Graduate Path ===== */
+.grad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 64px 0 48px;
+}
+
+@media (max-width: 768px) {
+  .grad-grid { grid-template-columns: 1fr; }
+}
+
+.grad-card {
+  padding: 40px 32px;
+  background: var(--white);
+  border-bottom: 2px solid var(--black);
+}
+
+.grad-card-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.grad-card-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.grad-card-desc {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+/* ===== Incentive ===== */
+.incentive-box {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px;
+  border: 1px solid var(--gray-200);
+  text-align: center;
+}
+
+.incentive-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.incentive-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 8px;
+}
+
+.incentive-desc {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 2;
+}
+
+/* ===== Strategy ===== */
+.strategy-section {
+  background: var(--black);
+  color: var(--white);
+  max-width: 100%;
+  padding: 120px 40px;
+}
+
+.strategy-section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.strategy-section .section-label { color: rgba(255,255,255,0.35); }
+.strategy-section .section-title { color: var(--white); }
+.strategy-section .section-title .en { color: rgba(255,255,255,0.35); }
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin: 64px 0;
+}
+
+@media (max-width: 768px) {
+  .strategy-grid { grid-template-columns: 1fr; }
+}
+
+.strategy-card {
+  padding: 48px 40px;
+  background: rgba(255,255,255,0.04);
+  border-left: 2px solid rgba(255,255,255,0.1);
+  transition: border-color 0.3s ease;
+}
+
+.strategy-card:hover {
+  border-left-color: var(--white);
+}
+
+.strategy-card-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+}
+
+.strategy-card-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.strategy-card-desc {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.9;
+}
+
+.strategy-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+  .strategy-bottom { grid-template-columns: 1fr; }
+}
+
+.strategy-metric {
+  text-align: center;
+}
+
+.strategy-metric-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.strategy-metric-label {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+}
+
+/* ===== Revenue ===== */
+.revenue-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 48px;
+  font-size: 0.85rem;
+}
+
+.revenue-table th,
+.revenue-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.revenue-table th {
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+  text-transform: uppercase;
+}
+
+.revenue-table td {
+  color: var(--gray-800);
+}
+
+.revenue-table .total {
+  font-weight: 500;
+  border-top: 2px solid var(--black);
+  border-bottom: 2px solid var(--black);
+}
+
+.revenue-note {
+  margin-top: 24px;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+/* ===== Schedule ===== */
+.schedule-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 64px auto 0;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.schedule-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--gray-400);
+  padding-top: 4px;
+}
+
+.schedule-content h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.schedule-content p {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+/* ===== Closing ===== */
+.closing {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: var(--black);
+  color: var(--white);
+  max-width: 100%;
+  padding: 40px;
+}
+
+.closing-logo {
+  width: 160px;
+  filter: invert(1);
+  margin-bottom: 32px;
+}
+
+.closing-text {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 200;
+  line-height: 2;
+  letter-spacing: 0.08em;
+  margin-bottom: 48px;
+}
+
+.closing-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.2em;
+}
+
+/* ===== HP Mockup ===== */
+.mockup-section {
+  background: var(--gray-100);
+  max-width: 100%;
+  padding: 120px 40px;
+}
+
+.mockup-section > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.browser-frame {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.12);
+  overflow: hidden;
+  margin-top: 48px;
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gray-200);
+}
+
+.browser-url {
+  flex: 1;
+  margin-left: 12px;
+  padding: 6px 16px;
+  background: var(--white);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  font-family: 'Cormorant Garamond', monospace;
+  letter-spacing: 0.05em;
+}
+
+.mock-page {
+  overflow: hidden;
+}
+
+/* Mock Hero */
+.mock-hero {
+  background: var(--black);
+  color: var(--white);
+  padding: 80px 48px;
+  text-align: center;
+  position: relative;
+}
+
+.mock-hero-logo {
+  width: 120px;
+  filter: invert(1);
+  margin-bottom: 24px;
+}
+
+.mock-hero-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+
+.mock-hero-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.3rem;
+  font-weight: 200;
+  line-height: 2;
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+
+.mock-hero-cta {
+  display: inline-block;
+  padding: 12px 40px;
+  border: 1px solid var(--white);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--white);
+}
+
+/* Mock Sections */
+.mock-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+
+.mock-feature {
+  padding: 48px 32px;
+  text-align: center;
+  border-right: 1px solid var(--gray-200);
+}
+
+.mock-feature:last-child {
+  border-right: none;
+}
+
+.mock-feature-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.mock-feature-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.mock-feature-desc {
+  font-size: 0.65rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+/* Mock About */
+.mock-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mock-about-img {
+  background: var(--gray-200);
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-400);
+  font-size: 0.7rem;
+}
+
+.mock-about-text {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mock-about-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+.mock-about-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 16px;
+  line-height: 1.8;
+}
+
+.mock-about-body {
+  font-size: 0.7rem;
+  color: var(--gray-600);
+  line-height: 2;
+}
+
+/* Mock CTA */
+.mock-cta {
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+  padding: 48px;
+}
+
+.mock-cta-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem;
+  font-weight: 200;
+  margin-bottom: 20px;
+  letter-spacing: 0.08em;
+}
+
+.mock-cta-btn {
+  display: inline-block;
+  padding: 10px 36px;
+  border: 1px solid var(--white);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--white);
+}
+
+/* Mock Curriculum Preview */
+.mock-curriculum {
+  padding: 48px 40px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.mock-curriculum-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.mock-days {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.mock-day {
+  flex: 1;
+  max-width: 160px;
+  padding: 20px 16px;
+  background: var(--gray-100);
+  text-align: center;
+}
+
+.mock-day-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--gray-400);
+  margin-bottom: 8px;
+}
+
+.mock-day-title {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .mock-features { grid-template-columns: 1fr; }
+  .mock-feature { border-right: none; border-bottom: 1px solid var(--gray-200); }
+  .mock-about { grid-template-columns: 1fr; }
+  .mock-days { flex-wrap: wrap; }
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--black);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ===== Nav Dots ===== */
+.nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-400);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+  background: var(--black);
+  border-color: var(--black);
+}
+
+.nav-dot:hover {
+  border-color: var(--black);
+}
+
+@media (max-width: 768px) {
+  .nav-dots { display: none; }
+}
+
+/* ===== Counter Animation ===== */
+.count-up {
+  display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Navigation Dots -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ===== 01. HERO ===== -->
+<section class="hero" data-section="hero">
+  <img src="Ignis_transparent.png" alt="Ignis" class="hero-logo" onerror="this.style.display='none'">
+  <p class="hero-subtitle">Coffee School Proposal 2027</p>
+  <h1 class="hero-title">
+    コーヒーで、人生を灯す。<br>
+    Ignis Coffee School 開講提案書
+  </h1>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+  <p class="hero-date">Confidential -- Ignis Inc. 2026</p>
+</section>
+
+<!-- ===== 02. VISION ===== -->
+<section class="vision" data-section="vision">
+  <p class="section-label reveal">01 -- Vision</p>
+  <div class="divider reveal reveal-delay-1"></div>
+  <p class="vision-quote reveal reveal-delay-2">
+    「好き」を仕事に変える場所を、<br>
+    Ignisがつくる。
+  </p>
+  <p class="vision-body reveal reveal-delay-3">
+    コーヒーを好きな人は増え続けている。<br>
+    「いつか仕事にしたい」と思っている人も、実はたくさんいる。<br>
+    ただ、その一歩目の場所がまだ少ない。<br><br>
+    Ignis Coffee Schoolは、求人広告ではなく「教育」から始まる出会いの場です。<br>
+    Ignisの技術と理念を共有した人が、自然と仲間になっていく。<br>
+    採用のやり方を変えるのではなく、採用の入口そのものをつくる。
+  </p>
+</section>
+
+<!-- ===== 03. MARKET ===== -->
+<section data-section="market">
+  <p class="section-label reveal">02 -- Market</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    なぜ、今なのか
+    <span class="en">Why Now</span>
+  </h2>
+  <div class="market-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="market-card reveal reveal-delay-1">
+      <p class="market-number count-up" data-target="3800">0</p>
+      <p class="market-unit">億円 / 年</p>
+      <p class="market-desc">国内スペシャルティ<br>コーヒー市場規模</p>
+    </div>
+    <div class="market-card reveal reveal-delay-2">
+      <p class="market-number count-up" data-target="50">0</p>
+      <p class="market-unit">億円規模（推定）</p>
+      <p class="market-desc">国内コーヒースクール・<br>バリスタ養成講座の市場規模<br><span style="font-size:0.75rem; color:var(--gray-400);">年間成長率 15-20%</span></p>
+    </div>
+    <div class="market-card reveal reveal-delay-3">
+      <p class="market-number count-up" data-target="67">0</p>
+      <p class="market-unit">%</p>
+      <p class="market-desc">「コーヒーに関する仕事に<br>興味がある」と回答した<br>20-30代女性の割合</p>
+    </div>
+    <div class="market-card reveal reveal-delay-4">
+      <p class="market-number count-up" data-target="12">0</p>
+      <p class="market-unit">%（前年比）</p>
+      <p class="market-desc">バリスタスクール<br>受講者数の伸び率</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04. STRATEGY ===== -->
+<section class="strategy-section" data-section="strategy">
+  <div>
+    <p class="section-label reveal">03 -- Strategy</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      なぜIgnisがやるべきか
+      <span class="en">Competitive Advantage</span>
+    </h2>
+    <div class="strategy-grid">
+      <div class="strategy-card reveal reveal-delay-1">
+        <p class="strategy-card-label">Problem</p>
+        <h3 class="strategy-card-title">ありふれた求人広告では、埋もれる</h3>
+        <p class="strategy-card-desc">
+          求人媒体にはコーヒーショップの募集が並び、どれも似たような内容。その中でIgnisを見つけてもらい、選んでもらうのは簡単ではない。しかも1人のバリスタを育てるのに半年の教育期間と約45万円のコストがかかっている。
+        </p>
+      </div>
+      <div class="strategy-card reveal reveal-delay-2">
+        <p class="strategy-card-label">Shift</p>
+        <h3 class="strategy-card-title">「採用」ではなく「育成」から関係を始める</h3>
+        <p class="strategy-card-desc">
+          スクールは求人広告とは全く異なるチャネル。受講生はお金を払ってIgnisの技術と理念を学ぶ。この過程で生まれる信頼と共感は、求人サイト経由の応募者とは質が根本的に違う。
+        </p>
+      </div>
+      <div class="strategy-card reveal reveal-delay-3">
+        <p class="strategy-card-label">Structure</p>
+        <h3 class="strategy-card-title">Ignisには既に「場所」と「人」がある</h3>
+        <p class="strategy-card-desc">
+          スクール専業は場所を借りてスキルだけ教える。Ignisには自社店舗という実践の場と、現役バリスタという講師がすでにいる。新たに大きな投資をせずに始められるのは、店舗を持つIgnisだからこそ。
+        </p>
+      </div>
+      <div class="strategy-card reveal reveal-delay-4">
+        <p class="strategy-card-label">Upside</p>
+        <h3 class="strategy-card-title">収益を得ながら、採用と出店の布石を打てる</h3>
+        <p class="strategy-card-desc">
+          受講料で売上が立ち、卒業生がIgnisのバリスタになれば採用コストはゼロ。独立支援した卒業生はIgnisの仕入れネットワークの顧客にもなりうる。一つの事業が複数のリターンを生む構造。
+        </p>
+      </div>
+    </div>
+    <div class="strategy-bottom">
+      <div class="strategy-metric reveal reveal-delay-1">
+        <p class="strategy-metric-num">-&yen;45<span style="font-size:1.2rem;">万</span></p>
+        <p class="strategy-metric-label">1人あたりの教育コスト削減</p>
+      </div>
+      <div class="strategy-metric reveal reveal-delay-2">
+        <p class="strategy-metric-num">+&yen;15<span style="font-size:1.2rem;">万</span></p>
+        <p class="strategy-metric-label">1名あたりの受講料収益</p>
+      </div>
+      <div class="strategy-metric reveal reveal-delay-3">
+        <p class="strategy-metric-num">&yen;0</p>
+        <p class="strategy-metric-label">追加設備投資</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05. PERSONA ===== -->
+<section class="persona-section" data-section="persona">
+  <div>
+    <p class="section-label reveal">04 -- Persona</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      届けたい人
+      <span class="en">Target Persona</span>
+    </h2>
+    <div class="persona-container">
+      <div class="persona-profile reveal-left">
+        <div class="persona-header">
+          <div class="persona-avatar">Photo</div>
+          <div class="persona-name-block">
+            <p class="persona-name">田中 美咲（仮）</p>
+            <p class="persona-age">27歳 / 東京都足立区 北千住</p>
+          </div>
+        </div>
+        <div class="persona-tags">
+          <span class="persona-tag">都内メーカー / 事務職</span>
+          <span class="persona-tag">手取り26万円</span>
+          <span class="persona-tag">一人暮らし</span>
+          <span class="persona-tag">転職1回</span>
+          <span class="persona-tag">Instagram毎日チェック</span>
+          <span class="persona-tag" style="border-color:var(--black); color:var(--black); font-weight:500;">INFJ（提唱者）</span>
+        </div>
+        <div class="persona-accordion">
+          <div class="accordion-item open">
+            <button class="accordion-trigger">住まい・暮らし<span class="accordion-icon"></span></button>
+            <div class="accordion-content" style="max-height:200px;">
+              <div class="accordion-content-inner">北千住の1K（家賃6.5万円）で一人暮らし。千代田線で大手町のオフィスへ通勤。平日は仕事終わりにスーパーで買い物して自炊。堅実に暮らしているが、手取り26万円から家賃・生活費を引くと、毎月の貯金は2-3万円が精一杯。</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">コーヒーとの関係<span class="accordion-icon"></span></button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">オフィス周辺ではスタバやタリーズで毎朝ラテを購入。休日は友人と個人経営のカフェを巡り、Instagramに投稿する。おすすめカフェのアカウントを複数フォロー。自宅ではまだ「買う専門」で、自分で淹れる習慣はない。海外のコーヒーカルチャーにも漠然とした憧れがある。</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">キャリアの現在地<span class="accordion-icon"></span></button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">新卒で入った会社を2年で辞め、現在の事務職に転職して3年目。仕事は安定しているが「これが自分のやりたいことなのか」というモヤモヤが消えない。28歳を目前に「このまま30代に入っていいのか」という焦りが日に日に強くなっている。</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">カフェ開業への想い<span class="accordion-icon"></span></button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">Instagramで焙煎から独立した人、脱サラしてカフェを開いた人の投稿を見て「自分もやりたい」と思う。バリスタスクールの広告も目にするが、具体的に調べるところまでは至っていない。「いつか自分のカフェを持ちたい」という夢はあるが、何から始めればいいかわからない。</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">障壁<span class="accordion-icon"></span></button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">未経験の世界に飛び込む勇気がない。長期スクールは仕事との両立が難しい。15万円という受講料は「出せなくはないが、貯金ペースを考えると慎重になる」金額。本当に仕事につながるのか確信が持てない。</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">INFJの心理構造 -- なぜ動けないのか<span class="accordion-icon"></span></button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                INFJは「理想の自分」を鮮明に描ける反面、現実とのギャップを誰よりも痛感する。頭の中では何度もカフェを開業し、何度も失敗をシミュレーションしている。情報収集は十分にしているが「完璧な準備」が整うまで動けない完璧主義。さらに周囲の目を気にする傾向があり、「事務職を辞めてバリスタ？」という反応を想像して萎縮する。結果、Instagramで夢を眺める時間だけが積み重なっていく。
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-trigger">行動トリガー -- 何がこの人の背中を押すか<span class="accordion-icon"></span></button>
+            <div class="accordion-content">
+              <div class="accordion-content-inner">
+                <strong style="color:var(--black); display:block; margin-bottom:8px;">1. 「自分と同じ境遇の人」の成功体験</strong>
+                INFJはデータより物語に動かされる。「元OLが未経験からバリスタに」という卒業生のリアルなストーリーが最も強いトリガー。自分と重ねて「私にもできるかも」と感じる瞬間。
+                <br><br>
+                <strong style="color:var(--black); display:block; margin-bottom:8px;">2. 年齢の節目による焦燥感</strong>
+                28歳の誕生日、同期の結婚・転職報告、年末年始の振り返り。「あと何年このままでいるの？」という自問自答が臨界点に達するタイミングが必ず来る。
+                <br><br>
+                <strong style="color:var(--black); display:block; margin-bottom:8px;">3. 「小さな一歩」の存在</strong>
+                INFJにとって「退職して入学」はハードルが高すぎる。「まずは無料カウンセリング」「話を聞くだけ」という心理的安全性の高い入口が不可欠。一度人と話せば、INFJの直感が「ここだ」と判断する。
+                <br><br>
+                <strong style="color:var(--black); display:block; margin-bottom:8px;">4. ブランドの世界観への共鳴</strong>
+                INFJは「なぜやるのか」に敏感。Ignisの理念やビジュアルの世界観に「この人たちは本物だ」と感じた瞬間、信頼が一気に形成される。逆に、押し売り的なセールスには強い拒否反応を示す。
+                <br><br>
+                <strong style="color:var(--black); display:block; margin-bottom:8px;">5. 「逃げ道」ではなく「始まり」というフレーミング</strong>
+                「今の仕事を辞める」ではなく「人生に新しい選択肢を加える」。働きながら通える10日間というフォーマットが、INFJの「両立したい・失敗したくない」心理にフィットする。
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-trigger">Monthly Budget<span class="accordion-icon"></span></button>
+          <div class="accordion-content">
+            <div class="accordion-content-inner">
+              <div class="persona-money" style="margin-top:0;">
+                <div class="money-row"><span>手取り収入</span><span>&yen;260,000</span></div>
+                <div class="money-row"><span>家賃（北千住 1K）</span><span>-&yen;65,000</span></div>
+                <div class="money-row"><span>食費・日用品</span><span>-&yen;45,000</span></div>
+                <div class="money-row"><span>光熱費・通信費</span><span>-&yen;20,000</span></div>
+                <div class="money-row"><span>交通費・被服費</span><span>-&yen;25,000</span></div>
+                <div class="money-row"><span>カフェ・外食・交際費</span><span>-&yen;40,000</span></div>
+                <div class="money-row"><span>サブスク・その他</span><span>-&yen;15,000</span></div>
+                <div class="money-row total"><span>貯金可能額</span><span>&yen;50,000</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="persona-right">
+        <div class="persona-needs reveal-right">
+          <h3>Ignisが応えるニーズ</h3>
+          <div class="need-item">
+            <p class="need-label">Need 01</p>
+            <p class="need-text">今の仕事を続けながら、収入を減らさずに開業の準備がしたい</p>
+          </div>
+          <div class="need-item">
+            <p class="need-label">Need 02</p>
+            <p class="need-text">マンツーマンで、自分のレベルに合った指導を受けたい</p>
+          </div>
+          <div class="need-item">
+            <p class="need-label">Need 03</p>
+            <p class="need-text">技術を学んだ先に、就職や独立の具体的な選択肢がほしい</p>
+          </div>
+          <div class="need-item">
+            <p class="need-label">Need 04</p>
+            <p class="need-text">独立・開業に必要なリアルな知識も一緒に学びたい</p>
+          </div>
+          <div class="need-item">
+            <p class="need-label">Need 05</p>
+            <p class="need-text">実際に店舗を運営しているプロから直接学びたい</p>
+          </div>
+        </div>
+        <div class="persona-journey reveal-right">
+          <h3>Ignisとの出会いから受講まで</h3>
+          <div class="journey-step">
+            <span class="journey-num">01</span>
+            <div class="journey-content">
+              <strong>接点（Instagram）</strong>
+              カフェ巡りアカウント経由でIgnis東京店をフォロー。ラテアートや店内の世界観が好みで、投稿をよく見るように。この時点ではただの「好きなカフェ」。
+            </div>
+          </div>
+          <div class="journey-step">
+            <span class="journey-num">02</span>
+            <div class="journey-content">
+              <strong>接点（店舗）</strong>
+              休日に友人とIgnis東京店を訪問。カウンターに置かれたスクールのポップが目に入る。「バリスタスクール、10日間」。写真を撮ってその日は帰宅。
+            </div>
+          </div>
+          <div class="journey-step">
+            <span class="journey-num">03</span>
+            <div class="journey-content">
+              <strong>気になる -- でも動けない</strong>
+              帰宅後、撮ったポップの写真を見返す。Instagramでスクールの投稿を遡る。「仕事終わりに通えるんだ」「今の収入を減らさずに準備できる」。でも「本当に自分にできる？」と検索タブを閉じる。これを2-3回繰り返す。
+            </div>
+          </div>
+          <div class="journey-step">
+            <span class="journey-num">04</span>
+            <div class="journey-content">
+              <strong>トリガー</strong>
+              28歳の誕生日の週末。同い年の友人が転職報告をしたInstagramを見て、ベッドの中で「あと何年このままでいるんだろう」と考える。保存していたスクールの投稿を開き直す。
+            </div>
+          </div>
+          <div class="journey-step">
+            <span class="journey-num">05</span>
+            <div class="journey-content">
+              <strong>小さな一歩</strong>
+              「まずは無料カウンセリング」のボタンを押す。退職する必要はない、話を聞くだけ。日曜の夜、布団の中からスマホで予約を完了。
+            </div>
+          </div>
+          <div class="journey-step">
+            <span class="journey-num">06</span>
+            <div class="journey-content">
+              <strong>確信 → 申し込み</strong>
+              カウンセリングでまゆと話す。元々コーヒー業界と無縁だったまゆ自身の経験を聞いて「この人もゼロから始めたんだ」と共感。仕事終わりに通えるスケジュールを確認し、15万円 -- 3ヶ月分の貯金でいける。その場で申し込み。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05. COURSE ===== -->
+<section data-section="course">
+  <p class="section-label reveal">05 -- Course</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    コース概要
+    <span class="en">Course Overview</span>
+  </h2>
+  <div class="course-overview">
+    <div class="course-info reveal-left">
+      <h3>Ignis Barista Program</h3>
+      <p>
+        10日間のマンツーマン集中プログラム。<br>
+        エスプレッソ抽出の基礎からラテアート、ドリップ、<br>
+        そして開業に必要な知識まで。<br>
+        現役バリスタが一人ひとりのペースに合わせて指導します。
+      </p>
+      <ul class="course-specs">
+        <li>
+          <span class="spec-label">期間</span>
+          <span class="spec-value">全10回（週1回 / 約2.5ヶ月）</span>
+        </li>
+        <li>
+          <span class="spec-label">形式</span>
+          <span class="spec-value">完全マンツーマン</span>
+        </li>
+        <li>
+          <span class="spec-label">会場</span>
+          <span class="spec-value">Ignis 自社店舗</span>
+        </li>
+        <li>
+          <span class="spec-label">対象</span>
+          <span class="spec-value">未経験 -- 初心者</span>
+        </li>
+        <li>
+          <span class="spec-label">定員</span>
+          <span class="spec-value">同時4名まで（週1回 x 全10回）</span>
+        </li>
+      </ul>
+    </div>
+    <div class="course-photo reveal-right" style="background:none; min-height:0;">
+      <img src="ignis-counter.jpg" alt="Ignis店内" style="width:100%; height:100%; min-height:400px; object-fit:cover; display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06. CURRICULUM ===== -->
+<section class="curriculum-section" data-section="curriculum">
+  <div>
+    <p class="section-label reveal">06 -- Curriculum</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      10日間のカリキュラム
+      <span class="en">10-Day Program</span>
+    </h2>
+    <div class="curriculum-timeline">
+      <!-- Day 1 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 1</span>
+        <h3 class="day-title">コーヒーの基礎知識</h3>
+        <p class="day-desc">
+          コーヒー豆の産地・品種・精製方法、焙煎度合いによる味の変化、<br>
+          スペシャルティコーヒーの基準とカッピングの基礎を学びます。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">座学</span>
+          <span class="day-tag">カッピング</span>
+          <span class="day-tag">テイスティング</span>
+        </div>
+      </div>
+      <!-- Day 2 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 2</span>
+        <h3 class="day-title">ドリップコーヒー</h3>
+        <p class="day-desc">
+          ハンドドリップの基本技術、湯温・注ぎ方・蒸らし時間による味の変化を<br>
+          繰り返し実践しながら体で覚えます。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">実技</span>
+          <span class="day-tag">ハンドドリップ</span>
+          <span class="day-tag">抽出理論</span>
+        </div>
+      </div>
+      <!-- Day 3-4 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 3-4</span>
+        <h3 class="day-title">エスプレッソ抽出</h3>
+        <p class="day-desc">
+          マシンの構造と操作方法、グラインダーの調整、<br>
+          タンピング・抽出の基本動作を繰り返し練習します。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">実技</span>
+          <span class="day-tag">エスプレッソ</span>
+          <span class="day-tag">グラインド調整</span>
+        </div>
+      </div>
+      <!-- Day 5-6 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 5-6</span>
+        <h3 class="day-title">ミルクスチーミング & ラテアート基礎</h3>
+        <p class="day-desc">
+          フォームミルクの作り方、温度管理、<br>
+          ハート・リーフなど基本のラテアートパターンを習得します。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">実技</span>
+          <span class="day-tag">スチーミング</span>
+          <span class="day-tag">ラテアート</span>
+        </div>
+      </div>
+      <!-- Day 7-8 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 7-8</span>
+        <h3 class="day-title">ラテアート応用 & ラテグラフィック</h3>
+        <p class="day-desc">
+          チューリップ・ロゼッタなど上級パターン、<br>
+          エッチングやラテグラフィックの技法を実践します。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">実技</span>
+          <span class="day-tag">ラテグラフィック</span>
+          <span class="day-tag">エッチング</span>
+        </div>
+      </div>
+      <!-- Day 9 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 9</span>
+        <h3 class="day-title">開業・独立の基礎知識</h3>
+        <p class="day-desc">
+          カフェ開業に必要な許認可・資金計画・物件選び・<br>
+          仕入れルートの構築など、独立に向けた実践知識を提供します。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">座学</span>
+          <span class="day-tag">開業計画</span>
+          <span class="day-tag">資金計画</span>
+        </div>
+      </div>
+      <!-- Day 10 -->
+      <div class="curriculum-day reveal">
+        <span class="day-number">Day 10</span>
+        <h3 class="day-title">総合実技 & 修了テスト</h3>
+        <p class="day-desc">
+          10日間の総まとめ。実際のオペレーションを想定した<br>
+          実技テストを行い、修了証を授与します。
+        </p>
+        <div class="day-tags">
+          <span class="day-tag">実技テスト</span>
+          <span class="day-tag">修了証授与</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07. PRICING ===== -->
+<section data-section="pricing">
+  <p class="section-label reveal">07 -- Pricing</p>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">
+    料金
+    <span class="en">Price</span>
+  </h2>
+  <div class="pricing-card reveal reveal-delay-2">
+    <p class="pricing-name">Ignis Barista Program</p>
+    <p class="pricing-amount">&yen;150,000</p>
+    <p class="pricing-tax">税込 &yen;165,000</p>
+    <ul class="pricing-includes">
+      <li>全10回のマンツーマンレッスン（各回約3時間）</li>
+      <li>コーヒー豆・牛乳など全材料費</li>
+      <li>テキスト・資料一式</li>
+      <li>受講期間中、Ignis社内教科書の閲覧権限を付与</li>
+      <li>修了証の発行</li>
+      <li>卒業後のキャリア相談（1回無料）</li>
+      <li>Ignis店舗での実地研修（希望者）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 08. LOCATION ===== -->
+<section data-section="location">
+  <p class="section-label reveal">08 -- Location</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    会場
+    <span class="en">Training Venue</span>
+  </h2>
+  <p class="reveal reveal-delay-2" style="font-size:0.9rem; color:var(--gray-600); margin-bottom:48px; line-height:2;">
+    Ignisの自社店舗を活用し、実際の営業環境に近い空間でトレーニングを行います。<br>
+    営業時間外の店舗を利用するため、追加の設備投資は最小限に抑えられます。
+  </p>
+  <div class="location-grid">
+    <div class="location-card reveal reveal-delay-1">
+      <div class="location-photo" style="background:none; min-height:0;"><img src="ignis-sendagi.png" alt="Ignis Sendagi" style="width:100%; height:240px; object-fit:cover; display:block;"></div>
+      <p class="location-name">Ignis Sendagi</p>
+      <p class="location-sub">Primary Training Venue</p>
+      <p class="location-detail">
+        営業時間外（午前 or 夜間）を活用<br>
+        業務用エスプレッソマシン完備<br>
+        最大2名の同時レッスンに対応
+      </p>
+    </div>
+    <div class="location-card reveal reveal-delay-2">
+      <div class="location-photo">[ 店舗写真 2 ]</div>
+      <p class="location-name">Ignis 店舗 B</p>
+      <p class="location-sub">Secondary Venue</p>
+      <p class="location-detail">
+        繁忙期のサブ会場として活用<br>
+        実地研修プログラムの実施場所<br>
+        営業中のリアルなオペレーション体験
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09. INSTRUCTOR SYSTEM ===== -->
+<section class="instructor-section" data-section="instructor">
+  <div>
+    <p class="section-label reveal">09 -- Instructor</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      講師体制とスタッフの成長
+      <span class="en">Instructor Development</span>
+    </h2>
+    <div class="instructor-path">
+      <div class="instructor-step active reveal reveal-delay-1">
+        <p class="instructor-step-phase">Phase 01</p>
+        <h3 class="instructor-step-title">土橋氏による技術研修</h3>
+        <p class="instructor-step-desc">
+          まず、まゆが土橋氏のもとで<br>
+          高水準のバリスタ技術と<br>
+          指導メソッドを徹底的に習得。
+        </p>
+        <p class="instructor-step-person">-- 初代講師: まゆ</p>
+      </div>
+      <div class="instructor-step reveal reveal-delay-2">
+        <p class="instructor-step-phase">Phase 02</p>
+        <h3 class="instructor-step-title">講師としてスクール開講</h3>
+        <p class="instructor-step-desc">
+          研修を修了後、まゆが初代講師として<br>
+          スクールプログラムを運営。<br>
+          指導ノウハウを体系化。
+        </p>
+        <p class="instructor-step-person">-- 運用 &amp; マニュアル整備</p>
+      </div>
+      <div class="instructor-step reveal reveal-delay-3">
+        <p class="instructor-step-phase">Phase 03</p>
+        <h3 class="instructor-step-title">他スタッフへの講師認定拡大</h3>
+        <p class="instructor-step-desc">
+          確立した指導メソッドをもとに<br>
+          他の既存スタッフも講師として認定。<br>
+          受け入れ人数の拡大が可能に。
+        </p>
+        <p class="instructor-step-person">-- 受け入れ体制の強化</p>
+      </div>
+    </div>
+    <p class="instructor-note reveal">
+      スクール講師を務めることは、バリスタとしてのスキルの言語化・体系化につながり、<br>
+      既存スタッフの技術力と仕事への誇りを向上させます。<br>
+      「教える側に立てる」というキャリアパスは、スタッフの定着率向上にも寄与します。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 10. GRADUATE PATH ===== -->
+<section data-section="graduate">
+  <p class="section-label reveal">10 -- Graduate Path</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    卒業生の出口戦略
+    <span class="en">After Graduation</span>
+  </h2>
+  <div class="grad-grid">
+    <div class="grad-card reveal reveal-delay-1">
+      <p class="grad-card-num">Path 01</p>
+      <h3 class="grad-card-title">Ignisバリスタ契約</h3>
+      <p class="grad-card-desc">
+        スクールで理念とスキルを共有した卒業生を、Ignis店舗のバリスタとして迎え入れる。教育済みの即戦力人材を採用コストゼロで確保。
+      </p>
+    </div>
+    <div class="grad-card reveal reveal-delay-2">
+      <p class="grad-card-num">Path 02</p>
+      <h3 class="grad-card-title">Ignisネットワークへの参加</h3>
+      <p class="grad-card-desc">
+        卒業後もIgnisとの繋がりを維持。仕入れルートの共有、イベントへの招待、卒業生同士のコミュニティなど、独立後も孤立しない関係を構築。
+      </p>
+    </div>
+    <div class="grad-card reveal reveal-delay-3">
+      <p class="grad-card-num">Path 03</p>
+      <h3 class="grad-card-title">独立・開業支援</h3>
+      <p class="grad-card-desc">
+        物件選定、資金計画、仕入れルート構築、メニュー開発まで。Ignisのネットワークを活かした実践的な開業レクチャーを提供。
+      </p>
+    </div>
+    <div class="grad-card reveal reveal-delay-1">
+      <p class="grad-card-num">Path 04</p>
+      <h3 class="grad-card-title">海外出張・研修</h3>
+      <p class="grad-card-desc">
+        Ignisの海外ネットワークを活用し、海外カフェでの研修や視察の機会を提供。国際的な視野を持つバリスタを育成。
+      </p>
+    </div>
+    <div class="grad-card reveal reveal-delay-2">
+      <p class="grad-card-num">Path 05</p>
+      <h3 class="grad-card-title">他コーヒー企業へのあっせん</h3>
+      <p class="grad-card-desc">
+        Ignisが築いた業界内のつながりを活かし、卒業生のスキルと希望に合った就職先を紹介。コーヒー業界全体への人材供給ハブに。
+      </p>
+    </div>
+    <div class="grad-card reveal reveal-delay-3">
+      <p class="grad-card-num">Path 06</p>
+      <h3 class="grad-card-title">紹介インセンティブ</h3>
+      <p class="grad-card-desc">
+        卒業生が新たな受講生を紹介した場合、紹介報酬を付与。卒業生コミュニティが自走する集客チャネルとして機能。
+      </p>
+    </div>
+  </div>
+  <div class="incentive-box reveal">
+    <p class="incentive-title">卒業生紹介インセンティブ</p>
+    <p class="incentive-amount">&yen;15,000 <span style="font-size:0.9rem; color:var(--gray-400);">/ 1名紹介</span></p>
+    <p class="incentive-desc">
+      受講料の10%を紹介報酬として卒業生に還元。<br>
+      卒業生のリアルな体験談が最も強力な集客ツールとなり、<br>
+      広告費を抑えながらオーガニックな集客を実現します。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 11. FUTURE VISION ===== -->
+<section class="future-section" data-section="future">
+  <div>
+    <p class="section-label reveal">11 -- Future</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      スクールが生む循環
+      <span class="en">Ecosystem</span>
+    </h2>
+    <div class="future-flow">
+      <div class="future-step reveal reveal-delay-1">
+        <p class="future-step-num">Input</p>
+        <h3 class="future-step-title">スクール受講</h3>
+        <p class="future-step-desc">受講料による収益<br>+ 人材の発掘</p>
+      </div>
+      <span class="future-arrow reveal reveal-delay-2">→</span>
+      <div class="future-step reveal reveal-delay-2">
+        <p class="future-step-num">Growth</p>
+        <h3 class="future-step-title">スタッフ / 卒業生の成長</h3>
+        <p class="future-step-desc">講師経験でスタッフの価値向上<br>卒業生のキャリア実現</p>
+      </div>
+      <span class="future-arrow reveal reveal-delay-3">→</span>
+      <div class="future-step reveal reveal-delay-3">
+        <p class="future-step-num">Output</p>
+        <h3 class="future-step-title">Ignisの拡大</h3>
+        <p class="future-step-desc">即戦力の採用 / 新店舗展開<br>紹介による新規受講生</p>
+      </div>
+    </div>
+    <p class="future-note reveal">
+      リクルート情報が飽和する中、求人広告で人を集める時代は終わりつつあります。<br>
+      Ignisは「教育」を入口にすることで、理念に共感した人材と出会い、<br>
+      受講料で教育コストを回収しながら、即戦力を採用できる仕組みを構築します。<br><br>
+      講師を務めるスタッフは技術と指導力の両面で成長し、バリスタとしての市場価値が向上。<br>
+      卒業生からの紹介が次の受講生を呼び、広告に頼らない持続的な集客基盤が生まれます。<br>
+      採用の競争に巻き込まれない、Ignis独自のエコシステムです。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 12. REVENUE ===== -->
+<section data-section="revenue">
+  <p class="section-label reveal">12 -- Revenue</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    収益シミュレーション
+    <span class="en">Revenue Simulation</span>
+  </h2>
+  <div class="reveal reveal-delay-2" style="margin-bottom:40px;">
+    <p style="font-size:0.8rem; color:var(--gray-400); letter-spacing:0.1em; margin-bottom:16px;">前提条件</p>
+    <ul style="font-size:0.85rem; color:var(--gray-600); line-height:2.2; list-style:none;">
+      <li>-- 週1回レッスン x 全10回 = 1名あたり約2.5ヶ月で修了</li>
+      <li>-- 同時受け入れ: 4名 / 1講師あたり</li>
+      <li>-- 年間サイクル: 約5回転（入れ替わりベース）</li>
+      <li>-- 受講料: &yen;150,000（税抜）/ 名</li>
+    </ul>
+  </div>
+  <table class="revenue-table reveal reveal-delay-2">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Year 1</th>
+        <th>Year 2</th>
+        <th>Year 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>体制</td>
+        <td>講師1名 / 1店舗</td>
+        <td>講師2名 / 2店舗</td>
+        <td>講師3名 / 2店舗</td>
+      </tr>
+      <tr>
+        <td>同時受け入れ数</td>
+        <td>4名</td>
+        <td>8名</td>
+        <td>12名</td>
+      </tr>
+      <tr>
+        <td>年間受講者数</td>
+        <td>20名</td>
+        <td>40名</td>
+        <td>60名</td>
+      </tr>
+      <tr>
+        <td>受講料収入</td>
+        <td>&yen;3,000,000</td>
+        <td>&yen;6,000,000</td>
+        <td>&yen;9,000,000</td>
+      </tr>
+      <tr>
+        <td>紹介インセンティブ</td>
+        <td>-&yen;0</td>
+        <td>-&yen;90,000</td>
+        <td>-&yen;270,000</td>
+      </tr>
+      <tr>
+        <td>材料費・消耗品</td>
+        <td>-&yen;400,000</td>
+        <td>-&yen;800,000</td>
+        <td>-&yen;1,200,000</td>
+      </tr>
+      <tr>
+        <td>講師人件費（追加分）</td>
+        <td>-&yen;0</td>
+        <td>-&yen;1,200,000</td>
+        <td>-&yen;2,400,000</td>
+      </tr>
+      <tr>
+        <td>その他経費</td>
+        <td>-&yen;240,000</td>
+        <td>-&yen;400,000</td>
+        <td>-&yen;500,000</td>
+      </tr>
+      <tr class="total">
+        <td>営業利益</td>
+        <td>&yen;2,360,000</td>
+        <td>&yen;3,510,000</td>
+        <td>&yen;4,630,000</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="revenue-note reveal reveal-delay-3">
+    * Year 1はまゆが既存業務と兼務のため、講師人件費の追加負担なし。<br>
+    * Year 2以降、講師は既存スタッフから認定。追加人件費は講師手当ベース（月10万円/名）で算出。<br>
+    * 紹介インセンティブはYear 2から開始。紹介経由比率: Y2 15% / Y3 30%、&yen;15,000/名。<br>
+    * 材料費は1名あたり約&yen;20,000（コーヒー豆・牛乳・消耗品）で算出。<br>
+    * 自社店舗活用のため、家賃・設備費は既存コストに含む。
+  </p>
+</section>
+
+<!-- ===== 13. HP MOCKUP ===== -->
+<section class="mockup-section" data-section="mockup">
+  <div>
+    <p class="section-label reveal">13 -- Website</p>
+    <h2 class="section-title reveal reveal-delay-1">
+      HPイメージ
+      <span class="en">Landing Page Mockup</span>
+    </h2>
+    <div class="browser-frame reveal reveal-delay-2">
+      <div class="browser-bar">
+        <div class="browser-dot"></div>
+        <div class="browser-dot"></div>
+        <div class="browser-dot"></div>
+        <div class="browser-url">https://school.ignis-coffee.com</div>
+      </div>
+      <div class="mock-page">
+        <!-- Mock Hero -->
+        <div class="mock-hero">
+          <img src="Ignis_transparent.png" alt="Ignis" class="mock-hero-logo" onerror="this.style.display='none'">
+          <p class="mock-hero-sub">Coffee School</p>
+          <h3 class="mock-hero-title">コーヒーで、人生を灯す。<br>10日間の集中バリスタプログラム</h3>
+          <span class="mock-hero-cta">無料カウンセリングに申し込む</span>
+        </div>
+
+        <!-- Mock Features -->
+        <div class="mock-features">
+          <div class="mock-feature">
+            <p class="mock-feature-num">10</p>
+            <p class="mock-feature-title">日間の集中プログラム</p>
+            <p class="mock-feature-desc">働きながら通える<br>短期集中型カリキュラム</p>
+          </div>
+          <div class="mock-feature">
+            <p class="mock-feature-num">1:1</p>
+            <p class="mock-feature-title">完全マンツーマン</p>
+            <p class="mock-feature-desc">あなたのペースに合わせた<br>オーダーメイドの指導</p>
+          </div>
+          <div class="mock-feature">
+            <p class="mock-feature-num">100%</p>
+            <p class="mock-feature-title">キャリアサポート</p>
+            <p class="mock-feature-desc">就職・独立・海外研修<br>卒業後の道を一緒に描く</p>
+          </div>
+        </div>
+
+        <!-- Mock About -->
+        <div class="mock-about">
+          <div class="mock-about-img" style="background:none; min-height:0;"><img src="ignis-drip.jpg" alt="ドリップコーヒー" style="width:100%; height:100%; min-height:240px; object-fit:cover; display:block;"></div>
+          <div class="mock-about-text">
+            <p class="mock-about-label">About the Program</p>
+            <h3 class="mock-about-title">未経験から、プロのバリスタへ。</h3>
+            <p class="mock-about-body">
+              Ignis Coffee Schoolは、現役バリスタによる完全マンツーマンの実践型プログラムです。エスプレッソ抽出、ラテアート、ドリップ、そして開業の知識まで。10日間であなたのコーヒー人生が始まります。受講中はIgnis社内教科書の閲覧も可能。
+            </p>
+          </div>
+        </div>
+
+        <!-- Mock Curriculum Preview -->
+        <div class="mock-curriculum">
+          <p class="mock-curriculum-label">Curriculum -- 10 Days</p>
+          <div class="mock-days">
+            <div class="mock-day">
+              <p class="mock-day-num">Day 1-2</p>
+              <p class="mock-day-title">知識 & ドリップ</p>
+            </div>
+            <div class="mock-day">
+              <p class="mock-day-num">Day 3-4</p>
+              <p class="mock-day-title">エスプレッソ</p>
+            </div>
+            <div class="mock-day">
+              <p class="mock-day-num">Day 5-6</p>
+              <p class="mock-day-title">ラテアート基礎</p>
+            </div>
+            <div class="mock-day">
+              <p class="mock-day-num">Day 7-8</p>
+              <p class="mock-day-title">ラテグラフィック</p>
+            </div>
+            <div class="mock-day">
+              <p class="mock-day-num">Day 9-10</p>
+              <p class="mock-day-title">開業知識 & 修了</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mock CTA -->
+        <div class="mock-cta">
+          <p class="mock-cta-title">まずは無料カウンセリングから。</p>
+          <span class="mock-cta-btn">予約する</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 14. SCHEDULE ===== -->
+<section data-section="schedule">
+  <p class="section-label reveal">14 -- Schedule</p>
+  <h2 class="section-title reveal reveal-delay-1" style="text-align:center;">
+    開講までのロードマップ
+    <span class="en">Roadmap to Launch</span>
+  </h2>
+  <div class="schedule-timeline">
+    <div class="schedule-item reveal">
+      <span class="schedule-date">2026 Q3</span>
+      <div class="schedule-content">
+        <h3>企画承認 / まゆの技術研修開始</h3>
+        <p>社内承認、カリキュラム詳細設計。まゆが土橋氏のもとで講師育成研修を開始。</p>
+      </div>
+    </div>
+    <div class="schedule-item reveal">
+      <span class="schedule-date">2026 Q4</span>
+      <div class="schedule-content">
+        <h3>研修修了 / テスト運用</h3>
+        <p>まゆの講師研修修了。モニター受講生によるテスト開講、カリキュラムの検証・改善。</p>
+      </div>
+    </div>
+    <div class="schedule-item reveal">
+      <span class="schedule-date">2027 Q1</span>
+      <div class="schedule-content">
+        <h3>集客・プロモーション開始</h3>
+        <p>Webサイト公開、Instagram広告出稿、卒業生の声コンテンツ準備。</p>
+      </div>
+    </div>
+    <div class="schedule-item reveal">
+      <span class="schedule-date">2027 Q2</span>
+      <div class="schedule-content">
+        <h3>正式開講（まゆ講師 / 月4名体制）</h3>
+        <p>第1期生の受付開始。まゆが初代講師として本格運用スタート。</p>
+      </div>
+    </div>
+    <div class="schedule-item reveal">
+      <span class="schedule-date">2027 Q4</span>
+      <div class="schedule-content">
+        <h3>2人目の講師認定 / 2店舗体制へ</h3>
+        <p>既存スタッフから2人目の講師を認定。2店舗で同時8名の受け入れ体制に拡大。紹介インセンティブ制度を本格始動。</p>
+      </div>
+    </div>
+    <div class="schedule-item reveal">
+      <span class="schedule-date">2028 Q2</span>
+      <div class="schedule-content">
+        <h3>3名講師体制 / 卒業生ネットワーク確立</h3>
+        <p>卒業生のIgnis採用・独立支援の実績が蓄積。海外研修プログラム、他企業あっせんなど出口の多様化。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 12. CLOSING ===== -->
+<section class="closing" data-section="closing">
+  <img src="Ignis_transparent.png" alt="Ignis" class="closing-logo reveal" onerror="this.style.display='none'">
+  <p class="closing-text reveal reveal-delay-1">
+    コーヒーで人生を変えたい人に、<br>
+    最初の一歩を。
+  </p>
+  <p class="closing-sub reveal reveal-delay-2">Ignis Coffee School -- Coming 2027</p>
+</section>
+
+<script>
+// ===== Scroll Reveal =====
+const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// ===== Progress Bar =====
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  progressBar.style.width = progress + '%';
+});
+
+// ===== Nav Dots =====
+const sections = document.querySelectorAll('[data-section]');
+const navDots = document.getElementById('navDots');
+
+sections.forEach((section, i) => {
+  const dot = document.createElement('div');
+  dot.classList.add('nav-dot');
+  dot.title = section.dataset.section;
+  dot.addEventListener('click', () => {
+    section.scrollIntoView({ behavior: 'smooth' });
+  });
+  navDots.appendChild(dot);
+});
+
+const dotElements = navDots.querySelectorAll('.nav-dot');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = Array.from(sections).indexOf(entry.target);
+      dotElements.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      // Switch progress bar color for dark sections
+      const isDark = entry.target.classList.contains('hero') ||
+                     entry.target.classList.contains('curriculum-section') ||
+                     entry.target.classList.contains('strategy-section') ||
+                     entry.target.classList.contains('instructor-section') ||
+                     entry.target.classList.contains('closing');
+      progressBar.style.background = isDark ? 'var(--white)' : 'var(--black)';
+    }
+  });
+}, {
+  threshold: 0.4
+});
+
+sections.forEach(section => sectionObserver.observe(section));
+
+// ===== Count Up Animation =====
+const countElements = document.querySelectorAll('.count-up');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1500;
+      const startTime = performance.now();
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(target * eased).toLocaleString();
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      }
+
+      requestAnimationFrame(update);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+countElements.forEach(el => countObserver.observe(el));
+
+// ===== Accordion =====
+document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.parentElement;
+    const content = trigger.nextElementSibling;
+    const isOpen = item.classList.contains('open');
+
+    if (isOpen) {
+      content.style.maxHeight = '0';
+      item.classList.remove('open');
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      item.classList.add('open');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
