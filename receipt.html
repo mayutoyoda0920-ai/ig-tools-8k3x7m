@@ -73,6 +73,7 @@
       color: #333;
       padding: 28px 20px;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
@@ -753,9 +754,20 @@
 <header>
   <h1>経費レシート入力</h1>
   <p>確定申告用 経費管理ツール</p>
+  <button onclick="toggleSettings()" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;font-size:1.2rem;cursor:pointer;color:#888;">[ = ]</button>
 </header>
 
 <div class="container">
+
+  <!-- API設定 -->
+  <div class="glass" id="apiSettings" style="display:none;">
+    <h2>/ API設定</h2>
+    <div class="form-group">
+      <label for="geminiKeyInput">Gemini APIキー</label>
+      <input type="password" id="geminiKeyInput" placeholder="APIキーを入力" style="font-size:0.85rem;">
+    </div>
+    <button class="add-btn" style="margin-top:10px;" onclick="saveApiKey()">保存</button>
+  </div>
 
   <!-- 写真入力 -->
   <div class="photo-section glass">
@@ -901,12 +913,12 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
 // ==================================================
 // Google Sheets 連携設定
 // ==================================================
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby1sGEf5yAzjgrONIuLUv9RX_KxdM_DfFfh3Q0D4UFTRzQeUUTzPQWhWe2qNc1hMAuMnA/exec';
+const GEMINI_API_KEY = localStorage.getItem('gemini_api_key') || '';
 
 // ==================================================
 // データ管理
@@ -994,144 +1006,101 @@ function loadImage(file) {
 }
 
 // ==================================================
-// OCR補正ロジック
+// Gemini API でレシート読み取り
 // ==================================================
-function fixAmount(str) {
-  // 数字に似た文字を変換
-  let s = str.replace(/[Oo]/g, '0')
-             .replace(/[Il|]/g, '1')
-             .replace(/[Zz]/g, '2')
-             .replace(/[Ss]/g, '5')
-             .replace(/[Bb]/g, '8')
-             .replace(/[g]/g, '9');
-  // 数字とカンマ以外を除去
-  s = s.replace(/[^0-9]/g, '');
-  return s ? parseInt(s) : null;
-}
-
-function fixDate(str) {
-  // 数字に似た文字を変換
-  let s = str.replace(/[Oo]/g, '0')
-             .replace(/[Il|]/g, '1')
-             .replace(/[Bb]/g, '8');
-  // YYYY/MM/DD, YYYY-MM-DD, YYYY年MM月DD日 などを検出
-  const m = s.match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
-  if (m) {
-    const y = parseInt(m[1]), mo = parseInt(m[2]), d = parseInt(m[3]);
-    if (y >= 2000 && y <= 2099 && mo >= 1 && mo <= 12 && d >= 1 && d <= 31) {
-      return `${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    }
-  }
-  // 令和対応: R6/01/15, 令和6年1月15日
-  const reiwa = s.match(/[R令和]\D*(\d{1,2})\D+(\d{1,2})\D+(\d{1,2})/);
-  if (reiwa) {
-    const y = 2018 + parseInt(reiwa[1]), mo = parseInt(reiwa[2]), d = parseInt(reiwa[3]);
-    if (mo >= 1 && mo <= 12 && d >= 1 && d <= 31) {
-      return `${y}-${String(mo).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    }
-  }
-  return null;
-}
-
-function extractReceiptData(ocrText) {
-  const lines = ocrText.split('\n').map(l => l.trim()).filter(l => l);
-  let date = null, store = null, amount = null;
-
-  // 店名: 最初の数行から探す（数字が少ない行）
-  for (let i = 0; i < Math.min(5, lines.length); i++) {
-    const line = lines[i];
-    if (line.length >= 2 && !/^\d+$/.test(line) && !/^[\d\s\/\-:]+$/.test(line)) {
-      store = line.replace(/[\s]{2,}/g, ' ');
-      break;
-    }
-  }
-
-  // 日付: 全行から日付パターンを探す
-  for (const line of lines) {
-    const d = fixDate(line);
-    if (d) { date = d; break; }
-  }
-
-  // 金額: 「合計」「計」「total」近くの数字、またはレシート内の最大金額
-  let amounts = [];
-  let totalAmount = null;
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (/合計|計|total|TOTAL|お会計|お買上|請求/i.test(line)) {
-      // 同じ行から金額を抽出
-      const numMatch = line.match(/[\d,BbOoIl|]+/g);
-      if (numMatch) {
-        for (const n of numMatch) {
-          const val = fixAmount(n);
-          if (val && val >= 1) totalAmount = Math.max(totalAmount || 0, val);
-        }
-      }
-      // 次の行もチェック
-      if (i + 1 < lines.length) {
-        const nextNum = fixAmount(lines[i + 1]);
-        if (nextNum && nextNum >= 1) totalAmount = Math.max(totalAmount || 0, nextNum);
-      }
-    }
-    // 全数字を記録（フォールバック用）
-    const allNums = line.match(/[\d,]+/g);
-    if (allNums) {
-      allNums.forEach(n => {
-        const val = fixAmount(n);
-        if (val && val >= 10) amounts.push(val);
-      });
-    }
-  }
-
-  // 合計が見つからなければ最大金額を使用
-  amount = totalAmount || (amounts.length > 0 ? Math.max(...amounts) : null);
-
-  return { date, store, amount };
-}
-
 async function scanReceipt() {
   if (!currentPhoto) return;
+
+  if (!GEMINI_API_KEY) {
+    alert('GEMINI_API_KEY が未設定です');
+    return;
+  }
 
   const scanBtn = document.getElementById('scanBtn');
   const status = document.getElementById('scanStatus');
 
   scanBtn.disabled = true;
   scanBtn.textContent = '読み取り中...';
-  status.textContent = 'レシートを解析しています...（初回は少し時間がかかります）';
+  status.textContent = 'AIがレシートを解析しています...';
   status.className = 'scan-status';
 
   try {
-    const result = await Tesseract.recognize(currentPhoto, 'jpn+eng', {
-      logger: m => {
-        if (m.status === 'recognizing text') {
-          const pct = Math.round(m.progress * 100);
-          status.textContent = `読み取り中... ${pct}%`;
-        }
-      }
+    // base64からデータ部分を抽出
+    const base64Data = currentPhoto.split(',')[1];
+    const mimeType = currentPhoto.split(';')[0].split(':')[1];
+
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{
+          parts: [
+            {
+              text: 'このレシート画像から以下の情報をJSON形式で抽出してください。\n- date: 日付（YYYY-MM-DD形式）\n- store: 店名\n- amount: 合計金額（税込、数値のみ）\n- category: 勘定科目の推定（仕入高、消耗品費、旅費交通費、接待交際費、水道光熱費、通信費、広告宣伝費、地代家賃、修繕費、外注費、福利厚生費、保険料、租税公課、新聞図書費、研修費、雑費 のいずれか）\n- memo: 主な購入品目（簡潔に）\n\nJSONのみを返してください。```json ``` で囲んでください。読み取れない項目はnullにしてください。'
+            },
+            {
+              inlineData: {
+                mimeType: mimeType,
+                data: base64Data
+              }
+            }
+          ]
+        }]
+      })
     });
 
-    const ocrText = result.data.text;
-    if (!ocrText || ocrText.trim().length === 0) {
-      throw new Error('文字を読み取れませんでした');
+    const result = await res.json();
+
+    if (result.error) {
+      throw new Error(result.error.message || 'API error');
     }
 
-    const data = extractReceiptData(ocrText);
+    const text = result.candidates[0].content.parts[0].text;
+    // JSONを抽出
+    const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/) || text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error('レスポンスの解析に失敗しました');
+
+    const jsonStr = jsonMatch[1] || jsonMatch[0];
+    const data = JSON.parse(jsonStr);
 
     if (data.date) {
       document.getElementById('inputDate').value = data.date;
       document.getElementById('inputDate').classList.add('auto-filled');
     }
     if (data.store) {
-      document.getElementById('inputStore').value = data.store;
-      document.getElementById('inputStore').classList.add('auto-filled');
+      // selectの選択肢にあればセット、なければ「その他」
+      const storeSelect = document.getElementById('inputStore');
+      const options = [...storeSelect.options].map(o => o.value);
+      storeSelect.value = options.includes(data.store) ? data.store : 'その他';
+      storeSelect.classList.add('auto-filled');
     }
     if (data.amount) {
       document.getElementById('inputAmount').value = data.amount;
       document.getElementById('inputAmount').classList.add('auto-filled');
     }
+    if (data.category) {
+      const catSelect = document.getElementById('inputCategory');
+      const catOptions = [...catSelect.options].map(o => o.value);
+      if (catOptions.includes(data.category)) {
+        catSelect.value = data.category;
+        catSelect.classList.add('auto-filled');
+      }
+    }
+    if (data.memo) {
+      document.getElementById('inputMemo').value = data.memo;
+      document.getElementById('inputMemo').classList.add('auto-filled');
+    }
 
-    const found = [data.date && '日付', data.store && '店名', data.amount && '金額'].filter(Boolean);
+    const found = [
+      data.date && '日付',
+      data.store && '店名',
+      data.amount && '金額',
+      data.category && '科目',
+      data.memo && 'メモ'
+    ].filter(Boolean);
+
     status.textContent = found.length > 0
-      ? `読み取り完了（${found.join('・')}）- 内容を確認して修正してください`
+      ? `AI読み取り完了（${found.join('・')}）- 内容を確認してください`
       : '読み取れませんでした。手入力してください';
     status.className = 'scan-status';
 
@@ -1549,6 +1518,22 @@ function renderYearlySummary() {
 // ==================================================
 // ユーティリティ
 // ==================================================
+function toggleSettings() {
+  const el = document.getElementById('apiSettings');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') {
+    document.getElementById('geminiKeyInput').value = localStorage.getItem('gemini_api_key') || '';
+  }
+}
+
+function saveApiKey() {
+  const key = document.getElementById('geminiKeyInput').value.trim();
+  if (key) {
+    localStorage.setItem('gemini_api_key', key);
+    location.reload();
+  }
+}
+
 function escapeHtml(str) {
   if (!str) return '';
   const div = document.createElement('div');
