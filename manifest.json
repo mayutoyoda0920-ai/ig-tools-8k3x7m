@@ -1,0 +1,21 @@
+{
+  "name": "経費レシート入力",
+  "short_name": "経費入力",
+  "description": "確定申告用 経費管理ツール",
+  "start_url": "./receipt.html",
+  "display": "standalone",
+  "background_color": "#f0f0f0",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
