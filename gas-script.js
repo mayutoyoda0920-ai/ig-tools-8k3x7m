@@ -1,42 +1,51 @@
 // ============================================
-// Google Apps Script - スプレッドシート連携
+// Google Apps Script - スプレッドシート連携 v2
 // ============================================
 //
-// 【設定手順】
-// 1. Google スプレッドシートを新規作成
-// 2. 1行目に見出しを入力: 日付 | 店名 | 勘定科目 | 金額 | メモ
-// 3. メニュー「拡張機能」→「Apps Script」を開く
-// 4. このファイルの内容をすべてコピーして貼り付け
-// 5. 「デプロイ」→「新しいデプロイ」
-//    - 種類: 「ウェブアプリ」
-//    - 実行するユーザー: 「自分」
-//    - アクセス: 「全員」
-// 6. デプロイして表示されるURLをコピー
-// 7. receipt.html の GAS_URL = '' にそのURLを貼る
-//
-// 以上で完了！
+// 【更新手順】
+// 1. Apps Script エディタでこの内容に差し替え
+// 2. 「デプロイ」→「デプロイを管理」→ 鉛筆アイコン
+// 3. バージョンを「新しいバージョン」に変更
+// 4. 「デプロイ」を押す（URLは変わりません）
 // ============================================
 
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var action = data.action || 'add';
 
-    const expenses = data.expenses || [];
+    // 追加
+    if (action === 'add') {
+      var expenses = data.expenses || [];
+      expenses.forEach(function(exp) {
+        sheet.appendRow([
+          exp.date,
+          exp.store || '',
+          exp.category,
+          exp.amount,
+          exp.memo || '',
+          new Date()
+        ]);
+      });
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', action: 'add', count: expenses.length }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
 
-    expenses.forEach(function(exp) {
-      sheet.appendRow([
-        exp.date,
-        exp.store || '',
-        exp.category,
-        exp.amount,
-        exp.memo || '',
-        new Date() // 送信日時
-      ]);
-    });
+    // 削除（行番号指定）
+    if (action === 'delete') {
+      var rowIndex = data.rowIndex;
+      if (rowIndex && rowIndex >= 2) {
+        sheet.deleteRow(rowIndex);
+      }
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', action: 'delete' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
 
     return ContentService
-      .createTextOutput(JSON.stringify({ status: 'ok', count: expenses.length }))
+      .createTextOutput(JSON.stringify({ status: 'error', message: 'Unknown action' }))
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
@@ -46,9 +55,46 @@ function doPost(e) {
   }
 }
 
-// GETリクエストでテスト用
-function doGet() {
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: 'ok', message: 'Receipt API is running' }))
-    .setMimeType(ContentService.MimeType.JSON);
+// データ取得
+function doGet(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = sheet.getDataRange().getValues();
+
+    if (data.length <= 1) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ status: 'ok', expenses: [] }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    var expenses = [];
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var dateVal = row[0];
+      var dateStr = '';
+      if (dateVal instanceof Date) {
+        dateStr = Utilities.formatDate(dateVal, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+      } else {
+        dateStr = String(dateVal);
+      }
+
+      expenses.push({
+        rowIndex: i + 1,
+        date: dateStr,
+        store: row[1] || '',
+        category: row[2] || '',
+        amount: Number(row[3]) || 0,
+        memo: row[4] || ''
+      });
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'ok', expenses: expenses }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }

@@ -761,7 +761,7 @@
   <div class="photo-section glass">
     <h2>[ + ] レシート写真読み取り</h2>
     <div class="photo-drop" id="photoDrop">
-      <input type="file" id="photoInput" accept="image/*" capture="environment">
+      <input type="file" id="photoInput" accept="image/*">
       <div class="icon">&uarr;</div>
       <p>写真をドラッグ&amp;ドロップ、またはタップして撮影・選択</p>
       <p class="sub">JPG / PNG 対応</p>
@@ -834,7 +834,7 @@
     <div class="list-header">
       <h2># 経費一覧</h2>
       <div class="list-actions">
-        <button class="sheets-btn" id="sheetsBtn">スプシに送信</button>
+        <button class="sheets-btn" id="sheetsBtn">スプシと同期</button>
         <button class="csv-btn" id="csvBtn">CSV出力</button>
         <button class="clear-btn" id="clearBtn">全削除</button>
       </div>
@@ -912,7 +912,6 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycby1sGEf5yAzjgrONIuLUv9R
 // データ管理
 // ==================================================
 let expenses = [];
-let sentExpenseIds = new Set(); // 送信済みID
 let currentPhoto = null; // base64
 
 // ==================================================
@@ -922,12 +921,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // 今日の日付をセット
   document.getElementById('inputDate').value = new Date().toISOString().slice(0, 10);
 
-  renderTable();
-  renderYearlySummary();
   setupPhotoHandlers();
   setupFormHandlers();
   setupFilterHandlers();
   setupYearlyHandlers();
+
+  // スプシからデータを読み込み
+  loadFromSheets();
 });
 
 // ==================================================
@@ -1158,7 +1158,7 @@ function setupFormHandlers() {
   });
 }
 
-function addExpense() {
+async function addExpense() {
   const date = document.getElementById('inputDate').value;
   const amount = document.getElementById('inputAmount').value;
   const store = document.getElementById('inputStore').value.trim();
@@ -1170,14 +1170,34 @@ function addExpense() {
     return;
   }
 
-  expenses.push({
-    id: Date.now(),
-    date,
-    store,
-    category,
-    amount: parseInt(amount),
-    memo
-  });
+  const expense = { date, store, category, amount: parseInt(amount), memo };
+
+  // スプシに送信
+  if (GAS_URL) {
+    const status = document.getElementById('sheetsStatus');
+    const addBtn = document.getElementById('addBtn');
+    addBtn.disabled = true;
+    addBtn.textContent = '送信中...';
+
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'add', expenses: [expense] })
+      });
+      const result = await res.json();
+      if (result.status !== 'ok') throw new Error(result.message);
+
+      status.textContent = 'スプシに保存しました';
+      status.className = 'sheets-status success';
+      setTimeout(() => { status.textContent = ''; }, 2000);
+    } catch (err) {
+      status.textContent = 'スプシへの保存に失敗: ' + err.message;
+      status.className = 'sheets-status error';
+    } finally {
+      addBtn.disabled = false;
+      addBtn.textContent = '経費を追加';
+    }
+  }
 
   // フォームリセット
   document.getElementById('inputAmount').value = '';
@@ -1199,8 +1219,8 @@ function addExpense() {
     document.getElementById('scanStatus').textContent = '';
   }
 
-  renderTable();
-  renderYearlySummary();
+  // スプシから最新データを再読み込み
+  await loadFromSheets();
 }
 
 // ==================================================
@@ -1328,67 +1348,79 @@ function setupFilterHandlers() {
 // ==================================================
 // 削除
 // ==================================================
-function deleteExpense(id) {
-  expenses = expenses.filter(e => e.id !== id);
-  renderTable();
-  renderYearlySummary();
+async function deleteExpense(id) {
+  const expense = expenses.find(e => e.id === id);
+  if (!expense) return;
+
+  if (!confirm('この経費を削除しますか？（スプシからも削除されます）')) return;
+
+  // スプシからも削除
+  if (GAS_URL && expense.rowIndex) {
+    const status = document.getElementById('sheetsStatus');
+    status.textContent = '削除中...';
+    status.className = 'sheets-status';
+
+    try {
+      await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'delete', rowIndex: expense.rowIndex })
+      });
+    } catch (err) {
+      status.textContent = 'スプシからの削除に失敗';
+      status.className = 'sheets-status error';
+    }
+  }
+
+  // スプシから再読み込み
+  await loadFromSheets();
 }
 
 // ==================================================
-// スプレッドシート送信
+// スプレッドシートからデータ読み込み
 // ==================================================
-async function sendToSheets() {
+async function loadFromSheets() {
   if (!GAS_URL) {
-    alert('GAS_URL が未設定です。\nApps Script のデプロイURLを設定してください。');
+    renderTable();
+    renderYearlySummary();
     return;
   }
 
-  // 未送信のデータを抽出
-  const unsent = expenses.filter(e => !sentExpenseIds.has(e.id));
-  if (unsent.length === 0) {
-    alert('送信する新しいデータがありません');
-    return;
-  }
-
-  const btn = document.getElementById('sheetsBtn');
   const status = document.getElementById('sheetsStatus');
-  btn.disabled = true;
-  btn.textContent = '送信中...';
-  status.textContent = '';
+  status.textContent = 'スプシからデータを読み込み中...';
   status.className = 'sheets-status';
 
   try {
-    const payload = {
-      expenses: unsent.map(e => ({
+    const res = await fetch(GAS_URL);
+    const result = await res.json();
+
+    if (result.status === 'ok' && result.expenses) {
+      expenses = result.expenses.map(e => ({
+        id: e.rowIndex,
+        rowIndex: e.rowIndex,
         date: e.date,
         store: e.store,
         category: e.category,
         amount: e.amount,
         memo: e.memo
-      }))
-    };
-
-    const res = await fetch(GAS_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    });
-
-    const result = await res.json();
-
-    if (result.status === 'ok') {
-      unsent.forEach(e => sentExpenseIds.add(e.id));
-      status.textContent = `${result.count}件をスプレッドシートに送信しました`;
+      }));
+      status.textContent = `${expenses.length}件を読み込みました`;
       status.className = 'sheets-status success';
-    } else {
-      throw new Error(result.message || '送信に失敗しました');
+      setTimeout(() => { status.textContent = ''; }, 2000);
     }
   } catch (err) {
-    status.textContent = 'エラー: ' + err.message;
+    status.textContent = 'スプシの読み込みに失敗しました';
     status.className = 'sheets-status error';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'スプシに送信';
   }
+
+  renderTable();
+  renderYearlySummary();
+}
+
+// ==================================================
+// スプレッドシート送信（追加）
+// ==================================================
+async function sendToSheets() {
+  await loadFromSheets();
 }
 
 // ==================================================
