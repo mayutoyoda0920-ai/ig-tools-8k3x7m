@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis manual</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Sans JP", sans-serif;
+      background-color: #fff;
+      color: #111;
+      font-size: 14px;
+      line-height: 2;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Header ===== */
+    header {
+      padding: 120px 40px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      border-bottom: 1px solid #000;
+    }
+
+    header h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 7rem;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: #000;
+    }
+
+    header p {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 300;
+      color: #999;
+      letter-spacing: 0.16em;
+    }
+
+    /* ===== Nav ===== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #000;
+      backdrop-filter: blur(12px);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 400;
+      padding: 18px 24px;
+      display: block;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      right: 24px;
+      height: 1px;
+      background-color: #000;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.4;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ===== Main ===== */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    }
+
+    /* ===== Section ===== */
+    section {
+      padding-top: 100px;
+      margin-bottom: 0;
+      padding-bottom: 100px;
+      border-bottom: 1px solid #000;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s forwards;
+    }
+
+    section:last-child {
+      border-bottom: none;
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.15s; }
+    section:nth-child(3) { animation-delay: 0.2s; }
+    section:nth-child(4) { animation-delay: 0.25s; }
+    section:nth-child(5) { animation-delay: 0.3s; }
+    section:nth-child(6) { animation-delay: 0.35s; }
+    section:nth-child(7) { animation-delay: 0.4s; }
+    section:nth-child(8) { animation-delay: 0.45s; }
+    section:nth-child(9) { animation-delay: 0.5s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 3.2rem;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 60px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #000;
+      color: #000;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 64px;
+      margin-bottom: 24px;
+      letter-spacing: 0.06em;
+      color: #111;
+    }
+
+    h3::before {
+      content: '\2014';
+      margin-right: 12px;
+      color: #bbb;
+    }
+
+    p {
+      margin-bottom: 16px;
+      font-size: 14px;
+      font-weight: 300;
+      color: #444;
+      line-height: 2.2;
+    }
+
+    /* ===== Warning & Note ===== */
+    .warning {
+      background-color: #fafafa;
+      border-left: 2px solid #111;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 13px;
+      font-weight: 400;
+      color: #111;
+    }
+
+    .note {
+      background-color: #fafafa;
+      border-left: 2px solid #ccc;
+      padding: 24px 28px;
+      margin: 28px 0;
+      font-size: 13px;
+      font-weight: 300;
+      color: #444;
+    }
+
+    /* ===== Step List ===== */
+    .step-list {
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .step-list > li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 100px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid #eee;
+      overflow: hidden;
+    }
+
+    .step-list > li:last-child {
+      border-bottom: none;
+    }
+
+    .step-list > li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: -20px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 7rem;
+      font-weight: 300;
+      color: #000;
+      opacity: 0.04;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .step-list li strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== Sub List ===== */
+    .sub-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 16px;
+    }
+
+    .sub-list li {
+      margin-bottom: 10px;
+      padding-left: 18px;
+      position: relative;
+      font-size: 13px;
+      font-weight: 300;
+      color: #444;
+    }
+
+    .sub-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 4px;
+      height: 4px;
+      background-color: #bbb;
+      border-radius: 50%;
+    }
+
+    /* ===== Checklist ===== */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .checklist li {
+      padding: 16px 20px;
+      background-color: #fafafa;
+      border: 1px solid #eee;
+      font-size: 13px;
+      font-weight: 400;
+      transition: background-color 0.2s;
+    }
+
+    .checklist li:hover {
+      background-color: #f5f5f5;
+    }
+
+    .checklist li::before {
+      content: "\2610\00a0\00a0";
+      font-size: 1rem;
+      color: #bbb;
+    }
+
+    /* ===== Table ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 28px 0;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    th {
+      background-color: #262626;
+      color: #fff;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    td {
+      background-color: #fff;
+      font-weight: 300;
+      color: #444;
+    }
+
+    tr:hover td {
+      background-color: #fafafa;
+    }
+
+    /* ===== Coming Soon ===== */
+    .coming-soon {
+      text-align: center;
+      padding: 80px 20px;
+      color: #ccc;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.14em;
+      font-style: normal;
+    }
+
+    /* ===== Education Pillars ===== */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 40px 0 64px;
+    }
+
+    .pillar-card {
+      padding: 36px 28px;
+      border: 1px solid #ddd;
+      transition: all 0.3s;
+    }
+
+    .pillar-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+    }
+
+    .pillar-number {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: #000;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .pillar-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #111;
+    }
+
+    .pillar-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: #888;
+      line-height: 2;
+      margin-bottom: 0;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 40px;
+      border-top: 1px solid #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p {
+      font-size: 11px;
+      font-weight: 300;
+      color: #bbb;
+      letter-spacing: 0.12em;
+      margin: 0;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      header {
+        padding: 60px 20px 48px;
+      }
+
+      header h1 {
+        font-size: 3.6rem;
+      }
+
+      nav ul {
+        padding: 0 16px;
+      }
+
+      nav a {
+        font-size: 10px;
+        padding: 14px 12px;
+        letter-spacing: 0.1em;
+      }
+
+      main {
+        padding: 0 20px 60px;
+      }
+
+      section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 36px;
+      }
+
+      .step-list > li {
+        padding-left: 56px;
+        margin-bottom: 32px;
+        padding-bottom: 32px;
+      }
+
+      .step-list > li::before {
+        font-size: 4rem;
+        top: -12px;
+      }
+
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 32px 20px;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ignis manual</h1>
+  <p>これを読めば、誰でも店を回せる。</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#open">オープン作業</a></li>
+    <li><a href="#service">接客</a></li>
+    <li><a href="#restock">補充</a></li>
+    <li><a href="#order">発注</a></li>
+    <li><a href="#cleaning">掃除</a></li>
+    <li><a href="#shift">シフト作成</a></li>
+    <li><a href="#mtg-schedule">MTG日程</a></li>
+    <li><a href="#mtg-facilitation">MTG進行</a></li>
+    <li><a href="#education">教育</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<!-- ======================== オープン作業 ======================== -->
+<section id="open">
+  <h2>オープン作業</h2>
+
+  <div class="note">
+    <strong>このセクションで最終的にどうなるか（完成形）</strong><br>
+    開店時間までに、店内の電気・レジ・豆・エスプレッソマシン・レジ金・仕込み・備品がすべて準備され、お客様を迎えられる状態になっている。
+  </div>
+
+  <table>
+    <tr><th>曜日</th><th>開店時間</th><th>出勤時間</th></tr>
+    <tr><td>平日（月〜金）</td><td>11:00</td><td>10:45</td></tr>
+    <tr><td>土日</td><td>9:00</td><td>8:45</td></tr>
+  </table>
+
+  <ol class="step-list">
+    <li>
+      <strong>タイムカードを押す</strong>
+      <p>店に到着したら、他の作業より先にタイムカードを押す。</p>
+      <p>出勤時間は開店の15分前（平日なら10:45、土日なら8:45）である。</p>
+      <p><strong>確認：</strong>タイムカードに今日の日付と時刻が印字されていれば完了。</p>
+      <div class="warning">
+        <strong>タイムカードを押し忘れた場合</strong><br>
+        その日の給料は支給されない。忘れた場合は、以下の2点を書いたレポートを提出する。<br>
+        (1) なぜ押し忘れたか（理由）<br>
+        (2) 次回押し忘れないためにどうするか（対策）
+      </div>
+    </li>
+
+    <li>
+      <strong>店の鍵を開ける</strong>
+      <p>店の入口ドアの鍵を開ける。</p>
+      <p><strong>確認：</strong>ドアが手で開けば完了。</p>
+    </li>
+
+    <li>
+      <strong>レジに鍵を刺す</strong>
+      <p>店の鍵を開けたら、すぐにレジの鍵穴に鍵を刺す。</p>
+      <p>鍵をポケットや手に持ったままにしない。</p>
+      <p><strong>確認：</strong>レジの鍵穴に鍵が刺さっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>店内の電気を6個すべてつける</strong>
+      <p>店内にある電気スイッチを1つずつ確認し、6個すべてをONにする。</p>
+      <p><strong>確認：</strong>店内を見回して、6か所すべてが点灯していれば完了。</p>
+      <div class="warning">
+        <strong>よくある間違い：</strong>奥の電気や目立たない場所の電気をつけ忘れる。必ず6か所を指差しで数えて確認すること。
+      </div>
+    </li>
+
+    <li>
+      <strong>豆の準備・確認（5つの作業を順番に行う）</strong>
+      <ul class="sub-list">
+        <li>
+          <strong>作業A：豆の補充</strong><br>
+          ドリップ用ボトルとエスプレッソ用ホッパーの中を見る。<br>
+          もし豆が減っていたら → 補充する（補充量は「補充」セクションを参照）。<br>
+          もし満タンなら → そのままでよい。
+        </li>
+        <li>
+          <strong>作業B：香りの確認</strong><br>
+          店にあるすべての豆の蓋を開けて、1種類ずつ鼻を近づけて香りを嗅ぐ。<br>
+          もし酸っぱい臭い・カビ臭い・異常な匂いがしたら → その豆を使わず、オーナーに報告する。<br>
+          もし通常のコーヒーの香りなら → 問題なし。
+        </li>
+        <li>
+          <strong>作業C：ボトルの確認</strong><br>
+          各ボトルに貼られたラベルと、中に入っている豆の種類が一致しているか確認する。<br>
+          もし違う豆が入っていたら → 正しいボトルに入れ替える。
+        </li>
+        <li>
+          <strong>作業D：在庫の記録</strong><br>
+          各豆の残量を在庫管理ノートに記入する。
+        </li>
+        <li>
+          <strong>作業E：本日のおすすめを決める</strong><br>
+          すべての豆の焙煎日を確認する。焙煎日が一番古い豆を「本日のおすすめ」として1番目に出す。
+        </li>
+      </ul>
+      <p><strong>確認：</strong>5つの作業（補充・香り・ボトル・在庫記入・おすすめ設定）がすべて終わっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>エスプレッソマシンの立ち上げ（3つの作業を順番に行う）</strong>
+      <ul class="sub-list">
+        <li>
+          <strong>作業A：パーツの取り付け</strong><br>
+          シャワーヘッドをマシンに取り付ける。次にネジで固定する。
+        </li>
+        <li>
+          <strong>作業B：ポルタフィルター（コーヒーの粉を入れる取っ手付きの器具）のセット</strong><br>
+          ポルタフィルターをマシンのグループヘッドにはめ込む。開店まで温めておく。
+        </li>
+        <li>
+          <strong>作業C：グラインダー（豆を挽く機械）の調整</strong><br>
+          マッツァー（グラインダーの機種名）で豆を2杯分挽く。この2杯分は味の調整用なので、飲まずに捨てる。
+        </li>
+      </ul>
+      <div class="note">
+        <strong>抽出の基準値</strong><br>
+        豆 22g をポルタフィルターに入れる → エスプレッソ 40g を抽出する。<br>
+        抽出したエスプレッソの味を確認する。<br>
+        もし味が薄い → グラインダーの挽き目を細かくする。<br>
+        もし味が濃すぎる・苦すぎる → グラインダーの挽き目を粗くする。
+      </div>
+      <p><strong>確認：</strong>マシンが温まり、試し抽出で味が基準通り（22g→40g抽出）になっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>レジ金の確認</strong>
+      <p>レジの中のお金を数える。</p>
+      <p>前日にLINE等で送られた金額の計算結果と、実際にレジにある金額を比べる。</p>
+      <p>もし金額が一致する → 次の作業に進む。</p>
+      <p>もし金額が一致しない → オーナーに「レジ金が○○円合いません」と報告する。</p>
+      <p><strong>確認：</strong>レジ金の金額を数え終わり、合っていることを確認できれば完了。</p>
+    </li>
+
+    <li>
+      <strong>仕込みの確認（3つの品目を順番にチェックする）</strong>
+      <ul class="sub-list">
+        <li>
+          <strong>品目1：甘酒</strong><br>
+          甘酒の容器を確認する。<br>
+          もし作った日から3日以上経っている → 古いものを捨てて、新しく作り直す。<br>
+          もし3日未満 → そのまま使用する。
+        </li>
+        <li>
+          <strong>品目2：エスプレッソスプレー</strong><br>
+          エスプレッソスプレーの中身を確認する。<br>
+          もし作った日から3日以上経っている → 古いものを捨てて、新しく入れ直す。<br>
+          もし3日未満 → そのまま使用する。
+        </li>
+        <li>
+          <strong>品目3：コーヒーゼリー</strong><br>
+          コーヒーゼリーの個数を数える。<br>
+          もし3個以下 → 新しく作る。<br>
+          もし4個以上ある → 作らなくてよい。
+        </li>
+      </ul>
+      <p><strong>確認：</strong>甘酒・エスプレッソスプレー・コーヒーゼリーの3品すべてをチェックし終われば完了。</p>
+      <div class="warning">
+        <strong>よくある間違い：</strong>見た目だけで新しいと判断する。作った日付を必ず確認すること。
+      </div>
+    </li>
+
+    <li>
+      <strong>開店前チェックリスト（9項目を1つずつ行う）</strong>
+      <ul class="checklist">
+        <li>外に出ている椅子を、すべて布巾で拭く（1脚ずつ座面と背もたれを拭く）</li>
+        <li>カウンターの上を布巾で拭き、物が散らかっていない状態にする</li>
+        <li>テイストカード（豆の説明カード）をカウンターに並べる</li>
+        <li>販売用の豆をディスプレイ棚に並べる</li>
+        <li>物販商品（グッズなど）をディスプレイ棚に並べる</li>
+        <li>ケトルにお湯を沸かして準備する</li>
+        <li>ダスター（機材を拭く布）を濡らして絞り、すぐ使える状態にしておく</li>
+        <li>ミルクピッチャー（ミルクを入れる容器）の内側を見て、汚れや牛乳の残りがないか確認する。汚れていたら洗う</li>
+        <li>ノックボックス（使用済みコーヒー粉を捨てる箱）の中の袋を確認する。もし袋がいっぱい、または袋がなければ新しい袋に交換する</li>
+      </ul>
+      <p><strong>確認：</strong>上の9項目すべてにチェックがつけば完了。開店してよい。</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ======================== 接客 ======================== -->
+<section id="service">
+  <h2>接客</h2>
+
+  <div class="note">
+    <strong>このセクションで最終的にどうなるか（完成形）</strong><br>
+    お客様が来店したとき、笑顔で声をかけ、相手に合った商品をおすすめし、会計まで対応できる状態になっている。
+  </div>
+
+  <h3>基本姿勢</h3>
+  <p>接客中は口角を上げた笑顔を保つ。</p>
+  <p>お店の前で立ち止まっている人・メニューを見ている人がいたら、その人の目を見て軽く会釈する。</p>
+  <p>目が合ったら「いらっしゃいませ」と声をかけ、カウンターに来てもらう。</p>
+
+  <h3>おすすめの仕方</h3>
+  <p>最初におすすめする商品は <strong>パナマ ゲイシャ</strong>（価格帯：2,500円〜10,000円。シーズンにより変動する）。</p>
+  <p>この豆はオーナーがパナマに直接仕入れに行っており、日本では入手困難な貴重なロットである。</p>
+
+  <div class="note">
+    <strong>おすすめを変える基準</strong><br>
+    お客様の見た目（服装・バッグ・靴・アクセサリーなど）から、以下の表に当てはめて判断する。
+  </div>
+
+  <table>
+    <tr><th>お客様の特徴</th><th>おすすめする商品</th><th>理由</th></tr>
+    <tr>
+      <td>外国人の方 / ブランド品（ルイ・ヴィトン、グッチ等）を身につけている方</td>
+      <td><strong>パナマ ゲイシャ</strong>（2,500円〜）を最初に提案する</td>
+      <td>高価格帯に抵抗が少ない可能性が高いため</td>
+    </tr>
+    <tr>
+      <td>カジュアルな服装の観光客（ガイドブックやカメラを持っている等）</td>
+      <td><strong>1,000円ライン</strong> または <strong>1,500円ライン</strong> の豆を提案する</td>
+      <td>手軽に楽しみたいニーズに合うため</td>
+    </tr>
+    <tr>
+      <td>コーヒーに詳しそうな方（産地や精製方法について質問してくる等）</td>
+      <td><strong>2,000円ライン</strong> の豆を提案する</td>
+      <td>品質を重視する可能性が高いため</td>
+    </tr>
+  </table>
+
+  <div class="warning">
+    <strong>よくある間違い：</strong>すべてのお客様に同じ商品をおすすめする。上の表に沿って、お客様ごとにおすすめを変えること。
+  </div>
+
+  <h3>単価アップ：ドリップバッグセットの提案</h3>
+  <p>観光客のお客様には、ドリップバッグセットを以下のトーク例のとおりにおすすめする。</p>
+  <div class="note">
+    <strong>トーク例（カフェラテのみ購入のお客様向け）</strong><br>
+    「カフェラテ単品は900円ですが、ドリップバッグ4枚セット（2,000円）をご購入いただくと、カフェラテが無料になります。ご自宅でもコーヒーを楽しめるのでお得ですよ。」
+  </div>
+  <p><strong>確認：</strong>観光客のお客様にドリップバッグセットの案内ができていれば完了。</p>
+
+  <h3>入荷予定について聞かれたときの対応</h3>
+  <div class="warning">
+    <strong>禁止事項：入荷日を自分で断定して伝えること</strong>
+    <ul class="sub-list" style="margin-top: 8px;">
+      <li>NG例：「この豆は来週ごろに入荷する予定です」</li>
+      <li>自分が確実に知っている情報でない限り、入荷予定を答えない</li>
+    </ul>
+  </div>
+  <p>もしお客様から入荷予定を聞かれたら → 「オーナーに確認いたしますので、少々お待ちください」と伝え、オーナーに確認してから回答する。</p>
+  <p>もしオーナーにすぐ確認できない状況なら → 「オンラインサイトにご登録いただくと、入荷時にお知らせが届きます」とオンラインサイトへの登録を案内する。</p>
+
+  <h3>支払い方法</h3>
+  <p>現金・クレジットカード・電子マネー（Suica、PayPay等）のすべてに対応している。</p>
+  <p>もしお客様に「○○は使えますか？」と聞かれたら → 「はい、ご利用いただけます」と答える。</p>
+  <p><strong>確認：</strong>どの支払い方法でも対応できれば完了。</p>
+</section>
+
+<!-- ======================== 補充 ======================== -->
+<section id="restock">
+  <h2>補充</h2>
+
+  <div class="note">
+    <strong>このセクションで最終的にどうなるか（完成形）</strong><br>
+    豆・牛乳・カップ・蓋・テイクアウトカップ・ボトルがすべて規定量まで補充され、営業に支障がない状態になっている。
+  </div>
+
+  <h3>豆の補充</h3>
+  <p>出勤したら、最初にホッパーとドリップ用ボトルの豆の量を目で見て確認する。</p>
+
+  <table>
+    <tr><th>場所</th><th>どこまで入れるか</th></tr>
+    <tr><td>ホッパー（エスプレッソ用の豆を入れる容器）</td><td>蓋のすぐ下まで満タンに入れる</td></tr>
+    <tr><td>ドリップ用ボトル</td><td>ボトルのくびれ部分から <strong>0.5cm下</strong> の位置まで入れる</td></tr>
+  </table>
+
+  <div class="warning">
+    <strong>禁止：</strong>ドリップ用ボトルを擦り切り（ぎりぎりいっぱい）まで入れない。理由：お客様がボトルの蓋を開けたときに、豆がこぼれ落ちるため。
+  </div>
+  <p><strong>確認：</strong>ホッパーが蓋の下まで入っていて、ドリップ用ボトルがくびれの0.5cm下まで入っていれば完了。</p>
+
+  <h3>牛乳・インフューズドミルク（特製ミルク）</h3>
+  <p>出勤時に冷蔵庫の中を確認する。通常の牛乳は用意されている。</p>
+  <p>インフューズドミルク（特製ミルク）のパック数を数える。</p>
+
+  <table>
+    <tr><th>曜日</th><th>必要なパック数</th></tr>
+    <tr><td>平日（月〜金）</td><td><strong>1.5パック</strong> 以上あること</td></tr>
+    <tr><td>土日</td><td><strong>2.5パック</strong> 以上あること</td></tr>
+  </table>
+
+  <p>もしパック数が足りない → 不足分を補充してから、他の作業を始める。</p>
+  <p>もしパック数が足りている → そのまま次の作業に進む。</p>
+  <p><strong>確認：</strong>インフューズドミルクが上記の必要パック数以上あれば完了。</p>
+
+  <h3>カップ・蓋の準備</h3>
+  <p>開店前に、カップと蓋をエスプレッソマシンの上に置く。</p>
+  <p><strong>確認：</strong>エスプレッソマシンの上にカップと蓋が置いてあれば完了。</p>
+
+  <h3>テイクアウトカップのシール貼り</h3>
+  <p>テイクアウトカップが届いたら、届いた日から数えて <strong>10日以内</strong> に、届いたカップすべてにシールを貼り終える。</p>
+  <p>1日あたりの目安本数は以下のとおり。</p>
+
+  <table>
+    <tr><th>曜日</th><th>1日に貼る本数の目安</th></tr>
+    <tr><td>平日（月〜金）</td><td><strong>8本</strong></td></tr>
+    <tr><td>土日</td><td><strong>5本</strong></td></tr>
+  </table>
+
+  <ul class="sub-list">
+    <li>その日に貼った本数を、毎日の日報（LINE）で報告する。例：「本日シール貼り 8本完了」</li>
+    <li>もしその日にできなかった場合 → 日報に「シール貼りできず。理由：○○」と書き、次の出勤者に引き継ぐ</li>
+  </ul>
+  <p><strong>確認：</strong>日報にシール貼りの本数を報告できていれば完了。</p>
+
+  <h3>豆のボトル（蓋付け作業）</h3>
+  <p>豆のボトルが届いたら、ボトルに蓋を取り付ける作業を行う。</p>
+  <p>届いた日から数えて <strong>7日以内</strong> に、届いたボトルすべてに蓋を取り付け終える。</p>
+  <ul class="sub-list">
+    <li>その日に蓋をつけた個数を、毎日の日報（LINE）で報告する。例：「本日ボトル蓋付け 10個完了」</li>
+  </ul>
+  <p><strong>確認：</strong>7日以内にすべてのボトルに蓋がついていれば完了。</p>
+
+  <h3>届いた物品の整理</h3>
+  <ul class="sub-list">
+    <li>テイクアウト用品（カップ・蓋・ストローなど）が届いたら → カウンター上の棚に移動させる</li>
+    <li>届いた段ボールは、中身を出したらその日のうちに潰してまとめる（店が狭いため、段ボールを置いたままにしない）</li>
+  </ul>
+  <p><strong>確認：</strong>届いた物品が棚に収まり、段ボールが潰されていれば完了。</p>
+
+  <h3>物品管理（毎月15日と30日に行う）</h3>
+  <div class="note">
+    毎月 <strong>15日</strong> と <strong>30日</strong> に、以下の作業を行う。<br>
+    (1) すべての物品（カップ・蓋・豆・牛乳・ストローなど）の在庫数を数える。<br>
+    (2) 管理表に在庫数を記入する。<br>
+    (3) 1日あたりの使用量から、あと何日分あるかを計算する。<br>
+    (4) 残り7日分以下になりそうな物品があれば、次の発注時期の見立て（「○月○日頃に発注が必要」）を管理表に記入する。
+  </div>
+  <p><strong>確認：</strong>管理表にすべての物品の在庫数と発注見立てが記入されていれば完了。</p>
+  <div class="warning">
+    <strong>よくある間違い：</strong>在庫を数えただけで管理表に書かない。必ず管理表に記入すること。
+  </div>
+</section>
+
+<!-- ======================== 発注 ======================== -->
+<section id="order"><h2>発注</h2><p class="coming-soon">準備中</p></section>
+<!-- ======================== 掃除 ======================== -->
+<section id="cleaning"><h2>掃除</h2><p class="coming-soon">準備中</p></section>
+<!-- ======================== シフト作成 ======================== -->
+<section id="shift"><h2>シフト作成</h2><p class="coming-soon">準備中</p></section>
+<!-- ======================== MTG日程 ======================== -->
+<section id="mtg-schedule"><h2>MTG日程決め</h2><p class="coming-soon">準備中</p></section>
+<!-- ======================== MTG進行 ======================== -->
+<section id="mtg-facilitation"><h2>MTG進行方法</h2><p class="coming-soon">準備中</p></section>
+
+<!-- ======================== 教育 ======================== -->
+<section id="education">
+  <h2>教育</h2>
+
+  <div class="note">
+    <strong>このセクションで最終的にどうなるか（完成形）</strong><br>
+    イグニスの教育プログラム（3つの柱）を理解し、エスプレッソのルーティンを動画どおりに再現できる状態になっている。
+  </div>
+
+  <p>イグニスの教育は以下の <strong>3つの柱</strong> で構成されている。</p>
+  <div class="pillars">
+    <div class="pillar-card">
+      <div class="pillar-number">01</div>
+      <div class="pillar-title">コーヒーの知識</div>
+      <p class="pillar-desc">コーヒーの産地・精製方法・味の特徴を理解し、お客様に説明できるようになる</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-number">02</div>
+      <div class="pillar-title">店のオペレーション</div>
+      <p class="pillar-desc">このマニュアルに書かれた全業務を、他の人に聞かずに一人で実行できるようになる</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-number">03</div>
+      <div class="pillar-title">テストに受かる</div>
+      <p class="pillar-desc">知識・技術の確認テストに合格し、次のステップに進む</p>
+    </div>
+  </div>
+
+  <h3>エスプレッソ ルーティン</h3>
+
+  <div class="warning">
+    エスプレッソのルーティン動画を視聴し、動画と同じ手順を同じ順番で再現できるようになるまで、実際のお客様向けエスプレッソの抽出を行ってはならない。<br>
+    練習中は先輩スタッフの前で手順を見せ、OKをもらうこと。
+  </div>
+
+  <ol class="step-list">
+    <li>
+      <strong>ポルタフィルターをマシンから外す</strong>
+      <p>グループヘッド（マシン前面の抽出口）からポルタフィルターを左に回して外す。</p>
+      <p><strong>確認：</strong>ポルタフィルターが手に持てていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>パージ（お湯を出して洗い流す）を行う</strong>
+      <p>ポルタフィルターを外した状態で、グループヘッドの抽出ボタンを2〜3秒押し、お湯を出して古い粉を洗い流す。</p>
+      <p><strong>確認：</strong>お湯が出て、グループヘッドから古い粉が流れ落ちれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ノックボックス（使用済み粉の捨て箱）で3回叩く</strong>
+      <p>ポルタフィルターをノックボックスのバーに当てて、強く3回、同じテンポで叩く。中に残っている古い粉を落とす。</p>
+      <p><strong>確認：</strong>ポルタフィルターの中に古い粉が残っていなければ完了。</p>
+    </li>
+
+    <li>
+      <strong>ポルタフィルターを水で洗う</strong>
+      <p>ポルタフィルターの内側を水で流して、残った粉を洗い落とす。</p>
+      <p><strong>確認：</strong>内側に粉や汚れが見えなければ完了。</p>
+    </li>
+
+    <li>
+      <strong>ポルタフィルターを布で拭く</strong>
+      <p>ダスター（布）でポルタフィルターの内側の水分を拭き取る。</p>
+      <p><strong>確認：</strong>内側を指で触って、水気がなければ完了。</p>
+    </li>
+
+    <li>
+      <strong>スケール（はかり）の上を払い、ポルタフィルターを載せて計量を始める</strong>
+      <p>スケールの上に粉や汚れがあれば手で払い落とす。</p>
+      <p>ポルタフィルターをスケールの上に載せ、ゼロリセット（風袋引き）を押す。</p>
+      <p><strong>確認：</strong>スケールの表示が「0g」になっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ポルタフィルターの中の粉をフォークで均す</strong>
+      <p>フォークでポルタフィルター内の粉の表面を平らに払う。</p>
+      <p><strong>確認：</strong>粉の表面が平らになっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>グラインダーの「2杯分」ボタンを押す</strong>
+      <p>グラインダーの2杯分ボタンを1回押して、ポルタフィルターに粉を落とす。</p>
+      <p><strong>確認：</strong>粉がポルタフィルターに落ちていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>スケールの上を払う</strong>
+      <p>スケールの周りにこぼれた粉を手で払い落とす。</p>
+      <p><strong>確認：</strong>スケールの周囲に粉が残っていなければ完了。</p>
+    </li>
+
+    <li>
+      <strong>粉の量が規定量（22g）になるまで繰り返す</strong>
+      <p>スケールの表示を見る。</p>
+      <p>もし22gに達していない → グラインダーから少しずつ粉を足す。</p>
+      <p>もし22gを超えた → スプーンなどで余分な粉を取り除く。</p>
+      <p><strong>確認：</strong>スケールが22gを示していれば完了。次の作業に進む。</p>
+      <div class="warning">
+        <strong>よくある間違い：</strong>粉の量を目分量で判断する。必ずスケールで22gを確認してから次に進むこと。
+      </div>
+    </li>
+
+    <li>
+      <strong>ポルタフィルターを叩いて粉を均す</strong>
+      <p>ポルタフィルターの側面を手のひらで「奥」に1回叩き、次に「手前」に1回叩く。</p>
+      <p>粉の山が均等になるようにする。</p>
+      <p><strong>確認：</strong>粉の表面がおおむね平らになっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ディストリビューター（粉を均す道具）を奥方向に4回動かす</strong>
+      <p>ディストリビューターをポルタフィルターに載せ、奥方向に4回押し動かして粉を均す。</p>
+      <p><strong>確認：</strong>4回動かし終わっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ポルタフィルターを2回叩いてからディストリビューターを取る</strong>
+      <p>ポルタフィルターの側面を軽く2回叩く。そのあとディストリビューターを持ち上げて外す。</p>
+      <p><strong>確認：</strong>ディストリビューターが外れていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ディストリビューターを回す</strong>
+      <p>ディストリビューターをポルタフィルターに再度載せる。</p>
+      <p>時計回りに3回ゆっくり回す。4回目は勢いをつけて回す。</p>
+      <p><strong>確認：</strong>粉の表面がツルツルに均されていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>タンピング（粉を押し固める）</strong>
+      <p>タンパー（押し固める道具）をポルタフィルターに載せ、真上から水平に力を入れて押す。</p>
+      <p>以下の3ステップを順番に行う。</p>
+      <ul class="sub-list">
+        <li>ステップ1：ポルタフィルターの縁を2回叩いて、縁についた粉を落とす</li>
+        <li>ステップ2：タンパーでもう一度押す</li>
+        <li>ステップ3：最後にタンパーを軽く回しながら押す（微粉を抑えるため）</li>
+      </ul>
+      <div class="note">
+        もしアイスエスプレッソを作る場合 → 抽出の味を見て、ミューテーション（挽き目の微調整）を行う。ホットの場合はこの調整は不要。
+      </div>
+      <p><strong>確認：</strong>粉の表面がツルツルで水平になっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ポルタフィルターをマシンにセットする</strong>
+      <p>ポルタフィルターをグループヘッドにはめ込み、右に回して固定する。</p>
+      <div class="warning">
+        <strong>禁止：</strong>セットするときにポルタフィルターに振動を与えない。理由：ポルタフィルターとコーヒーケーキ（押し固めた粉の塊）の間に隙間ができると、お湯が偏って流れ、抽出が失敗するため。ゆっくり丁寧にセットすること。
+      </div>
+      <p><strong>確認：</strong>ポルタフィルターがグループヘッドに固定されていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>ドレンパン（マシン下部の受け皿）を拭く</strong>
+      <p>ダスター（布）でドレンパンの水滴や汚れを拭き取る。</p>
+      <p><strong>確認：</strong>ドレンパンが乾いた状態になっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>スケールをカップの下にセットする</strong>
+      <p>スケールをドレンパンの上（抽出口の真下）に置く。</p>
+      <p>スケールの表示単位を確認する。</p>
+      <p>もし「oz」（オンス）と表示されている → 「g」（グラム）に切り替える。</p>
+      <p>もし「g」と表示されている → そのまま。</p>
+      <p><strong>確認：</strong>スケールが「g」表示で、抽出口の真下に置かれていれば完了。</p>
+      <div class="warning">
+        <strong>よくある間違い：</strong>スケールの単位を確認せず「oz」のまま抽出してしまう。必ず「g」になっているか確認すること。
+      </div>
+    </li>
+
+    <li>
+      <strong>カップをスケールの上にセットする</strong>
+      <p>エスプレッソ用カップをスケールの上に載せる。スケールのゼロリセット（風袋引き）を押す。</p>
+      <p><strong>確認：</strong>カップが抽出口の真下にあり、スケール表示が「0g」になっていれば完了。</p>
+    </li>
+
+    <li>
+      <strong>抽出ボタンを押す</strong>
+      <p>マシンの抽出ボタンを押す。エスプレッソがカップに落ち始める。</p>
+      <p>スケールの表示が40gに達したら、抽出ボタンを再度押して止める。</p>
+      <p><strong>確認：</strong>スケールが約40gを示し、エスプレッソがカップに入っていれば完了。</p>
+    </li>
+  </ol>
+
+  <div class="note"><strong>※ 続きあり</strong> -- 後半のステップ（ミルクスチーム等）は追って追加予定。</div>
+
+  <h3>困ったときの連絡先・次にすべきこと</h3>
+  <ul class="sub-list">
+    <li>手順がわからない・判断に迷う場合 → オーナーにLINEで連絡する</li>
+    <li>マシンが動かない・異常が起きた場合 → マシンの電源を切り、オーナーに電話する</li>
+    <li>エスプレッソの味が基準どおりにならない場合 → 先輩スタッフに相談する</li>
+  </ul>
+
+  <h3>コーヒーの知識</h3><p class="coming-soon">準備中</p>
+  <h3>店のオペレーション</h3><p class="coming-soon">準備中</p>
+  <h3>テストに受かる</h3><p class="coming-soon">準備中</p>
+</section>
+
+</main>
+
+<footer>
+  <p>ignis manual</p>
+  <p>©ignis</p>
+</footer>
+
+</body>
+</html>
