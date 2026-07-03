@@ -1,0 +1,231 @@
+<meta charset="utf-8">
+<title>コーヒー知識テスト</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: A4;
+    margin: 16mm 15mm;
+  }
+
+  html { background: #ececec; }
+
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 画面表示時はA4っぽい紙面を中央に */
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    padding: 16mm 15mm;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0,0,0,.18);
+  }
+
+  header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 8px;
+    margin-bottom: 18px;
+  }
+  header .brand {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #8a6d3b;
+    text-transform: uppercase;
+  }
+  header h1 {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+  .meta {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+    color: #333;
+    margin-top: 10px;
+  }
+  .meta span { border-bottom: 1px solid #999; padding: 0 4px 2px; min-width: 120px; }
+
+  .cat {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fff;
+    background: #6f4e37;
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 2px;
+    margin: 16px 0 8px;
+  }
+
+  .q {
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  .q-text {
+    display: flex;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .q-text .num {
+    color: #6f4e37;
+    font-weight: bold;
+    min-width: 20px;
+  }
+  .answer {
+    margin-top: 6px;
+    padding-left: 28px;
+  }
+  .line {
+    border-bottom: 1px solid #bbb;
+    height: 20px;
+  }
+  .line + .line { margin-top: 4px; }
+
+  footer {
+    margin-top: 20px;
+    padding-top: 8px;
+    border-top: 1px solid #ccc;
+    font-size: 10px;
+    color: #999;
+    text-align: right;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+  }
+</style>
+
+<div class="sheet">
+  <header>
+    <div class="brand">Ignis Coffee</div>
+    <h1>コーヒー知識テスト</h1>
+    <div class="meta">
+      <span>名前：</span>
+      <span>日付：</span>
+      <span>点数：　　　／21</span>
+    </div>
+  </header>
+
+  <div class="cat">産地・植物</div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">1.</span><span>コーヒーノキ（ロビアノキ）は何科の植物か</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">2.</span><span>コーヒーの主な3品種は</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">3.</span><span>コナコーヒーはどこで栽培されているコーヒーか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">4.</span><span>ライオンコーヒーとは一般的に何のことか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">5.</span><span>キリマンジャロはどこの国の山か</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">6.</span><span>ブルーマウンテンはどこの国のコーヒーか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">7.</span><span>スマトラはどこの国のコーヒーか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="cat">歴史</div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">8.</span><span>世界最古のカフェの場所と名前は</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">9.</span><span>日本最古のカフェの場所と名前は</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">10.</span><span>コーヒーはどこから・いつ頃・どこに日本に入ってきたか</span></div>
+    <div class="answer"><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">11.</span><span>ドリップコーヒーはどこで生まれたか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">12.</span><span>ペーパードリップコーヒーは誰が考案したか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">13.</span><span>コーヒーはもともと何として飲まれていたか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="cat">用語・知識</div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">14.</span><span>エチオピアの品種表記にある「HEIRLOOM」とは何か</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">15.</span><span>ゲイシャ種を世界に広めた農園と、きっかけとなった国際品評会は</span></div>
+    <div class="answer"><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">16.</span><span>ゲイシャ種が発見された村の名前は</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">17.</span><span>なぜゲイシャはコモディティコーヒー時代にあまり栽培されてこなかったのか</span></div>
+    <div class="answer"><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">18.</span><span>Qグレーダーとは何をする人のことか</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">19.</span><span>浅煎りのコーヒーを世界に広めたバリスタ世界チャンピオンは誰か</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">20.</span><span>SCAJの正式名称は</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <div class="q">
+    <div class="q-text"><span class="num">21.</span><span>COEの正式名称は</span></div>
+    <div class="answer"><div class="line"></div></div>
+  </div>
+
+  <footer>Ignis Coffee ／ コーヒー知識テスト</footer>
+</div>
