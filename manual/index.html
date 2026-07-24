@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis 業務マニュアル</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="index.html">ignis manual<small>KAMAKURA STAFF</small></a>
+  <span class="header-spacer"></span>
+  <a class="header-link" href="responsibility.html">責任マップ</a>
+  <a class="header-link" href="print.html">PDF・印刷</a>
+  <button class="menu-btn" id="menu-btn" aria-label="メニュー" aria-expanded="false"><span></span></button>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="セクション"></nav>
+
+<main>
+  <h1 class="section-title" id="section-title"></h1>
+  <div class="progress" id="progress-wrap" hidden>
+    <div class="track"><div class="bar" id="progress-bar"></div></div>
+    <div class="txt" id="progress-text"></div>
+  </div>
+  <div id="section-body"></div>
+</main>
+
+<div class="backdrop" id="backdrop" hidden></div>
+<aside class="menu" id="menu" aria-label="全セクション">
+  <h2>セクション</h2>
+  <ul id="menu-list"></ul>
+</aside>
+
+<script src="data/manual.js"></script>
+<script src="js/common.js"></script>
+<script src="js/render.js"></script>
+<script src="js/manual.js"></script>
+</body>
+</html>

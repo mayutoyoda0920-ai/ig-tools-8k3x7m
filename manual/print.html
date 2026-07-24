@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis 業務マニュアル（PDF）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/print.css">
+  <style>
+    /* 画面プレビュー時の背景（PDF出力には影響しない） */
+    body { background: #d9d2c4; }
+    .pagedjs_page { background: #fff; margin: 8px auto; box-shadow: 0 2px 12px rgba(0,0,0,.2); }
+    /* raw モード（cli生成用）や Paged.js 前の生表示を整える */
+    .toolbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #3e2b23; color: #f5f0e6; display: flex; gap: 10px; align-items: center;
+      padding: 8px 14px; font: 600 13px/1 "M PLUS 1p", sans-serif;
+    }
+    .toolbar a, .toolbar button {
+      font: inherit; color: #f5f0e6; background: transparent; border: 1.5px solid rgba(245,240,230,.5);
+      border-radius: 999px; padding: 7px 14px; cursor: pointer; text-decoration: none;
+    }
+    .toolbar .sp { flex: 1; }
+    body.paged-done .toolbar, body.rawmode .toolbar { }
+    @media print { .toolbar { display: none !important; } }
+    #content { margin-top: 46px; }
+    body.paged-done #content { margin-top: 0; }
+  </style>
+  <script>
+    // raw=1 のときは Paged.js を自ページで走らせない（pagedjs-cli 側が処理）
+    window.__RAW = /(?:[?&])raw/.test(location.search);
+    window.PagedConfig = { auto: false };
+  </script>
+</head>
+<body>
+
+<div class="toolbar" id="toolbar">
+  <a href="index.html">← マニュアルへ</a>
+  <span class="sp"></span>
+  <button id="print-btn">印刷 / PDF保存</button>
+</div>
+
+<div id="content"></div>
+
+<script src="data/manual.js"></script>
+<script src="js/render.js"></script>
+<script src="js/print.js"></script>
+<script>
+  document.getElementById("print-btn").addEventListener("click", function () {
+    window.print();
+  });
+</script>
+</body>
+</html>

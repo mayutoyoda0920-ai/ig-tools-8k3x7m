@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis 責任マップ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="index.html">ignis manual<small>KAMAKURA STAFF</small></a>
+  <span class="header-spacer"></span>
+  <a class="header-link" href="index.html">マニュアル</a>
+</header>
+
+<main>
+  <h1 class="section-title">責任マップ</h1>
+  <p class="map-intro">
+    業務ごとの担当者と権限レベルの一覧です。「今の担当」「2027年1月〜」「権限レベル」「連絡先」は編集でき、この端末に自動保存されます。
+    <strong>担当者が空欄の行は、これから採用・育成で埋めていく職務</strong>です。
+  </p>
+
+  <div class="legend">
+    <span class="lg"><b class="lv-A-bg">A</b>自分で判断して実行（報告不要）</span>
+    <span class="lg"><b class="lv-B-bg">B</b>実行して事後報告</span>
+    <span class="lg"><b class="lv-C-bg">C</b>実行前に要確認</span>
+  </div>
+
+  <div class="map-controls">
+    <label><input type="checkbox" id="only-empty"> 空欄の行だけ表示</label>
+    <span>担当空欄：<span class="empty-badge" id="empty-count">0</span> 件</span>
+    <span class="spacer"></span>
+    <button class="btn ghost" id="reset-btn">編集をリセット</button>
+    <button class="btn" id="export-btn">CSVエクスポート</button>
+  </div>
+
+  <div class="load-status" id="load-status">読み込み中…</div>
+
+  <div class="map-scroll">
+    <table class="map">
+      <thead>
+        <tr>
+          <th>カテゴリ</th>
+          <th>機能</th>
+          <th>今の担当</th>
+          <th>2027年1月〜</th>
+          <th>権限</th>
+          <th>困ったときの連絡先</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody id="map-body"></tbody>
+    </table>
+  </div>
+</main>
+
+<script src="js/common.js"></script>
+<script src="js/responsibility.js"></script>
+</body>
+</html>
