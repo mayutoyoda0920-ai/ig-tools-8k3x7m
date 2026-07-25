@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis 売上記録</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="index.html">ignis manual<small>KAMAKURA STAFF</small></a>
+  <span class="header-spacer"></span>
+  <a class="header-link" href="index.html">← マニュアル</a>
+</header>
+
+<main>
+  <h1 class="section-title">売上記録</h1>
+  <p class="map-intro">1日の締めの数字を入力すると、売上記録スプレッドシートに1行追記されます。</p>
+
+  <div class="load-status error" id="not-configured" hidden>
+    スプレッドシート連携が未設定です。管理者に連絡してください（設定：<code>js/config.js</code>）。
+  </div>
+
+  <form id="sales-form" class="form-card" autocomplete="off">
+    <div class="field-grid">
+      <label class="field">
+        <span class="field-label">日付</span>
+        <input type="date" id="f-date" required>
+      </label>
+      <label class="field">
+        <span class="field-label">曜日</span>
+        <input type="text" id="f-weekday" readonly class="readonly">
+      </label>
+      <label class="field field-wide">
+        <span class="field-label">天気</span>
+        <input type="text" id="f-weather" placeholder="晴れ／雨 など" inputmode="text">
+      </label>
+
+      <label class="field yen">
+        <span class="field-label">受取合計額</span>
+        <input type="number" id="f-total" min="0" step="1" inputmode="numeric" placeholder="0">
+      </label>
+      <label class="field yen">
+        <span class="field-label">現金売上</span>
+        <input type="number" id="f-cash" min="0" step="1" inputmode="numeric" placeholder="0">
+      </label>
+      <label class="field yen">
+        <span class="field-label">クレカ使用</span>
+        <input type="number" id="f-credit" min="0" step="1" inputmode="numeric" placeholder="0">
+      </label>
+      <label class="field yen">
+        <span class="field-label">小口清算（現金）</span>
+        <input type="number" id="f-petty" min="0" step="1" inputmode="numeric" placeholder="0">
+      </label>
+      <label class="field yen">
+        <span class="field-label">小口残高</span>
+        <input type="number" id="f-pettybal" min="0" step="1" inputmode="numeric" placeholder="0">
+      </label>
+      <label class="field yen">
+        <span class="field-label">売上金袋内</span>
+        <input type="number" id="f-bag" min="0" step="1" inputmode="numeric" placeholder="0">
+      </label>
+
+      <label class="field">
+        <span class="field-label">氏名</span>
+        <input type="text" id="f-name" placeholder="記入者">
+      </label>
+      <label class="field field-wide">
+        <span class="field-label">備考・メモ</span>
+        <input type="text" id="f-memo" placeholder="購入品・気づいたことなど">
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <div class="sheets-status" id="status"></div>
+      <button type="submit" class="btn" id="submit-btn">スプレッドシートに記録</button>
+    </div>
+  </form>
+
+  <p class="form-note">送信後もこの端末に「最後に入力した内容」が残ります。誤送信時は再度正しい値で送ってください（この画面から行の削除はできません）。</p>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/sales.js"></script>
+</body>
+</html>

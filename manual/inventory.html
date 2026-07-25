@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis 物品在庫の入力</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="index.html">ignis manual<small>KAMAKURA STAFF</small></a>
+  <span class="header-spacer"></span>
+  <a class="header-link" href="index.html">← マニュアル</a>
+</header>
+
+<main>
+  <h1 class="section-title">物品在庫の入力</h1>
+  <p class="map-intro">
+    毎月<strong>15日・30日</strong>の棚卸しで、品目ごとに在庫数を入力します。送信すると物品管理シートに1品目=1行で追記されます。
+    残り日数・発注見立ては分かる範囲で記入してください（<a href="index.html#restock">補充セクションの手順</a>）。
+  </p>
+
+  <div class="load-status error" id="not-configured" hidden>
+    スプレッドシート連携が未設定です。管理者に連絡してください（設定：<code>js/config.js</code>）。
+  </div>
+
+  <div class="field-grid top-meta">
+    <label class="field">
+      <span class="field-label">日付</span>
+      <input type="date" id="f-date">
+    </label>
+    <label class="field">
+      <span class="field-label">記入者</span>
+      <input type="text" id="f-name" placeholder="氏名">
+    </label>
+  </div>
+
+  <div class="inv-head">
+    <span>品目</span><span>在庫数</span><span>単位</span><span>残り日数</span><span>発注見立て</span><span></span>
+  </div>
+  <div id="inv-rows"></div>
+
+  <button type="button" class="btn ghost add-item" id="add-item">＋ 品目を追加</button>
+
+  <div class="form-actions">
+    <div class="sheets-status" id="status"></div>
+    <button type="button" class="btn" id="submit-btn">スプレッドシートに記録</button>
+  </div>
+
+  <p class="form-note">品目リストはこの端末に保存され、次回もそのまま表示されます。数量が空の品目は送信しません。</p>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/inventory.js"></script>
+</body>
+</html>
