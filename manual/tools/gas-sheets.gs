@@ -23,7 +23,7 @@
    ============================================================ */
 
 var CONFIG = {
-  TOKEN: "CHANGE_ME",                 // ← config.js と一致させる
+  TOKEN: "ignis-42d5042d",                 // ← config.js と一致させる
   SALES_SHEET_NAME: "売上記録",        // ← 実際の売上シート（タブ）名に合わせる
   INVENTORY_SHEET_NAME: "物品管理",    // ← 無ければ自動で作成される
 };

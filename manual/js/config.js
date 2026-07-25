@@ -6,5 +6,5 @@
      詳しくは tools/gas-sheets.gs の注意書きを参照。 */
 window.IGNIS_CONFIG = {
   SHEETS_URL: "",   // 例: https://script.google.com/macros/s/XXXX/exec
-  TOKEN: ""         // GAS 側の TOKEN と同じ文字列にする（簡易保護）
+  TOKEN: "ignis-42d5042d"         // GAS 側の TOKEN と同じ文字列にする（簡易保護）
 };
