@@ -24,6 +24,7 @@
 
 var CONFIG = {
   TOKEN: "ignis-42d5042d",                 // ← config.js と一致させる
+  SHEET_ID: "ここにスプレッドシートのIDを貼る",  // ← 売上表URLの /d/ と /edit の間の文字列
   SALES_SHEET_NAME: "売上記録",        // ← 実際の売上シート（タブ）名に合わせる
   INVENTORY_SHEET_NAME: "物品管理",    // ← 無ければ自動で作成される
 };
@@ -36,7 +37,7 @@ function doPost(e) {
       return json({ status: "error", message: "合言葉が違います" });
     }
 
-    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var ss = SpreadsheetApp.openById(CONFIG.SHEET_ID);
 
     if (data.action === "sales-add") {
       var r = data.row || {};
