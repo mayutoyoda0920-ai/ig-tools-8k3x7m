@@ -24,9 +24,10 @@
 
 var CONFIG = {
   TOKEN: "ignis-42d5042d",                 // ← config.js と一致させる
-  SHEET_ID: "ここにスプレッドシートのIDを貼る",  // ← 売上表URLの /d/ と /edit の間の文字列
-  SALES_SHEET_NAME: "売上記録",        // ← 実際の売上シート（タブ）名に合わせる
-  INVENTORY_SHEET_NAME: "物品管理",    // ← 無ければ自動で作成される
+  SHEET_ID: "1gfzZpDkd5CfgwrIDUXesm6SMhJQJdre3A-tpGZP8VNs",  // 売上スプレッドシートのID
+  SALES_SHEET_GID: 1745551474,             // 書き込む売上タブ（URLの gid= の数字）
+  SALES_SHEET_NAME: "売上記録",            // gid が見つからない時の予備（タブ名）
+  INVENTORY_SHEET_NAME: "物品管理",        // 無ければ自動で作成される
 };
 
 function doPost(e) {
@@ -41,7 +42,8 @@ function doPost(e) {
 
     if (data.action === "sales-add") {
       var r = data.row || {};
-      var sh = ss.getSheetByName(CONFIG.SALES_SHEET_NAME) || ss.getActiveSheet();
+      var sh = sheetByGid(ss, CONFIG.SALES_SHEET_GID)
+            || ss.getSheetByName(CONFIG.SALES_SHEET_NAME) || ss.getActiveSheet();
       sh.appendRow([
         r.date || "",
         r.weekday || "",
@@ -89,6 +91,15 @@ function num(v) {
   if (v === "" || v == null) return "";
   var n = Number(v);
   return isNaN(n) ? v : n;
+}
+
+function sheetByGid(ss, gid) {
+  if (gid == null) return null;
+  var shs = ss.getSheets();
+  for (var i = 0; i < shs.length; i++) {
+    if (shs[i].getSheetId() === gid) return shs[i];
+  }
+  return null;
 }
 
 function getOrCreate(ss, name, headers) {
