@@ -626,3 +626,55 @@ code { background: #efe7d6; padding: 1px 6px; border-radius: 4px; font-size: 0.8
   .inv-row .inv-reorder { grid-column: 1 / -1; }
   .inv-row .row-del { grid-column: 1 / -1; justify-self: end; width: 44px; }
 }
+
+/* ===== 引き継ぎ ===== */
+.field textarea {
+  width: 100%;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  font: inherit;
+  background: #fff;
+  resize: vertical;
+  line-height: 1.7;
+}
+.field textarea:focus { outline: none; border-color: var(--terracotta); }
+.field-label .hint { font-weight: 400; color: var(--muted); font-size: 0.72rem; }
+.sub-h { font-family: var(--hd); font-weight: 600; font-size: 1rem; margin: 22px 0 8px; }
+.btn.small { padding: 6px 12px; font-size: 0.8rem; min-height: auto; }
+
+.latest-card {
+  background: var(--paper);
+  border: 1px solid var(--terracotta);
+  border-left: 4px solid var(--terracotta);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 8px 0 4px;
+}
+.latest-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.latest-badge {
+  font-family: var(--hd);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--terracotta);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.latest-meta { font-weight: 700; color: var(--brown); margin-bottom: 8px; }
+.latest-block { margin: 8px 0; }
+.latest-block .lb-label {
+  display: inline-block;
+  font-family: var(--hd);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--brown-2);
+  background: #efe7d6;
+  padding: 1px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+}
+.latest-block.warn .lb-label { color: var(--terracotta-d); background: var(--warn-bg); }
+.latest-block p { line-height: 1.7; }
+#ack-btn { margin-top: 8px; }

@@ -28,6 +28,7 @@ var CONFIG = {
   SALES_SHEET_GID: 1745551474,             // 書き込む売上タブ（URLの gid= の数字）
   SALES_SHEET_NAME: "売上記録",            // gid が見つからない時の予備（タブ名）
   INVENTORY_SHEET_NAME: "物品管理",        // 無ければ自動で作成される
+  HANDOVER_SHEET_NAME: "引き継ぎ",          // 無ければ自動で作成される
 };
 
 function doPost(e) {
@@ -77,13 +78,39 @@ function doPost(e) {
       return json({ status: "ok", action: "inventory-add", count: items.length });
     }
 
+    if (data.action === "handover-add") {
+      var sh3 = getOrCreate(ss, CONFIG.HANDOVER_SHEET_NAME, [
+        "日付", "担当", "宛先", "申し送り", "未完了・注意", "記録日時",
+      ]);
+      sh3.appendRow([
+        data.date || "",
+        data.from || "",
+        data.to || "",
+        data.body || "",
+        data.todo || "",
+        new Date(),
+      ]);
+      return json({ status: "ok", action: "handover-add" });
+    }
+
     return json({ status: "error", message: "Unknown action" });
   } catch (err) {
     return json({ status: "error", message: String(err) });
   }
 }
 
-function doGet() {
+function doGet(e) {
+  var action = (e && e.parameter && e.parameter.action) || "";
+  if (action === "handover-latest") {
+    var ss = SpreadsheetApp.openById(CONFIG.SHEET_ID);
+    var sh = ss.getSheetByName(CONFIG.HANDOVER_SHEET_NAME);
+    if (!sh || sh.getLastRow() < 2) return json({ status: "ok", handover: null });
+    var v = sh.getRange(sh.getLastRow(), 1, 1, 6).getValues()[0];
+    return json({
+      status: "ok",
+      handover: { date: v[0], from: v[1], to: v[2], body: v[3], todo: v[4], at: String(v[5]) },
+    });
+  }
   return json({ status: "ok", message: "ignis sheets endpoint is alive" });
 }
 
