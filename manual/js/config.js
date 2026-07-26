@@ -5,6 +5,6 @@
    ※ このファイルは公開リポジトリに含まれるため、URL・合言葉は第三者にも見えうる。
      詳しくは tools/gas-sheets.gs の注意書きを参照。 */
 window.IGNIS_CONFIG = {
-  SHEETS_URL: "https://script.google.com/macros/s/AKfycbzHaTQLi9-B-yiajo9fG-NAWw0_wnpeSyg4I0oRViYHtiWmYZz4P0_i6MB4EhYUeqPr/exec",
+  SHEETS_URL: "https://script.google.com/macros/s/AKfycbyL7C0y0-pVQz6sD2NdUN2GmjzNKHyGYFDmV5XcANa0yNPaMR0RsZSdB-fhlbJr-hs/exec",
   TOKEN: "ignis-42d5042d"         // GAS 側の TOKEN と同じ文字列にする（簡易保護）
 };

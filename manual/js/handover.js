@@ -24,10 +24,11 @@
   f.from.value = C.Store.get(NAME_KEY, "");
   f.from.addEventListener("input", function () { C.Store.set(NAME_KEY, f.from.value); });
 
-  function fmtDate(iso) {
-    if (!iso) return "";
-    var d = new Date(iso + "T00:00:00");
-    if (isNaN(d)) return iso;
+  function fmtDate(v) {
+    if (!v) return "";
+    // "YYYY-MM-DD" はローカル日付として、ISO文字列(シート由来)はそのまま解釈
+    var d = /^\d{4}-\d{2}-\d{2}$/.test(v) ? new Date(v + "T00:00:00") : new Date(v);
+    if (isNaN(d)) return String(v);
     return (d.getMonth() + 1) + "/" + d.getDate() + "(" + WD[d.getDay()] + ")";
   }
 
