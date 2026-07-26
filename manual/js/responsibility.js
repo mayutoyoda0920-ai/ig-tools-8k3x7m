@@ -204,7 +204,12 @@
     render();
   });
   document.getElementById("export-btn").addEventListener("click", exportCSV);
-  document.getElementById("reset-btn").addEventListener("click", function () {
+
+  // 「編集をリセット」は誤操作防止のため通常は非表示。
+  // 店長用：URL に ?admin を付けたときだけ表示される。
+  var resetBtn = document.getElementById("reset-btn");
+  if ((location.search + location.hash).indexOf("admin") >= 0) resetBtn.hidden = false;
+  resetBtn.addEventListener("click", function () {
     if (!confirm("編集内容をすべて消去して、CSVの初期状態に戻します。よろしいですか？")) return;
     edits = {};
     C.Store.set(KEY, edits);
