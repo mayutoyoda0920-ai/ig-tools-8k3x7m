@@ -716,3 +716,7 @@ code { background: #efe7d6; padding: 1px 6px; border-radius: 4px; font-size: 0.8
   min-height: auto;
 }
 .subtoc-link:hover { border-color: var(--terracotta); background: #fff; }
+
+/* ===== 発注ログイン情報 ===== */
+.creds-head { display: flex; align-items: center; justify-content: space-between; margin: 8px 0; }
+#creds-table td { word-break: break-all; }

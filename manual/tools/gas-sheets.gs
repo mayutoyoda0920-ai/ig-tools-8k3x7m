@@ -29,6 +29,7 @@ var CONFIG = {
   SALES_SHEET_NAME: "売上記録",            // gid が見つからない時の予備（タブ名）
   INVENTORY_SHEET_NAME: "物品管理",        // 無ければ自動で作成される
   HANDOVER_SHEET_NAME: "引き継ぎ",          // 無ければ自動で作成される
+  ORDER_CRED_SHEET_NAME: "発注ログイン",    // 発注ログイン情報を入れる非公開タブ
 };
 
 function doPost(e) {
@@ -91,6 +92,27 @@ function doPost(e) {
         new Date(),
       ]);
       return json({ status: "ok", action: "handover-add" });
+    }
+
+    // 発注ログイン情報の取得（合言葉 pw を Script Properties の ORDER_CRED_PW と照合）
+    if (data.action === "order-creds") {
+      var real = PropertiesService.getScriptProperties().getProperty("ORDER_CRED_PW");
+      if (!real) {
+        return json({ status: "error", message: "合言葉が未設定です（管理者に連絡）" });
+      }
+      if (String(data.pw || "") !== String(real)) {
+        return json({ status: "error", message: "合言葉が違います" });
+      }
+      var csh = ss.getSheetByName(CONFIG.ORDER_CRED_SHEET_NAME);
+      if (!csh || csh.getLastRow() < 1) {
+        return json({ status: "ok", headers: [], rows: [] });
+      }
+      var vals = csh.getDataRange().getValues();
+      var headers = vals.shift().map(function (h) { return String(h); });
+      var rows = vals
+        .filter(function (r) { return r.join("").trim() !== ""; })
+        .map(function (r) { return r.map(function (c) { return c == null ? "" : String(c); }); });
+      return json({ status: "ok", headers: headers, rows: rows });
     }
 
     return json({ status: "error", message: "Unknown action" });

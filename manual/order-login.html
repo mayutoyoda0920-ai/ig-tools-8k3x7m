@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ignis 発注ログイン情報</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="brand" href="index.html">ignis manual<small>KAMAKURA STAFF</small></a>
+  <span class="header-spacer"></span>
+  <a class="header-link" href="index.html">← マニュアル</a>
+</header>
+
+<main>
+  <h1 class="section-title">発注ログイン情報</h1>
+  <p class="map-intro">
+    各発注先のログイン情報（スタッフ限定）です。<strong>合言葉</strong>を入れると表示されます。
+    合言葉は店から共有されます（このページには書かれていません）。
+  </p>
+
+  <div class="load-status error" id="not-configured" hidden>
+    連携が未設定です。管理者に連絡してください。
+  </div>
+
+  <!-- 合言葉入力 -->
+  <form id="pw-form" class="form-card" autocomplete="off">
+    <label class="field field-wide">
+      <span class="field-label">合言葉</span>
+      <input type="password" id="f-pw" inputmode="text" placeholder="スタッフ用の合言葉" autocomplete="off">
+    </label>
+    <div class="form-actions">
+      <div class="sheets-status" id="status"></div>
+      <button type="submit" class="btn" id="show-btn">表示する</button>
+    </div>
+  </form>
+
+  <!-- 結果 -->
+  <div id="creds-wrap" hidden>
+    <div class="creds-head">
+      <span class="latest-badge">発注ログイン情報</span>
+      <button type="button" class="btn ghost small" id="hide-btn">隠す</button>
+    </div>
+    <div class="map-scroll">
+      <table class="map" id="creds-table"></table>
+    </div>
+    <p class="form-note">画面を離れる・「隠す」を押すと非表示になります。人前での表示に注意してください。</p>
+  </div>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/common.js"></script>
+<script src="js/sheets.js"></script>
+<script src="js/order-login.js"></script>
+</body>
+</html>
