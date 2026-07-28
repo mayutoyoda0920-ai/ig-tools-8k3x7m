@@ -520,7 +520,7 @@ window.MANUAL_DATA = {
           "blocks": [
             {
               "type": "free",
-              "work": "<p class=\"coming-soon\">準備中</p>",
+              "work": "<p>コーヒーの産地・精製方法・味の特徴などの基礎は、下の学習サイトで学べます。読み終えたら、章末の理解度テストにも挑戦しましょう。</p><p><a href=\"https://coffee-site-two-rust.vercel.app/\" target=\"_blank\" rel=\"noopener\" style=\"color:#111; font-weight:600;\">▶ コーヒー基礎知識ナビを開く</a></p><div class=\"note\">開くときの合言葉（パスワード）は、店から共有されます。</div>",
               "check": ""
             }
           ]
