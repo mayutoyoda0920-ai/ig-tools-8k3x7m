@@ -103,7 +103,8 @@
               b.blocks[0].type === "free" &&
               /coming-soon/.test(b.blocks[0].work || "");
             return (
-              '<div class="subsection' + (comingSoon ? " is-coming" : "") + '">' +
+              '<div class="subsection' + (comingSoon ? " is-coming" : "") +
+              '" id="sub-' + ctx.sectionId + "-" + bi + '">' +
               '<h3 class="sub-title">' + b.title + "</h3>" +
               renderBlocks(b.blocks, Object.assign({}, ctx, { stepKey: "sub" + bi })) +
               "</div>"
@@ -139,7 +140,24 @@
     var goal = section.goal
       ? '<div class="note goal">' + section.goal + "</div>"
       : "";
-    return goal + renderBlocks(section.blocks, ctx);
+
+    // 章内の小目次（サブ見出しへジャンプ）。アプリのみ・2つ以上あるとき。
+    var subtoc = "";
+    if (opts.subtoc) {
+      var chips = section.blocks
+        .map(function (b, bi) {
+          if (b.type !== "subsection") return "";
+          return '<a class="subtoc-link" data-target="sub-' + section.id + "-" + bi + '">' + b.title + "</a>";
+        })
+        .filter(Boolean);
+      if (chips.length >= 2) {
+        subtoc =
+          '<nav class="subtoc"><span class="subtoc-label">この章の目次</span>' +
+          chips.join("") + "</nav>";
+      }
+    }
+
+    return subtoc + goal + renderBlocks(section.blocks, ctx);
   }
 
   global.ManualRender = {

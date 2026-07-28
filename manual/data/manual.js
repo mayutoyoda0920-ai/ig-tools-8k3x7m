@@ -290,21 +290,8 @@ window.MANUAL_DATA = {
       ]
     },
     {
-      "id": "mtg-schedule",
-      "title": "MTG日程決め",
-      "status": "coming-soon",
-      "goal": "",
-      "blocks": [
-        {
-          "type": "free",
-          "work": "<p class=\"coming-soon\">準備中</p>",
-          "check": ""
-        }
-      ]
-    },
-    {
-      "id": "mtg-facilitation",
-      "title": "MTG進行方法",
+      "id": "mtg",
+      "title": "MTG（日程決め・進行方法）",
       "status": "coming-soon",
       "goal": "",
       "blocks": [

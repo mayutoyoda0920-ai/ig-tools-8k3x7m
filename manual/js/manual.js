@@ -79,7 +79,15 @@
     if (sec.status === "coming-soon") return;
 
     titleEl.textContent = sec.title;
-    bodyEl.innerHTML = R.renderSection(sec, { checkboxes: true });
+    bodyEl.innerHTML = R.renderSection(sec, { checkboxes: true, subtoc: true });
+
+    // 小目次のチップ → 対象のサブ見出しへスクロール
+    bodyEl.querySelectorAll(".subtoc-link").forEach(function (a) {
+      a.addEventListener("click", function () {
+        var t = document.getElementById(a.getAttribute("data-target"));
+        if (t) t.scrollIntoView({ block: "start" });
+      });
+    });
 
     // チェック状態復元
     var boxes = bodyEl.querySelectorAll('input[type="checkbox"]');

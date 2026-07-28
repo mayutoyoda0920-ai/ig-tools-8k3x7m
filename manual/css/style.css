@@ -678,3 +678,41 @@ code { background: #efe7d6; padding: 1px 6px; border-radius: 4px; font-size: 0.8
 .latest-block.warn .lb-label { color: var(--terracotta-d); background: var(--warn-bg); }
 .latest-block p { line-height: 1.7; }
 #ack-btn { margin-top: 8px; }
+
+/* ===== 章内の小目次（サブ見出しジャンプ） ===== */
+.subtoc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  position: sticky;
+  top: 8px;
+  z-index: 5;
+}
+.subtoc-label {
+  font-family: var(--hd);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--brown-2);
+  margin-right: 2px;
+}
+.subtoc-link {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--brown);
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: 0.12s;
+  min-height: auto;
+}
+.subtoc-link:hover { border-color: var(--terracotta); background: #fff; }
